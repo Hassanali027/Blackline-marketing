@@ -192,7 +192,7 @@ button {
    HEADER
    ========================================================= */
 .site-header {
-    position: sticky;
+    
     top: 0;
     z-index: 60;
     background: var(--bg);
@@ -619,14 +619,14 @@ button {
    WORK / PORTFOLIO
    ========================================================= */
 .work {
-    padding-block: 60px
+    padding-block: 15px
 }
 
 .work-strip {
     position: relative;
     display: flex;
     gap: 16px;
-    height: 537px;
+    height: 450px;
 }
 
 .work-panel {
@@ -686,7 +686,7 @@ button {
 .play {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 38%;
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
@@ -828,7 +828,7 @@ button {
    STATS
    ========================================================= */
 .stats {
-    padding-block: 88px
+    padding-block: 10px
 }
 
 .stats-grid {
@@ -1017,11 +1017,15 @@ button {
 }
 
 .dot {
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    margin: 0;
     border-radius: 50%;
     border: 1px solid var(--gold);
+    background: transparent;
     transition: .25s var(--ease);
+    cursor: pointer;
 }
 
 .dot.is-active,
@@ -1894,15 +1898,17 @@ button {
 <!-- ============ WORK ============ -->
 <section class="work" id="work">
   <div class="container">
-    <h2 class="h2 section-title"><span class="gold">Work</span> That Speaks Louder Than Words</h2>
-    <p class="section-sub">Three brands, three categories, one shared outcome: attention that turned into revenue.</p>
+    <h2 class="h2 section-title" id="work-title" style="min-height: 40px; margin-bottom: 0;"></h2>
+    <p class="section-sub" id="work-desc" style="margin-top: 10px; min-height: 24px;"></p>
 
-    <div class="work-strip" id="workStrip">
+    <div id="work-scroll-track" style="height: 300vh; position: relative; margin-top: 30px;">
+      <div id="work-sticky-wrapper" style="position: sticky; top: calc(50vh - 225px);">
+        <div class="work-strip" id="workStrip">
       <article class="work-panel is-open" data-title="Aurelio">
         <img src="{{ asset('images/work-aurelio.jpg') }}" alt="Aurelio case study">
         <span class="work-vtitle">Aurelio</span>
         <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
         </button>
         <div class="work-body">
           <h3>Aurelio</h3>
@@ -1919,7 +1925,7 @@ button {
         <img src="{{ asset('images/work-osteria.jpg') }}" alt="Osteria Nine case study">
         <span class="work-vtitle">Osteria Nine</span>
         <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
         </button>
         <div class="work-body">
           <h3>Osteria Nine</h3>
@@ -1936,7 +1942,7 @@ button {
         <img src="{{ asset('images/work-meridian.jpg') }}" alt="Meridian Group case study">
         <span class="work-vtitle">Meridian Group</span>
         <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
         </button>
         <div class="work-body">
           <h3>Meridian Group</h3>
@@ -1953,7 +1959,7 @@ button {
         <img src="{{ asset('images/work-nova.jpg') }}" alt="Nova Fashion House case study">
         <span class="work-vtitle">Nova Fashion House</span>
         <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
         </button>
         <div class="work-body">
           <h3>Nova Fashion House</h3>
@@ -1970,6 +1976,8 @@ button {
         <button class="round-btn" id="workNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
     </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1981,11 +1989,11 @@ button {
       <h2 class="h2">We deliver results that speak louder than words.</h2>
       <p class="lead">From strategy to execution, we create digital solutions that drive growth, build trust, and make a lasting impact.</p>
     </div>
-    <div class="stats-nums">
-      <div class="stat"><span class="stat-num gold">500K+</span><span class="stat-label">Total followers generated</span></div>
-      <div class="stat"><span class="stat-num gold">$50M+</span><span class="stat-label">Revenue generated for clients</span></div>
-      <div class="stat"><span class="stat-num gold">150+</span><span class="stat-label">Team members</span></div>
-      <div class="stat"><span class="stat-num gold">98%</span><span class="stat-label">Company growth</span></div>
+    <div class="stats-nums" id="statsContainer">
+      <div class="stat"><span class="stat-num gold" data-target="500" data-suffix="K+">0</span><span class="stat-label">Total followers generated</span></div>
+      <div class="stat"><span class="stat-num gold" data-target="50" data-prefix="$" data-suffix="M+">0</span><span class="stat-label">Revenue generated for clients</span></div>
+      <div class="stat"><span class="stat-num gold" data-target="150" data-suffix="+">0</span><span class="stat-label">Team members</span></div>
+      <div class="stat"><span class="stat-num gold" data-target="98" data-suffix="%">0</span><span class="stat-label">Company growth</span></div>
     </div>
   </div>
 </section>
@@ -2405,11 +2413,28 @@ button {
         var panels = Array.prototype.slice.call(strip.querySelectorAll('.work-panel'));
 
         function openPanel(i) {
-            i = (i + panels.length) % panels.length;
+            i = Math.max(0, Math.min(i, panels.length - 1));
             panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
         }
         function currentIndex() {
             return panels.findIndex(function (p) { return p.classList.contains('is-open'); });
+        }
+
+        var workTrack = document.getElementById('work-scroll-track');
+        if (workTrack) {
+            window.addEventListener('scroll', function() {
+                var rect = workTrack.getBoundingClientRect();
+                var stickPoint = window.innerHeight / 2 - 225; // 225 is half of the 450px height
+                var trackHeight = rect.height - window.innerHeight;
+                if (trackHeight > 0) {
+                    if (rect.top <= stickPoint && rect.bottom >= window.innerHeight) {
+                        var progress = (stickPoint - rect.top) / trackHeight;
+                        var panelIndex = Math.floor(progress * panels.length);
+                        panelIndex = Math.min(panelIndex, panels.length - 1);
+                        openPanel(panelIndex);
+                    }
+                }
+            });
         }
 
         panels.forEach(function (panel, i) {
@@ -2530,6 +2555,101 @@ button {
                 cursor.classList.remove('cursor-hover');
             });
         });
+
+        // Typing animation for work title and description
+        const workTitle = document.getElementById('work-title');
+        const workDesc = document.getElementById('work-desc');
+        if (workTitle && workDesc) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    startTypingWorkTitle();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.5 });
+            
+            observer.observe(workTitle);
+            
+            function startTypingWorkTitle() {
+                workTitle.innerHTML = '';
+                workDesc.innerHTML = ''; // clear desc initially
+                const span = document.createElement('span');
+                span.className = 'gold';
+                workTitle.appendChild(span);
+                
+                const text1 = 'Work';
+                const text2 = ' That Speaks Louder Than Words';
+                const text3 = 'Three brands, three categories, one shared outcome: attention that turned into revenue.';
+                
+                let i = 0;
+                let j = 0;
+                let k = 0;
+                
+                function type1() {
+                    if (i < text1.length) {
+                        span.innerHTML += text1.charAt(i);
+                        i++;
+                        setTimeout(type1, 20);
+                    } else {
+                        type2();
+                    }
+                }
+                
+                function type2() {
+                    if (j < text2.length) {
+                        workTitle.appendChild(document.createTextNode(text2.charAt(j)));
+                        j++;
+                        setTimeout(type2, 20);
+                    }
+                }
+                
+                function type3() {
+                    if (k < text3.length) {
+                        workDesc.innerHTML += text3.charAt(k);
+                        k++;
+                        setTimeout(type3, 10); // slightly faster
+                    }
+                }
+                
+                // Start both simultaneously
+                type1();
+                type3();
+            }
+        }
+
+        // Stats counter animation
+        const statsContainer = document.getElementById('statsContainer');
+        if (statsContainer) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    const counters = document.querySelectorAll('.stat-num[data-target]');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const prefix = counter.getAttribute('data-prefix') || '';
+                        const suffix = counter.getAttribute('data-suffix') || '';
+                        const duration = 2000;
+                        
+                        let startTime = null;
+                        const updateCounter = (currentTime) => {
+                            if (!startTime) startTime = currentTime;
+                            const progress = Math.min((currentTime - startTime) / duration, 1);
+                            const easeProgress = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+                            const current = Math.floor(easeProgress * target);
+                            
+                            counter.innerText = prefix + current + suffix;
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.innerText = prefix + target + suffix;
+                            }
+                        };
+                        requestAnimationFrame(updateCounter);
+                    });
+                    statsObserver.disconnect();
+                }
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(statsContainer);
+        }
     });
 </script>
 
