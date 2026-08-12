@@ -473,8 +473,9 @@ button {
 .card:hover {
     transform: translateY(-8px);
     border-color: var(--gold-line-hover);
-    background: linear-gradient(180deg, rgba(229, 202, 131, .06), rgba(229, 202, 131, .01));
+    background: var(--grad-gold);
     box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+    color: #111;
 }
 
 .card-icon {
@@ -495,8 +496,9 @@ button {
 }
 
 .card:hover .card-icon {
-    border-color: var(--gold-line-hover);
-    background: rgba(229, 202, 131, .08);
+    border-color: #111;
+    background: var(--bg);
+    color: var(--gold);
     transform: translateY(-2px);
 }
 
@@ -510,9 +512,14 @@ button {
 .card p {
     margin: 0 0 30px;
     font-size: 14.5px;
-    font-weight: 300;
+    font-weight: 500;
     color: var(--muted);
     line-height: 1.8;
+}
+
+.card:hover h3,
+.card:hover p {
+    color: #111;
 }
 
 .pill-arrow {
@@ -556,6 +563,7 @@ button {
 .pill-arrow:hover {
     background: rgba(229, 202, 131, .08);
     color: var(--gold);
+    border-color: #000;
 }
 
 .pill-arrow:hover .circle {
@@ -567,6 +575,44 @@ button {
 
 .pill-arrow:hover .line {
     transform: scaleX(.88)
+}
+
+/* Card Hover -> Pill Arrow changes */
+.card:hover .pill-arrow {
+    border-color: #000;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80') center/cover;
+    color: #fff;
+    padding-inline: 30px;
+    justify-content: space-between;
+}
+
+.pill-arrow::before {
+    content: 'Learn More';
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity .35s var(--ease), width .35s var(--ease), margin .35s var(--ease);
+}
+
+.card:hover .pill-arrow::before {
+    opacity: 1;
+    width: auto;
+    margin-right: auto;
+}
+
+.card:hover .pill-arrow .line {
+    opacity: 0;
+    flex: 0;
+    margin: 0;
+}
+
+.card:hover .pill-arrow .circle {
+    border-color: #fff;
+    color: #fff; /* Ensure arrow is white */
 }
 
 /* =========================================================
@@ -2427,6 +2473,66 @@ button {
     }
 })();
 </script>
+<!-- Custom Cursor Element -->
+<div class="custom-cursor"></div>
+
+<style>
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        border: 2px solid var(--gold); /* Primary gold color */
+        border-radius: 50%; /* Make it round */
+        pointer-events: none; /* Allows clicking through it */
+        transform: translate(-50%, -50%); /* Centers the gap exactly on the mouse point */
+        z-index: 99999; /* Ensure it's on top of everything */
+        transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s; /* Smooth delay effect */
+        box-shadow: 0 0 8px rgba(229, 202, 131, 0.3); /* Slight glow matching the gold color */
+    }
+    .custom-cursor.cursor-hover {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(229, 202, 131, 0.15); /* Slight fill inside the circle */
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cursor = document.querySelector('.custom-cursor');
+        
+        // Update circle position on mouse move
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add visual feedback on click (shrinks the circle slightly)
+        document.addEventListener('mousedown', () => {
+            if (!cursor.classList.contains('cursor-hover')) {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
+            } else {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.9)'; // less shrink if already large
+            }
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+
+        // Hover effect on buttons, links, and cards
+        const interactiveElements = document.querySelectorAll('a, button, .card, .btn');
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-hover');
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
 
