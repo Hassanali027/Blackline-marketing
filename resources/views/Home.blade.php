@@ -207,8 +207,8 @@ button {
 }
 
 .logo img {
-    height: 46px;
-    width: auto
+    width: 217px;
+    height: 54px;
 }
 
 .nav {
@@ -490,7 +490,8 @@ button {
     transition: .35s var(--ease);
 }
 
-.card-icon svg {
+.card-icon svg,
+.card-icon img {
     width: 28px;
     height: 28px
 }
@@ -532,7 +533,7 @@ button {
     gap: 0;
     padding-inline: 22px;
     color: var(--gold-line-hover);
-    transition: .35s var(--ease);
+    transition: 1.4s var(--ease);
 }
 
 .pill-arrow .circle {
@@ -543,7 +544,7 @@ button {
     display: grid;
     place-items: center;
     flex: none;
-    transition: .35s var(--ease);
+    transition: 1.4s var(--ease);
 }
 
 .pill-arrow .circle svg {
@@ -557,7 +558,7 @@ button {
     background: currentColor;
     margin-left: 14px;
     transform-origin: left;
-    transition: .35s var(--ease);
+    transition: 1.4s var(--ease);
 }
 
 .pill-arrow:hover {
@@ -595,7 +596,7 @@ button {
     width: 0;
     overflow: hidden;
     white-space: nowrap;
-    transition: opacity .35s var(--ease), width .35s var(--ease), margin .35s var(--ease);
+    transition: opacity 1.4s var(--ease), width 1.4s var(--ease), margin 1.4s var(--ease);
 }
 
 .card:hover .pill-arrow::before {
@@ -1272,34 +1273,35 @@ button {
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    width: 100%;
 }
 
 .newsletter h2 {
     margin: 0;
-    flex: 1 1 340px;
-    min-width: 0;
-    font-size: clamp(22px, 2.2vw, 29px);
+    font-size: 28px;
     font-weight: 800;
+    white-space: nowrap;
+    flex-shrink: 1;
 }
 
 .news-form {
     display: flex;
-    gap: 0;
+    gap: 12px;
     align-items: stretch;
-    flex: 0 1 606px;
-    min-width: 0
+    justify-content: flex-end;
+    flex: 1 1 auto;
 }
 
 .news-form input {
-    flex: 1;
+    width: 100%;
+    max-width: 449px;
+    height: 60px;
     min-width: 0;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, .55);
-    border-right: 0;
-    border-radius: 8px 0 0 8px;
+    border-radius: 8px;
     padding: 0 22px;
-    height: 62px;
     color: #fff;
     font-size: 16px;
     font-family: inherit;
@@ -1316,7 +1318,7 @@ button {
 }
 
 .news-form .btn {
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
     height: 62px;
     padding-inline: 32px;
     font-size: 16px;
@@ -1337,8 +1339,8 @@ button {
 }
 
 .foot-logo {
-    height: 52px;
-    width: auto;
+    width: 217px;
+    height: 54px;
     margin-bottom: 20px
 }
 
@@ -1359,8 +1361,8 @@ button {
 .socials a {
     width: 32px;
     height: 32px;
-    border-radius: 7px;
-    background: #FAF9F6;
+    border-radius: 50%;
+    background: var(--grad-gold);
     color: #28282B;
     display: grid;
     place-items: center;
@@ -1373,7 +1375,6 @@ button {
 }
 
 .socials a:hover {
-    background: var(--grad-gold);
     transform: translateY(-3px)
 }
 
@@ -1533,7 +1534,12 @@ button {
 
     .header-cta {
         margin-left: auto;
-        padding: 11px 18px;
+        width: 176px;
+        height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
         font-size: 14px
     }
 
@@ -1637,11 +1643,17 @@ button {
     }
 
     .logo img {
-        height: 36px
+        width: 217px;
+        height: 54px;
     }
 
     .header-cta {
-        padding: 9px 14px;
+        width: 176px;
+        height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
         font-size: 13px
     }
 
@@ -1740,7 +1752,7 @@ button {
       </ul>
     </nav>
 
-    <a href="#cta" class="btn btn-gold header-cta">Book a Call</a>
+    <a href="#cta" class="btn btn-gold header-cta" style="width: 176px !important; height: 54px !important; display: inline-flex !important; justify-content: center !important; align-items: center !important; padding: 0 !important; flex-shrink: 0;">Book a Call</a>
 
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1794,9 +1806,9 @@ button {
       <!-- 1 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+          <img src="{{ asset('images/social-media-management.svg') }}" alt="Social Media Management">
         </span>
-        <h3>Restaurant Marketing</h3>
+        <h3>Social Media Management</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
         <a href="#" class="pill-arrow" aria-label="Read more">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -1806,7 +1818,7 @@ button {
       <!-- 2 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 12-6v14L3 13z"/><path d="M6 12v5a2 2 0 0 0 2 2h1"/><path d="M19 9a3 3 0 0 1 0 6"/></svg>
+          <img src="{{ asset('images/media-advertising.svg') }}" alt="Paid Advertising">
         </span>
         <h3>Paid Advertising</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
@@ -1818,7 +1830,7 @@ button {
       <!-- 3 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V6M14 20v-6"/><path d="M14 9l3-3 4 4"/><path d="M21 6v4h-4"/></svg>
+          <img src="{{ asset('images/instagram-management.svg') }}" alt="Instagram Growth">
         </span>
         <h3>Instagram Growth</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
@@ -1830,7 +1842,7 @@ button {
       <!-- 4 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M18 6 22 2M18 2v4h4"/></svg>
+          <img src="{{ asset('images/tik-tok-strategy.svg') }}" alt="TikTok Strategy">
         </span>
         <h3>TikTok Strategy</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
@@ -1842,7 +1854,7 @@ button {
       <!-- 5 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 14.6 5l3-.2.9 2.9 2.3 1.9-1.4 2.7 1.4 2.7-2.3 1.9-.9 2.9-3-.2L12 20.5 9.4 19l-3 .2-.9-2.9L3.2 14.4l1.4-2.7-1.4-2.7 2.3-1.9.9-2.9 3 .2z"/><path d="M9 12h6M9.8 10h4.4"/></svg>
+          <img src="{{ asset('images/brand-identity.svg') }}" alt="Brand Identity">
         </span>
         <h3>Brand Identity</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
@@ -1866,7 +1878,7 @@ button {
       <!-- 7 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 11.4-4.2"/><path d="m18 13.5 1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/></svg>
+          <img src="{{ asset('images/influencer-marketing.svg') }}" alt="Influencer Marketing">
         </span>
         <h3>Influencer Marketing</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
@@ -1878,7 +1890,7 @@ button {
       <!-- 8 -->
       <article class="card">
         <span class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v6a3 3 0 0 0 6 0V3"/><path d="M7 9v12"/><path d="M18 3c-1.5 2-2 4-2 6s.6 3 2 3 2-1 2-3-.5-4-2-6z"/><path d="M18 12v9"/></svg>
+          <img src="{{ asset('images/resturent-marketing.svg') }}" alt="Restaurant Marketing">
         </span>
         <h3>Restaurant Marketing</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
@@ -2496,6 +2508,12 @@ button {
         height: 60px;
         background-color: rgba(229, 202, 131, 0.15); /* Slight fill inside the circle */
     }
+    .custom-cursor.cursor-black {
+        border-color: #000;
+    }
+    .custom-cursor.cursor-primary {
+        border-color: var(--gold) !important;
+    }
 </style>
 
 <script>
@@ -2520,15 +2538,29 @@ button {
             cursor.style.transform = 'translate(-50%, -50%) scale(1)';
         });
 
-        // Hover effect on buttons, links, and cards
-        const interactiveElements = document.querySelectorAll('a, button, .card, .btn');
-        interactiveElements.forEach((el) => {
-            el.addEventListener('mouseenter', () => {
+        // Hover effect on buttons, links, and cards using event delegation
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .card, .btn')) {
                 cursor.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
+            }
+            if (e.target.closest('.card')) {
+                cursor.classList.add('cursor-black');
+            }
+            if (e.target.closest('.pill-arrow')) {
+                cursor.classList.add('cursor-primary');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (!e.relatedTarget || !e.relatedTarget.closest('a, button, .card, .btn')) {
                 cursor.classList.remove('cursor-hover');
-            });
+            }
+            if (!e.relatedTarget || !e.relatedTarget.closest('.card')) {
+                cursor.classList.remove('cursor-black');
+            }
+            if (!e.relatedTarget || !e.relatedTarget.closest('.pill-arrow')) {
+                cursor.classList.remove('cursor-primary');
+            }
         });
     });
 </script>
