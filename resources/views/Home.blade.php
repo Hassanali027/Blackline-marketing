@@ -643,7 +643,8 @@ button {
     flex: 1 1 auto
 }
 
-.work-panel>img {
+.work-panel>img,
+.work-panel>video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -667,7 +668,7 @@ button {
 .work-vtitle {
     position: absolute;
     left: 50%;
-    top: 34px;
+    top: 150px;
     transform: translateX(-50%) rotate(90deg);
     transform-origin: center;
     white-space: nowrap;
@@ -703,9 +704,9 @@ button {
 }
 
 .play svg {
-    width: 30px;
-    height: 30px;
-    margin-left: 2px
+    width: 40px;
+    height: 40px;
+    margin-left: 4px;
 }
 
 .work-panel:not(.is-open) .play {
@@ -713,7 +714,8 @@ button {
 }
 
 .work-panel.is-open .play {
-    opacity: 1
+    opacity: 1;
+    left: 65%;
 }
 
 .play:hover {
@@ -727,7 +729,7 @@ button {
     bottom: 0;
     z-index: 3;
     padding: 0 0 46px 84px;
-    max-width: 560px;
+    max-width: 480px;
     opacity: 0;
     transform: translateY(16px);
     transition: opacity .45s var(--ease) .15s, transform .45s var(--ease) .15s;
@@ -738,6 +740,17 @@ button {
     opacity: 1;
     transform: none;
     pointer-events: auto
+}
+
+.work-panel.is-playing-video .work-body,
+.work-panel.is-playing-video .play,
+.work-panel.is-playing-video::after {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.work-panel.is-playing-video {
+    cursor: pointer;
 }
 
 .work-body h3 {
@@ -957,7 +970,8 @@ button {
     background: #D9D6D0
 }
 
-.testi-media img {
+.testi-media img,
+.testi-media video {
     width: 100%;
     height: 100%;
     object-fit: cover
@@ -967,6 +981,15 @@ button {
     opacity: 1;
     width: 88px;
     height: 88px
+}
+
+.testi-media.is-playing-video .play {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.testi-media.is-playing-video {
+    cursor: pointer;
 }
 
 .testi-body {
@@ -1018,13 +1041,10 @@ button {
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
-    padding: 0;
-    margin: 0;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     border: 1px solid var(--gold);
-    background: transparent;
     transition: .25s var(--ease);
     cursor: pointer;
 }
@@ -1059,6 +1079,7 @@ button {
 .arc {
     fill: none;
     stroke-width: 65;
+    stroke-linecap: round;
 }
 
 .tri {
@@ -1142,12 +1163,12 @@ button {
 
 .lbl-strategy,
 .lbl-story {
-    top: 37.4%
+    top: 32.6%;
 }
 
 .lbl-results,
 .lbl-exec {
-    top: 63.5%
+    top: 67.4%;
 }
 
 /* compact step list (small screens) */
@@ -1917,7 +1938,7 @@ button {
       <div id="work-sticky-wrapper" style="position: sticky; top: calc(50vh - 225px);">
         <div class="work-strip" id="workStrip">
       <article class="work-panel is-open" data-title="Aurelio">
-        <img src="{{ asset('images/work-aurelio.jpg') }}" alt="Aurelio case study">
+        <video src="{{ asset('videos/work-first-video.mp4') }}?v=1" muted playsinline></video>
         <span class="work-vtitle">Aurelio</span>
         <button class="play" aria-label="Play showreel">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
@@ -1934,7 +1955,7 @@ button {
       </article>
 
       <article class="work-panel" data-title="Osteria Nine">
-        <img src="{{ asset('images/work-osteria.jpg') }}" alt="Osteria Nine case study">
+        <video src="{{ asset('videos/work-first-video.mp4') }}?v=2" muted playsinline></video>
         <span class="work-vtitle">Osteria Nine</span>
         <button class="play" aria-label="Play showreel">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
@@ -1951,7 +1972,7 @@ button {
       </article>
 
       <article class="work-panel" data-title="Meridian Group">
-        <img src="{{ asset('images/work-meridian.jpg') }}" alt="Meridian Group case study">
+        <video src="{{ asset('videos/work-first-video.mp4') }}?v=3" muted playsinline></video>
         <span class="work-vtitle">Meridian Group</span>
         <button class="play" aria-label="Play showreel">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
@@ -1968,7 +1989,7 @@ button {
       </article>
 
       <article class="work-panel" data-title="Nova Fashion House">
-        <img src="{{ asset('images/work-nova.jpg') }}" alt="Nova Fashion House case study">
+        <video src="{{ asset('videos/work-first-video.mp4') }}?v=4" muted playsinline></video>
         <span class="work-vtitle">Nova Fashion House</span>
         <button class="play" aria-label="Play showreel">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
@@ -2024,7 +2045,7 @@ button {
         <div class="testi-track" id="tTrack">
           <figure class="testi-card">
             <div class="testi-media">
-              <img src="{{ asset('images/testimonial.jpg') }}" alt="John Carter">
+              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t1" muted playsinline></video>
               <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
             </div>
             <blockquote class="testi-body">
@@ -2039,7 +2060,7 @@ button {
 
           <figure class="testi-card">
             <div class="testi-media">
-              <img src="{{ asset('images/testimonial.jpg') }}" alt="Client">
+              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t2" muted playsinline></video>
               <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
             </div>
             <blockquote class="testi-body">
@@ -2054,7 +2075,7 @@ button {
 
           <figure class="testi-card">
             <div class="testi-media">
-              <img src="{{ asset('images/testimonial.jpg') }}" alt="Client">
+              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t3" muted playsinline></video>
               <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
             </div>
             <blockquote class="testi-body">
@@ -2069,7 +2090,7 @@ button {
 
           <figure class="testi-card">
             <div class="testi-media">
-              <img src="{{ asset('images/testimonial.jpg') }}" alt="Client">
+              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t4" muted playsinline></video>
               <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
             </div>
             <blockquote class="testi-body">
@@ -2084,7 +2105,7 @@ button {
 
           <figure class="testi-card">
             <div class="testi-media">
-              <img src="{{ asset('images/testimonial.jpg') }}" alt="Client">
+              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t5" muted playsinline></video>
               <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
             </div>
             <blockquote class="testi-body">
@@ -2133,10 +2154,10 @@ button {
           <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0D073"/><stop offset="1" stop-color="#E7C76C"/></linearGradient>
           <linearGradient id="g4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#E4C169"/><stop offset="1" stop-color="#DDBB63"/></linearGradient>
 
-          <path id="p1" d="M 431.2 220.1 A 190 190 0 0 1 611.1 40.1"/>
-          <path id="p2" d="M 630.9 40.1 A 190 190 0 0 1 810.8 220.1"/>
-          <path id="p3" d="M 810.8 239.9 A 190 190 0 0 1 630.9 419.9"/>
-          <path id="p4" d="M 611.1 419.9 A 190 190 0 0 1 431.2 239.9"/>
+          <path id="p1" d="M 435.2 190.5 A 190 190 0 0 1 581.5 44.2"/>
+          <path id="p2" d="M 660.5 44.2 A 190 190 0 0 1 806.8 190.5"/>
+          <path id="p3" d="M 806.8 269.5 A 190 190 0 0 1 660.5 415.8"/>
+          <path id="p4" d="M 581.5 415.8 A 190 190 0 0 1 435.2 269.5"/>
         </defs>
 
         <use href="#p1" class="arc" stroke="url(#g1)"/>
@@ -2145,10 +2166,10 @@ button {
         <use href="#p4" class="arc" stroke="url(#g4)"/>
 
         <!-- flow arrows -->
-        <polygon class="tri" points="606,30 619,40 606,50"/>
-        <polygon class="tri" points="811,225 821,238 831,225"/>
-        <polygon class="tri" points="636,430 623,420 636,410"/>
-        <polygon class="tri" points="431,235 421,222 411,235"/>
+        <polygon class="tri" points="561,38 573,44.2 561,50.4"/>
+        <polygon class="tri" points="800.8,171 806.8,183 812.8,171"/>
+        <polygon class="tri" points="679,409.8 667,415.8 679,421.8"/>
+        <polygon class="tri" points="429.2,289 435.2,277 441.2,289"/>
 
         <text class="step-txt"><textPath href="#p1" startOffset="50%" text-anchor="middle">Step 1</textPath></text>
         <text class="step-txt"><textPath href="#p2" startOffset="50%" text-anchor="middle">Step 2</textPath></text>
@@ -2156,14 +2177,14 @@ button {
         <text class="step-txt"><textPath href="#p4" startOffset="50%" text-anchor="middle">Step 4</textPath></text>
 
         <!-- connectors -->
-        <path class="conn" d="M321 186 L 371 186 C 419 186 437 128 449 62"/>
-        <path class="conn" d="M921 186 L 871 186 C 823 186 805 128 793 62"/>
-        <path class="conn" d="M321 274 L 371 274 C 419 274 437 332 449 398"/>
-        <path class="conn" d="M921 274 L 871 274 C 823 274 805 332 793 398"/>
-        <circle class="node" cx="449" cy="58" r="7"/>
-        <circle class="node" cx="793" cy="58" r="7"/>
-        <circle class="node" cx="449" cy="402" r="7"/>
-        <circle class="node" cx="793" cy="402" r="7"/>
+        <path class="conn" d="M321 150 L 371 150 C 419 150 437 100 463.7 72.7"/>
+        <path class="conn" d="M921 150 L 871 150 C 823 150 805 100 778.3 72.7"/>
+        <path class="conn" d="M321 310 L 371 310 C 419 310 437 360 463.7 387.3"/>
+        <path class="conn" d="M921 310 L 871 310 C 823 310 805 360 778.3 387.3"/>
+        <circle class="node" cx="463.7" cy="72.7" r="7"/>
+        <circle class="node" cx="778.3" cy="72.7" r="7"/>
+        <circle class="node" cx="463.7" cy="387.3" r="7"/>
+        <circle class="node" cx="778.3" cy="387.3" r="7"/>
       </svg>
 
       <div class="ring-core">
@@ -2425,7 +2446,7 @@ button {
         var panels = Array.prototype.slice.call(strip.querySelectorAll('.work-panel'));
 
         function openPanel(i) {
-            i = Math.max(0, Math.min(i, panels.length - 1));
+            i = (i + panels.length) % panels.length;
             panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
         }
         function currentIndex() {
@@ -2451,7 +2472,33 @@ button {
 
         panels.forEach(function (panel, i) {
             panel.addEventListener('click', function (e) {
-                if (e.target.closest('.play')) return;   // let the play button do its own thing
+                if (panel.classList.contains('is-playing-video')) {
+                    var video = panel.querySelector('video');
+                    if (video) {
+                        panel.classList.remove('is-playing-video');
+                        video.pause();
+                        video.currentTime = 0;
+                    }
+                    return;
+                }
+
+                var playBtn = e.target.closest('.play');
+                if (playBtn) {
+                    var video = panel.querySelector('video');
+                    if (video) {
+                        panel.classList.add('is-playing-video');
+                        video.muted = false;
+                        video.loop = false;
+                        video.currentTime = 0;
+                        video.play();
+                        
+                        video.onended = function() {
+                            panel.classList.remove('is-playing-video');
+                            video.currentTime = 0;
+                        };
+                    }
+                    return;
+                }
                 openPanel(i);
             });
         });
@@ -2473,6 +2520,16 @@ button {
             index = (i + slides) % slides;
             track.style.transform = 'translateX(' + (-index * 100) + '%)';
             dots.forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
+            
+            var playingMedias = track.querySelectorAll('.testi-media.is-playing-video');
+            playingMedias.forEach(function(m) {
+                m.classList.remove('is-playing-video');
+                var v = m.querySelector('video');
+                if (v) {
+                    v.pause();
+                    v.currentTime = 0;
+                }
+            });
         }
 
         dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
@@ -2493,6 +2550,38 @@ button {
         });
 
         goTo(0);
+
+        var testiCards = Array.prototype.slice.call(track.querySelectorAll('.testi-card'));
+        testiCards.forEach(function(card) {
+            var media = card.querySelector('.testi-media');
+            if (media) {
+                media.addEventListener('click', function(e) {
+                    if (media.classList.contains('is-playing-video')) {
+                        var video = media.querySelector('video');
+                        if (video) {
+                            media.classList.remove('is-playing-video');
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                        return;
+                    }
+                    var playBtn = e.target.closest('.play');
+                    if (playBtn) {
+                        var video = media.querySelector('video');
+                        if (video) {
+                            media.classList.add('is-playing-video');
+                            video.muted = false;
+                            video.currentTime = 0;
+                            video.play();
+                            video.onended = function() {
+                                media.classList.remove('is-playing-video');
+                                video.currentTime = 0;
+                            };
+                        }
+                    }
+                });
+            }
+        });
     }
 
     /* ---------- Newsletter (demo only) ---------- */
