@@ -1,4 +1,4 @@
-﻿/* Black Line Marketing — home page interactions */
+/* Black Line Marketing — home page interactions */
 (function () {
     'use strict';
 
@@ -262,4 +262,31 @@
                 }
             }
         });
+
+        // Mobile cards auto-hover on scroll
+        const cards = document.querySelectorAll('.card');
+        if (cards.length > 0) {
+            const cardObserver = new IntersectionObserver((entries) => {
+                if (window.innerWidth <= 900) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-hovered');
+                        } else {
+                            entry.target.classList.remove('is-hovered');
+                        }
+                    });
+                }
+            }, {
+                rootMargin: '-35% 0px -35% 0px', // Triggers when the card is near the middle of the viewport
+                threshold: 0
+            });
+
+            cards.forEach(card => cardObserver.observe(card));
+            
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 900) {
+                    cards.forEach(card => card.classList.remove('is-hovered'));
+                }
+            });
+        }
     });
