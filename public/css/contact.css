@@ -1,0 +1,222 @@
+/* =========================================================
+   Contact Us Page Styles
+   ========================================================= */
+
+.contact-page {
+    background: var(--bg);
+}
+
+.contact-main {
+    padding: 60px 0 100px;
+}
+
+.contact-card {
+    background: linear-gradient(#1C1C1F, #1C1C1F) padding-box, var(--grad-gold) border-box;
+    border: 1px solid transparent;
+    border-radius: 40px;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* The bottom-left gradient requested */
+.contact-glow {
+    position: absolute;
+    bottom: -300px;
+    left: -300px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(110, 80, 35, 0.5) 0%, rgba(110, 80, 35, 0) 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.contact-info {
+    position: relative;
+    z-index: 2;
+    padding-right: 20px;
+}
+
+.contact-info h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 12px;
+    color: var(--text);
+}
+
+.contact-info .sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 40px;
+}
+
+.contact-details {
+    margin-bottom: 50px;
+}
+
+.contact-details li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.contact-details li svg {
+    width: 20px;
+    height: 20px;
+    color: var(--gold);
+    flex: none;
+    margin-top: 2px;
+}
+
+.contact-info .socials {
+    display: flex;
+    gap: 14px;
+}
+
+/* Form Styles */
+.contact-form {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #FAF9F6;
+    margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease;
+    border-radius: 0;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #7A7A7C;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-bottom-color: var(--gold);
+}
+
+.input-group textarea {
+    resize: none;
+    min-height: 40px;
+}
+
+.select-group {
+    position: relative;
+}
+
+.select-group select {
+    appearance: none;
+    color: #7A7A7C;
+    cursor: pointer;
+}
+
+.select-group select:focus,
+.select-group select:not(:invalid) {
+    color: #fff;
+}
+
+.select-group option {
+    background: #1C1C1F;
+    color: #fff;
+}
+
+.sel-icon {
+    position: absolute;
+    right: 0;
+    bottom: 12px;
+    width: 16px;
+    height: 16px;
+    color: #7A7A7C;
+    pointer-events: none;
+}
+
+.btn-submit {
+    align-self: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 380px;
+    height: 56px;
+    font-size: 18px;
+    justify-content: center;
+}
+
+/* Map Section */
+.map-container {
+    width: 100%;
+    height: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-card {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+        gap: 40px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .btn-submit {
+        align-self: flex-start;
+        width: 100%;
+    }
+
+    .contact-info .socials {
+        margin-right: 93px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
