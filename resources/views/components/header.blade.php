@@ -10,6 +10,7 @@
           </a>
           <div class="drop">
             <a href="#services">Restaurant Marketing</a>
+            <a href="{{ route('services.social-media') }}">Social Media Management</a>
             <a href="#services">Paid Advertising</a>
             <a href="#services">Instagram Growth</a>
             <a href="#services">TikTok Strategy</a>
