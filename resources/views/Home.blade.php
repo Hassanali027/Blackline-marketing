@@ -1781,38 +1781,7 @@ button {
 <body>
 
 <!-- ============ HEADER ============ -->
-<header class="site-header" id="top">
-  <div class="container header-inner">
-    <a class="logo" href="#top"><img src="{{ asset('images/logo.png') }}" alt="BlackLine Marketing"></a>
-
-    <nav class="nav" id="nav">
-      <ul class="nav-list">
-        <li class="has-drop">
-          <a href="#services">Services
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </a>
-          <div class="drop">
-            <a href="#services">Restaurant Marketing</a>
-            <a href="#services">Paid Advertising</a>
-            <a href="#services">Instagram Growth</a>
-            <a href="#services">TikTok Strategy</a>
-            <a href="#services">Brand Identity</a>
-            <a href="#services">Creative Direction</a>
-          </div>
-        </li>
-        <li><a href="#work">Portfolio</a></li>
-        <li><a href="#blogs">Blogs</a></li>
-        <li><a href="#faq">FAQ`s</a></li>
-      </ul>
-    </nav>
-
-    <a href="#cta" class="btn btn-gold header-cta" style="width: 176px !important; height: 54px !important; display: inline-flex !important; justify-content: center !important; align-items: center !important; padding: 0 !important; flex-shrink: 0;">Book a Call</a>
-
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+@include('components.header')
 
 <!-- ============ HERO ============ -->
 <section class="hero">
@@ -2171,10 +2140,22 @@ button {
     <p class="section-sub">A clear, strategic process that turns bold ideas into meaningful digital experiences.<br>From strategy to execution, every step is designed to deliver measurable results.</p>
 
     <div class="ring-wrap">
-      <span class="ring-label lbl-strategy">Strategy</span>
-      <span class="ring-label lbl-story">Storytelling</span>
-      <span class="ring-label lbl-results">Results</span>
-      <span class="ring-label lbl-exec">Execution</span>
+      <div class="ring-label lbl-strategy">
+        <p>Deep research and audience psychology to map your brand's unique position in the market.</p>
+        <strong>Strategy</strong>
+      </div>
+      <div class="ring-label lbl-story">
+        <p>Crafting compelling narratives that resonate with your audience and bring your vision to life.</p>
+        <strong>Storytelling</strong>
+      </div>
+      <div class="ring-label lbl-results">
+        <strong>Results</strong>
+        <p>Data-driven optimization and analytics to ensure maximum return on your investment.</p>
+      </div>
+      <div class="ring-label lbl-exec">
+        <strong>Execution</strong>
+        <p>Flawless technical delivery and deployment to turn your strategic roadmap into reality.</p>
+      </div>
 
       <svg class="ring" viewBox="0 0 1242 460" role="img" aria-label="Four step process">
         <defs>
@@ -2628,6 +2609,8 @@ button {
     }
 })();
 </script>
+@include('components.footer')
+
 <!-- Custom Cursor Element -->
 <div class="custom-cursor"></div>
 
@@ -2802,6 +2785,7 @@ button {
         }
     });
 </script>
+<script src="{{ asset('js/home.js') }}"></script>
 
 </body>
 </html>
