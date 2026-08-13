@@ -360,7 +360,7 @@ button {
 .hero-inner {
     position: relative;
     text-align: center;
-    padding-block: 96px
+    padding-block: 40px
 }
 
 .hero-title {
@@ -461,19 +461,43 @@ button {
 }
 
 .card {
+    position: relative;
+    z-index: 1;
     border: 1px solid var(--gold-line);
     border-radius: var(--radius);
     padding: 28px 22px 26px;
     display: flex;
     flex-direction: column;
     background: linear-gradient(180deg, rgba(255, 255, 255, .012), rgba(255, 255, 255, 0));
-    transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+    transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+}
+
+/* Hover bridge to prevent flickering when translating up */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 -20px 0;
+    z-index: -2;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grad-gold);
+    z-index: -1;
+    border-radius: var(--radius);
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.6s var(--ease);
+}
+
+.card:hover::before {
+    clip-path: inset(0 0 0 0);
 }
 
 .card:hover {
     transform: translateY(-8px);
     border-color: var(--gold-line-hover);
-    background: var(--grad-gold);
     box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
     color: #111;
 }
@@ -620,7 +644,7 @@ button {
    WORK / PORTFOLIO
    ========================================================= */
 .work {
-    padding-block: 60px
+    padding-block: 40px
 }
 
 .work-strip {
@@ -842,7 +866,7 @@ button {
    STATS
    ========================================================= */
 .stats {
-    padding-block: 88px
+    /* padding-block: 50px */
 }
 
 .stats-grid {
@@ -911,7 +935,7 @@ button {
    TESTIMONIALS
    ========================================================= */
 .testi {
-    padding-block: 60px
+    padding-block: 40px
 }
 
 .testi .h2 {
@@ -994,7 +1018,7 @@ button {
 
 .testi-body {
     margin: 0;
-    padding: 56px 62px;
+    padding: 40px 62px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1057,7 +1081,7 @@ button {
    PROCESS
    ========================================================= */
 .process {
-    padding-block: 70px
+    /* padding-block: 15px */
 }
 
 .ring-wrap {
@@ -1098,6 +1122,11 @@ button {
     stroke: #FAF9F6;
     stroke-width: 1.6
 }
+
+.conn-1 { d: path("M 230 150 L 325 150 Q 350 150 369 133 L 451 60"); }
+.conn-2 { d: path("M 1012 150 L 917 150 Q 892 150 873 133 L 791 60"); }
+.conn-3 { d: path("M 230 310 L 325 310 Q 350 310 369 327 L 451 400"); }
+.conn-4 { d: path("M 1012 310 L 917 310 Q 892 310 873 327 L 791 400"); }
 
 .node {
     fill: #FAF9F6
@@ -1151,13 +1180,13 @@ button {
 
 .lbl-strategy,
 .lbl-results {
-    right: 75.6%;
+    right: 82.5%;
     text-align: right
 }
 
 .lbl-story,
 .lbl-exec {
-    left: 76.1%
+    left: 82.5%
 }
 
 .lbl-strategy,
@@ -1230,7 +1259,7 @@ button {
    CTA
    ========================================================= */
 .cta {
-    padding-block: 60px
+    padding-block: 40px
 }
 
 .cta-box {
@@ -1266,7 +1295,7 @@ button {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 60px 24px
+    padding: 40px 24px
 }
 
 .cta-inner h2 {
@@ -1288,7 +1317,7 @@ button {
    NEWSLETTER
    ========================================================= */
 .newsletter {
-    padding-block: 52px;
+    padding-block: 32px;
     border-bottom: 1px solid rgba(255, 255, 255, .12)
 }
 
@@ -1690,7 +1719,7 @@ button {
     }
 
     .hero-inner {
-        padding-block: 64px
+        padding-block: 40px
     }
 
     .hero-actions .btn {
@@ -2172,14 +2201,14 @@ button {
         <text class="step-txt"><textPath href="#p4" startOffset="50%" text-anchor="middle">Step 4</textPath></text>
 
         <!-- connectors -->
-        <path class="conn" d="M321 150 L 371 150 C 419 150 437 100 463.7 72.7"/>
-        <path class="conn" d="M921 150 L 871 150 C 823 150 805 100 778.3 72.7"/>
-        <path class="conn" d="M321 310 L 371 310 C 419 310 437 360 463.7 387.3"/>
-        <path class="conn" d="M921 310 L 871 310 C 823 310 805 360 778.3 387.3"/>
-        <circle class="node" cx="463.7" cy="72.7" r="7"/>
-        <circle class="node" cx="778.3" cy="72.7" r="7"/>
-        <circle class="node" cx="463.7" cy="387.3" r="7"/>
-        <circle class="node" cx="778.3" cy="387.3" r="7"/>
+        <path class="conn conn-1"/>
+        <path class="conn conn-2"/>
+        <path class="conn conn-3"/>
+        <path class="conn conn-4"/>
+        <circle class="node" cx="451" cy="60" r="5.5"/>
+        <circle class="node" cx="791" cy="60" r="5.5"/>
+        <circle class="node" cx="451" cy="400" r="5.5"/>
+        <circle class="node" cx="791" cy="400" r="5.5"/>
       </svg>
 
       <div class="ring-core">
