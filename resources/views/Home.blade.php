@@ -2235,32 +2235,8 @@ button {
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
-<section class="cta" id="cta">
-  <div class="container">
-    <div class="cta-box">
-      <img class="cta-bg" src="{{ asset('images/cta.jpg') }}" alt="">
-      <div class="cta-inner">
-        <h2>Ready to build your movement?</h2>
-        <p>Let's create a brand that commands attention and builds lasting<br>influence starting with a conversation.</p>
-        <a href="#" class="btn btn-gold btn-lg">Book a Strategy Call
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+@include('components.cta')
 
-<!-- ============ NEWSLETTER ============ -->
-<section class="newsletter">
-  <div class="container news-grid">
-    <h2>Sign Up For Exclusive Offers And Updates!</h2>
-    <form class="news-form" onsubmit="return false;">
-      <input type="email" placeholder="Email" aria-label="Email" required>
-      <button type="submit" class="btn btn-gold">Subscribe</button>
-    </form>
-  </div>
-</section>
 
 <script>
 /* Black Line Marketing — home page interactions */
