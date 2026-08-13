@@ -1389,7 +1389,8 @@ button {
    NEWSLETTER
    ========================================================= */
 .newsletter {
-    padding-block: 32px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     border-bottom: 1px solid rgba(255, 255, 255, .12)
 }
 
@@ -1413,54 +1414,40 @@ button {
 .news-form {
     display: flex;
     gap: 12px;
-    align-items: stretch;
-    justify-content: flex-end;
-    flex: 1 1 auto;
+    width: 100%;
+    max-width: 480px;
 }
 
 .news-form input {
-    width: 100%;
-    max-width: 449px;
-    height: 60px;
-    min-width: 0;
+    flex: 1;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, .55);
+    border: 1px solid rgba(255, 255, 255, .15);
     border-radius: 8px;
-    padding: 0 22px;
+    padding: 12px 18px;
     color: #fff;
-    font-size: 16px;
-    font-family: inherit;
-    outline: none;
-    transition: border-color .25s var(--ease);
-}
-
-.news-form input::placeholder {
-    color: #B6B6B7
+    font-size: 15px;
+    transition: .3s var(--ease);
 }
 
 .news-form input:focus {
-    border-color: var(--gold)
-}
-
-.news-form .btn {
-    border-radius: 8px;
-    height: 62px;
-    padding-inline: 32px;
-    font-size: 16px;
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(229, 202, 131, .15);
 }
 
 /* =========================================================
    FOOTER
    ========================================================= */
 .site-footer {
-    padding-top: 58px
+    /* Removed padding-top since newsletter handles its own top padding */
 }
 
 .foot-grid {
     display: grid;
     grid-template-columns: 1.55fr 1fr 1.15fr 1.1fr;
     gap: 44px;
-    padding-bottom: 52px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .foot-logo {
@@ -1555,7 +1542,7 @@ button {
 
 .foot-bottom {
     border-top: 1px solid rgba(255, 255, 255, .12);
-    padding-block: 24px;
+    padding-block: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
