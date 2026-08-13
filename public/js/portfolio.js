@@ -1,22 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.filter-button');
-  const menu = document.querySelector('.filter-menu');
+  const sidebar = document.querySelector('.filter-sidebar');
+  const overlay = document.querySelector('.filter-sidebar-overlay');
+  const closeBtn = document.querySelector('.close-filter-btn');
+  const applyBtn = document.querySelector('.apply-filter-btn');
   const projects = [...document.querySelectorAll('.project')];
-  if (!toggle || !menu) return;
+  
+  if (!toggle || !sidebar) return;
 
-  toggle.addEventListener('click', () => {
-    const open = menu.hidden;
-    menu.hidden = !open;
-    toggle.setAttribute('aria-expanded', String(open));
-  });
+  function openSidebar() {
+    sidebar.hidden = false;
+    overlay.hidden = false;
+  }
 
-  menu.addEventListener('click', event => {
-    const button = event.target.closest('[data-filter]');
-    if (!button) return;
-    const filter = button.dataset.filter;
-    projects.forEach(project => project.hidden = filter !== 'all' && project.dataset.category !== filter);
-    toggle.firstChild.textContent = button.textContent + ' ';
-    menu.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
+  function closeSidebar() {
+    sidebar.hidden = true;
+    overlay.hidden = true;
+  }
+
+  toggle.addEventListener('click', openSidebar);
+  closeBtn.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  applyBtn.addEventListener('click', () => {
+    const checkedBoxes = [...sidebar.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value);
+    
+    projects.forEach(project => {
+      if (checkedBoxes.length === 0) {
+        project.hidden = false;
+      } else {
+        project.hidden = !checkedBoxes.includes(project.dataset.category);
+      }
+    });
+
+    closeSidebar();
   });
 });

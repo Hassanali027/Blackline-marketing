@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Black Line Marketing — Where Brands Become Icons</title>
 <meta name="description" content="We build identity systems, campaigns, and digital experiences for labels ready to lead their category not blend into it.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 <style>
 /* =========================================================
@@ -51,7 +49,7 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Neue Montreal', 'Helvetica Now', Canela, 'PP Editorial', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -1111,7 +1109,7 @@ button {
 }
 
 .step-txt {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Neue Montreal', 'Helvetica Now', Canela, 'PP Editorial', sans-serif;
     font-size: 19px;
     font-weight: 800;
     fill: #28282B;

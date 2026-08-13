@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CaseStudyController;
 
 Route::get('/', [HomeController::class, 'index']);
-Route::view('/services/social-media-management', 'service-page')->name('services.social-media');
+Route::view('/services', 'service-page')->name('services');
 Route::view('/portfolio', 'portfolio')->name('portfolio');
+Route::get('/case-study', [CaseStudyController::class, 'index'])->name('case-study');
