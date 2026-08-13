@@ -1979,3 +1979,15 @@ button {
 .custom-cursor.cursor-primary {
     border-color: var(--gold) !important;
 }
+
+/* Animation classes */
+.slide-up-anim {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 1.8s var(--ease), opacity 1.8s var(--ease);
+}
+
+.slide-up-anim.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+}

@@ -1,4 +1,5 @@
-﻿<footer class="site-footer">
+@include('components.newsletter')
+<footer class="site-footer">
   <div class="container foot-grid">
     <div class="foot-brand">
       <img class="foot-logo" src="{{ asset('images/logo.png') }}" alt="BlackLine Marketing">
