@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServicePageController;
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/service',[ServicePageController::class,'index']);
+Route::view('/services/social-media-management', 'service-page')->name('services.social-media');
+Route::view('/portfolio', 'portfolio')->name('portfolio');
