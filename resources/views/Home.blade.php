@@ -984,7 +984,7 @@ button {
     background: #FAF9F6;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    min-height: 470px;
+    min-height: 380px;
 }
 
 .testi-media {
@@ -1057,8 +1057,9 @@ button {
 
 .dots {
     display: flex;
-    gap: 11px;
+    gap: 15px;
     justify-content: center;
+    align-items: center;
     margin-top: 26px
 }
 
@@ -1066,15 +1067,16 @@ button {
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    border: 1px solid var(--gold);
+    border: 2px solid var(--gold);
     transition: .25s var(--ease);
     cursor: pointer;
 }
 
-.dot.is-active,
+/* .dot.is-active,
 .dot:hover {
-    background: var(--gold)
-}
+    background: var(--gold);
+    transform: scale(1.5);
+} */
 
 /* =========================================================
    PROCESS
@@ -1946,7 +1948,7 @@ button {
 </section>
 
 <!-- ============ WORK ============ -->
-<section class="work" id="work">
+<section class="work slide-up-anim" id="work">
   <div class="container">
     <h2 class="h2 section-title" id="work-title" style="min-height: 40px; margin-bottom: 0;"></h2>
     <p class="section-sub" id="work-desc" style="margin-top: 10px; min-height: 24px;"></p>
@@ -2021,10 +2023,7 @@ button {
         </div>
         <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
       </article>
-      <div class="work-nav">
-        <button class="round-btn" id="workPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
-        <button class="round-btn" id="workNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
+
     </div>
       </div>
     </div>
@@ -2048,109 +2047,7 @@ button {
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="testi">
-  <div class="container">
-    <h2 class="h2 center">Real feedback from brands we've built with</h2>
-
-    <div class="testi-wrap">
-      <button class="testi-arrow prev" id="tPrev" aria-label="Previous">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-      </button>
-
-      <div class="testi-viewport">
-        <div class="testi-track" id="tTrack">
-          <figure class="testi-card">
-            <div class="testi-media">
-              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t1" muted playsinline></video>
-              <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-            </div>
-            <blockquote class="testi-body">
-              <img class="testi-logo" src="{{ asset('images/verband.png') }}" alt="Outsourcing Verband">
-              <p>&ldquo;Lorem ipsum dolor sit amet conse ctetur adipiscing elit Vel mauris turpis vel eget nec orci nec ipsum Elementum felis eu pellentesque velit vulputate. Blandit consequat facilisi sagittis ut quis Integer et faucibus elemen.&rdquo;</p>
-              <figcaption>
-                <span class="t-name">John Carter</span>
-                <span class="t-role">Creative Director at VERBAND</span>
-              </figcaption>
-            </blockquote>
-          </figure>
-
-          <figure class="testi-card">
-            <div class="testi-media">
-              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t2" muted playsinline></video>
-              <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-            </div>
-            <blockquote class="testi-body">
-              <img class="testi-logo" src="{{ asset('images/verband.png') }}" alt="Outsourcing Verband">
-              <p>&ldquo;Lorem ipsum dolor sit amet conse ctetur adipiscing elit Vel mauris turpis vel eget nec orci nec ipsum Elementum felis eu pellentesque velit vulputate. Blandit consequat facilisi sagittis ut quis Integer et faucibus elemen.&rdquo;</p>
-              <figcaption>
-                <span class="t-name">Amelia Stone</span>
-                <span class="t-role">Head of Brand at NOVA</span>
-              </figcaption>
-            </blockquote>
-          </figure>
-
-          <figure class="testi-card">
-            <div class="testi-media">
-              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t3" muted playsinline></video>
-              <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-            </div>
-            <blockquote class="testi-body">
-              <img class="testi-logo" src="{{ asset('images/verband.png') }}" alt="Outsourcing Verband">
-              <p>&ldquo;Lorem ipsum dolor sit amet conse ctetur adipiscing elit Vel mauris turpis vel eget nec orci nec ipsum Elementum felis eu pellentesque velit vulputate. Blandit consequat facilisi sagittis ut quis Integer et faucibus elemen.&rdquo;</p>
-              <figcaption>
-                <span class="t-name">Marcus Reid</span>
-                <span class="t-role">Founder at Aurelio</span>
-              </figcaption>
-            </blockquote>
-          </figure>
-
-          <figure class="testi-card">
-            <div class="testi-media">
-              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t4" muted playsinline></video>
-              <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-            </div>
-            <blockquote class="testi-body">
-              <img class="testi-logo" src="{{ asset('images/verband.png') }}" alt="Outsourcing Verband">
-              <p>&ldquo;Lorem ipsum dolor sit amet conse ctetur adipiscing elit Vel mauris turpis vel eget nec orci nec ipsum Elementum felis eu pellentesque velit vulputate. Blandit consequat facilisi sagittis ut quis Integer et faucibus elemen.&rdquo;</p>
-              <figcaption>
-                <span class="t-name">Priya Nair</span>
-                <span class="t-role">CMO at Meridian Group</span>
-              </figcaption>
-            </blockquote>
-          </figure>
-
-          <figure class="testi-card">
-            <div class="testi-media">
-              <video src="{{ asset('videos/work-first-video.mp4') }}?v=t5" muted playsinline></video>
-              <button class="play" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-            </div>
-            <blockquote class="testi-body">
-              <img class="testi-logo" src="{{ asset('images/verband.png') }}" alt="Outsourcing Verband">
-              <p>&ldquo;Lorem ipsum dolor sit amet conse ctetur adipiscing elit Vel mauris turpis vel eget nec orci nec ipsum Elementum felis eu pellentesque velit vulputate. Blandit consequat facilisi sagittis ut quis Integer et faucibus elemen.&rdquo;</p>
-              <figcaption>
-                <span class="t-name">Daniel Okafor</span>
-                <span class="t-role">Owner at Osteria Nine</span>
-              </figcaption>
-            </blockquote>
-          </figure>
-        </div>
-      </div>
-
-      <button class="testi-arrow next" id="tNext" aria-label="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-      </button>
-    </div>
-
-    <div class="dots" id="tDots">
-      <button class="dot is-active" aria-label="Slide 1"></button>
-      <button class="dot" aria-label="Slide 2"></button>
-      <button class="dot" aria-label="Slide 3"></button>
-      <button class="dot" aria-label="Slide 4"></button>
-      <button class="dot" aria-label="Slide 5"></button>
-    </div>
-  </div>
-</section>
+@include('components.testimonials')
 
 <!-- ============ PROCESS ============ -->
 <section class="process">
@@ -2233,32 +2130,8 @@ button {
   </div>
 </section>
 
-<!-- ============ CTA ============ -->
-<section class="cta" id="cta">
-  <div class="container">
-    <div class="cta-box">
-      <img class="cta-bg" src="{{ asset('images/cta.jpg') }}" alt="">
-      <div class="cta-inner">
-        <h2>Ready to build your movement?</h2>
-        <p>Let's create a brand that commands attention and builds lasting<br>influence starting with a conversation.</p>
-        <a href="#" class="btn btn-gold btn-lg">Book a Strategy Call
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+@include('components.cta')
 
-<!-- ============ NEWSLETTER ============ -->
-<section class="newsletter">
-  <div class="container news-grid">
-    <h2>Sign Up For Exclusive Offers And Updates!</h2>
-    <form class="news-form" onsubmit="return false;">
-      <input type="email" placeholder="Email" aria-label="Email" required>
-      <button type="submit" class="btn btn-gold">Subscribe</button>
-    </form>
-  </div>
-</section>
 
 <script>
 /* Black Line Marketing — home page interactions */
@@ -2365,196 +2238,7 @@ button {
     }
 })();
 </script>
-<script>
-/* Black Line Marketing — home page interactions */
-(function () {
-    'use strict';
 
-    /* ---------- Mobile nav ---------- */
-    var burger = document.getElementById('burger');
-    var nav = document.getElementById('nav');
-
-    if (burger && nav) {
-        burger.addEventListener('click', function () {
-            var open = nav.classList.toggle('is-open');
-            burger.classList.toggle('is-open', open);
-            burger.setAttribute('aria-expanded', String(open));
-        });
-
-        nav.addEventListener('click', function (e) {
-            var drop = e.target.closest('.has-drop > a');
-            if (drop && window.matchMedia('(max-width:980px)').matches) {
-                e.preventDefault();
-                drop.parentElement.classList.toggle('is-open');
-                return;
-            }
-            if (e.target.closest('a')) {
-                nav.classList.remove('is-open');
-                burger.classList.remove('is-open');
-                burger.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-
-    /* ---------- Work accordion ---------- */
-    var strip = document.getElementById('workStrip');
-    if (strip) {
-        var panels = Array.prototype.slice.call(strip.querySelectorAll('.work-panel'));
-
-        function openPanel(i) {
-            i = (i + panels.length) % panels.length;
-            panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
-        }
-        function currentIndex() {
-            return panels.findIndex(function (p) { return p.classList.contains('is-open'); });
-        }
-
-        var workTrack = document.getElementById('work-scroll-track');
-        if (workTrack) {
-            window.addEventListener('scroll', function() {
-                var rect = workTrack.getBoundingClientRect();
-                var stickPoint = window.innerHeight / 2 - 225; // 225 is half of the 450px height
-                var trackHeight = rect.height - window.innerHeight;
-                if (trackHeight > 0) {
-                    if (rect.top <= stickPoint && rect.bottom >= window.innerHeight) {
-                        var progress = (stickPoint - rect.top) / trackHeight;
-                        var panelIndex = Math.floor(progress * panels.length);
-                        panelIndex = Math.min(panelIndex, panels.length - 1);
-                        openPanel(panelIndex);
-                    }
-                }
-            });
-        }
-
-        panels.forEach(function (panel, i) {
-            panel.addEventListener('click', function (e) {
-                if (panel.classList.contains('is-playing-video')) {
-                    var video = panel.querySelector('video');
-                    if (video) {
-                        panel.classList.remove('is-playing-video');
-                        video.pause();
-                        video.currentTime = 0;
-                    }
-                    return;
-                }
-
-                var playBtn = e.target.closest('.play');
-                if (playBtn) {
-                    var video = panel.querySelector('video');
-                    if (video) {
-                        panel.classList.add('is-playing-video');
-                        video.muted = false;
-                        video.loop = false;
-                        video.currentTime = 0;
-                        video.play();
-                        
-                        video.onended = function() {
-                            panel.classList.remove('is-playing-video');
-                            video.currentTime = 0;
-                        };
-                    }
-                    return;
-                }
-                openPanel(i);
-            });
-        });
-
-        var prev = document.getElementById('workPrev');
-        var next = document.getElementById('workNext');
-        if (prev) prev.addEventListener('click', function () { openPanel(currentIndex() - 1); });
-        if (next) next.addEventListener('click', function () { openPanel(currentIndex() + 1); });
-    }
-
-    /* ---------- Testimonial slider ---------- */
-    var track = document.getElementById('tTrack');
-    if (track) {
-        var slides = track.children.length;
-        var dots = Array.prototype.slice.call(document.querySelectorAll('#tDots .dot'));
-        var index = 0;
-
-        function goTo(i) {
-            index = (i + slides) % slides;
-            track.style.transform = 'translateX(' + (-index * 100) + '%)';
-            dots.forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
-            
-            var playingMedias = track.querySelectorAll('.testi-media.is-playing-video');
-            playingMedias.forEach(function(m) {
-                m.classList.remove('is-playing-video');
-                var v = m.querySelector('video');
-                if (v) {
-                    v.pause();
-                    v.currentTime = 0;
-                }
-            });
-        }
-
-        dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
-
-        var tPrev = document.getElementById('tPrev');
-        var tNext = document.getElementById('tNext');
-        if (tPrev) tPrev.addEventListener('click', function () { goTo(index - 1); });
-        if (tNext) tNext.addEventListener('click', function () { goTo(index + 1); });
-
-        /* swipe on touch devices */
-        var startX = null;
-        track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-        track.addEventListener('touchend', function (e) {
-            if (startX === null) return;
-            var dx = e.changedTouches[0].clientX - startX;
-            if (Math.abs(dx) > 50) goTo(index + (dx < 0 ? 1 : -1));
-            startX = null;
-        });
-
-        goTo(0);
-
-        var testiCards = Array.prototype.slice.call(track.querySelectorAll('.testi-card'));
-        testiCards.forEach(function(card) {
-            var media = card.querySelector('.testi-media');
-            if (media) {
-                media.addEventListener('click', function(e) {
-                    if (media.classList.contains('is-playing-video')) {
-                        var video = media.querySelector('video');
-                        if (video) {
-                            media.classList.remove('is-playing-video');
-                            video.pause();
-                            video.currentTime = 0;
-                        }
-                        return;
-                    }
-                    var playBtn = e.target.closest('.play');
-                    if (playBtn) {
-                        var video = media.querySelector('video');
-                        if (video) {
-                            media.classList.add('is-playing-video');
-                            video.muted = false;
-                            video.currentTime = 0;
-                            video.play();
-                            video.onended = function() {
-                                media.classList.remove('is-playing-video');
-                                video.currentTime = 0;
-                            };
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    /* ---------- Newsletter (demo only) ---------- */
-    var form = document.querySelector('.news-form');
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            var input = form.querySelector('input');
-            if (input && input.value) {
-                input.value = '';
-                input.placeholder = 'Thanks — you are subscribed!';
-                setTimeout(function () { input.placeholder = 'Email'; }, 3500);
-            }
-        });
-    }
-})();
-</script>
 @include('components.footer')
 
 <!-- Custom Cursor Element -->
@@ -2635,20 +2319,34 @@ button {
             }
         });
 
-        // Typing animation for work title and description
+        // Typing and slide-up animation for work section
+        const workSection = document.getElementById('work');
         const workTitle = document.getElementById('work-title');
         const workDesc = document.getElementById('work-desc');
-        if (workTitle && workDesc) {
+        let typeTimers = [];
+
+        function clearTypeTimers() {
+            typeTimers.forEach(t => clearTimeout(t));
+            typeTimers = [];
+        }
+
+        if (workSection && workTitle && workDesc) {
             const observer = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
+                    workSection.classList.add('is-visible');
                     startTypingWorkTitle();
-                    observer.disconnect();
+                } else {
+                    workSection.classList.remove('is-visible');
+                    clearTypeTimers();
+                    workTitle.innerHTML = '';
+                    workDesc.innerHTML = '';
                 }
-            }, { threshold: 0.5 });
+            }, { threshold: 0.15 });
             
-            observer.observe(workTitle);
+            observer.observe(workSection);
             
             function startTypingWorkTitle() {
+                clearTypeTimers();
                 workTitle.innerHTML = '';
                 workDesc.innerHTML = ''; // clear desc initially
                 const span = document.createElement('span');
@@ -2667,7 +2365,7 @@ button {
                     if (i < text1.length) {
                         span.innerHTML += text1.charAt(i);
                         i++;
-                        setTimeout(type1, 20);
+                        typeTimers.push(setTimeout(type1, 20));
                     } else {
                         type2();
                     }
@@ -2677,7 +2375,7 @@ button {
                     if (j < text2.length) {
                         workTitle.appendChild(document.createTextNode(text2.charAt(j)));
                         j++;
-                        setTimeout(type2, 20);
+                        typeTimers.push(setTimeout(type2, 20));
                     }
                 }
                 
@@ -2685,7 +2383,7 @@ button {
                     if (k < text3.length) {
                         workDesc.innerHTML += text3.charAt(k);
                         k++;
-                        setTimeout(type3, 10); // slightly faster
+                        typeTimers.push(setTimeout(type3, 10)); // slightly faster
                     }
                 }
                 
