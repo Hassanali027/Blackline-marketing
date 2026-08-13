@@ -18,7 +18,7 @@
             <a href="#services">Creative Direction</a>
           </div>
         </li>
-        <li><a href="#work">Portfolio</a></li>
+        <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
         <li><a href="#blogs">Blogs</a></li>
         <li><a href="#faq">FAQ`s</a></li>
       </ul>

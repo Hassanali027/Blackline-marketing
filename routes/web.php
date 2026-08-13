@@ -17,3 +17,4 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::view('/services/social-media-management', 'service-page')->name('services.social-media');
+Route::view('/portfolio', 'portfolio')->name('portfolio');
