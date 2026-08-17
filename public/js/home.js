@@ -89,6 +89,12 @@
         var next = document.getElementById('workNext');
         if (prev) prev.addEventListener('click', function () { openPanel(currentIndex() - 1); });
         if (next) next.addEventListener('click', function () { openPanel(currentIndex() + 1); });
+        
+        var panelPrevs = Array.prototype.slice.call(strip.querySelectorAll('.work-prev'));
+        var panelNexts = Array.prototype.slice.call(strip.querySelectorAll('.work-next'));
+        panelPrevs.forEach(function(btn) { btn.addEventListener('click', function(e) { e.stopPropagation(); openPanel(currentIndex() - 1); }); });
+        panelNexts.forEach(function(btn) { btn.addEventListener('click', function(e) { e.stopPropagation(); openPanel(currentIndex() + 1); }); });
+
         var workTrack = document.getElementById('work-scroll-track');
         if (workTrack) {
             window.addEventListener('scroll', function() {

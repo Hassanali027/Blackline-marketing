@@ -451,7 +451,19 @@ button {
    SERVICES
    ========================================================= */
 .services {
-    padding-block: 10px
+    padding-block: 10px;
+}
+
+@media (min-width: 992px) {
+    .services {
+        z-index: 10;
+    }
+}
+
+.work-pin-wrapper, .stats, .testi, .process, .cta, .newsletter, .site-footer {
+    position: relative;
+    z-index: 20;
+    background: var(--bg);
 }
 
 .cards {
@@ -646,18 +658,36 @@ button {
 .work-pin-wrapper {
     position: relative;
     width: 100%;
+    z-index: 20;
+    background: var(--bg);
 }
 
 .work {
-    padding-block: 40px;
+    padding-top: clamp(40px, 8vh, 100px);
+    padding-bottom: 40px;
     position: sticky;
     top: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
     z-index: 50;
+}
+
+@media (min-width: 821px) and (max-height: 800px) {
+    .work {
+        padding-top: 7px !important;
+    }
+    .work-strip {
+        height: calc(100vh - 160px) !important;
+    }
+    .work-body {
+        padding: 0 0 25px 50px !important;
+    }
+    .work-body h3 {
+        font-size: 28px !important;
+    }
 }
 
 .slide-up-anim {
@@ -675,7 +705,7 @@ button {
     position: relative;
     display: flex;
     gap: 16px;
-    height: 450px;
+    height: clamp(450px, calc(100vh - 160px), 800px);
 }
 
 .work-panel {
@@ -763,7 +793,7 @@ button {
 
 .work-panel.is-open .play {
     opacity: 1;
-    left: 65%;
+    left: 50%;
 }
 
 .play:hover {
@@ -798,6 +828,55 @@ button {
 }
 
 .work-panel.is-playing-video {
+    flex: 1 1 100% !important;
+}
+
+.work-nav-arrows {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .45s var(--ease) .15s;
+}
+
+.work-panel.is-open .work-nav-arrows {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.work-panel.is-playing-video .work-nav-arrows {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.work-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.work-arrow:hover {
+    border-color: #F5D45C;
+    color: #F5D45C;
+    transform: scale(1.05);
+}
+
+.work-arrow svg {
+    width: 20px;
+    height: 20px;
+}
     cursor: pointer;
 }
 
@@ -2084,6 +2163,12 @@ button {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
+        
+        <div class="work-nav-arrows">
+          <button class="work-arrow work-prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="work-arrow work-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+
         <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
       </article>
       @endforeach
@@ -2344,6 +2429,37 @@ button {
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Dynamic sticky for services section to handle layout heights
+        const servicesSec = document.querySelector('.services');
+        if (servicesSec) {
+            const updateSticky = () => {
+                if (window.innerWidth >= 992) {
+                    const originalPosition = servicesSec.style.position;
+                    servicesSec.style.position = 'relative';
+                    const h = servicesSec.offsetHeight;
+                    servicesSec.style.position = originalPosition;
+                    
+                    const vh = window.innerHeight;
+                    if (h > vh) {
+                        // Taller than viewport: stick so the bottom is visible with a 150px gap/offset
+                        servicesSec.style.position = 'sticky';
+                        servicesSec.style.top = `${vh - h - 150}px`;
+                    } else {
+                        // Shorter than viewport: stick to top (with header offset)
+                        servicesSec.style.position = 'sticky';
+                        servicesSec.style.top = '80px';
+                    }
+                } else {
+                    servicesSec.style.position = '';
+                    servicesSec.style.top = '';
+                }
+            };
+            window.addEventListener('resize', updateSticky);
+            updateSticky();
+            window.addEventListener('load', updateSticky);
+            setTimeout(updateSticky, 500);
+        }
+
         const cursor = document.querySelector('.custom-cursor');
         
         // Update circle position on mouse move

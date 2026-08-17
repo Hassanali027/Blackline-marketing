@@ -172,8 +172,8 @@
   .terms-text { font-size: 0.8rem; color: #aaa; margin-top: 10px; line-height: 1.5; }
   .terms-text a { color: #4285F4; text-decoration: none; }
   .schedule-btn {
-      background: linear-gradient(to bottom, #d4af37, #9b7923);
-      color: #000;
+      background: linear-gradient(90deg, rgba(175, 132, 69, 1) 0%, rgba(232, 201, 136, 1) 35%, rgba(229, 202, 131, 1) 65%, rgba(175, 132, 69, 1) 100%) !important;
+      color: #000 !important;
       font-weight: 700;
       border: none;
       padding: 15px 30px;
@@ -402,7 +402,7 @@
                     <textarea rows="1" name="notes" placeholder="Please share anything that will help prepare for our meeting." spellcheck="false"></textarea>
                 </div>
                 <p class="terms-text">By proceeding, you confirm that you have read and agree to <a href="#">Calendly's Participant Terms</a> and <a href="#">Privacy Notice</a>.</p>
-                <button type="submit" class="schedule-btn">Schedule Event</button>
+                <button type="submit" class="schedule-btn">Book a Discovery Call</button>
             </form>
         </div>
 
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const submitBtn = form.querySelector('.schedule-btn');
         submitBtn.disabled = true;
-        submitBtn.innerText = 'Scheduling...';
+        submitBtn.innerText = 'Booking...';
         
         // Prepare Form Data
         const formData = new FormData(form);
@@ -615,14 +615,14 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert(res.body.message || 'Something went wrong. Please try again.');
                 submitBtn.disabled = false;
-                submitBtn.innerText = 'Schedule Event';
+                submitBtn.innerText = 'Book a Discovery Call';
             }
         })
         .catch(err => {
             console.error(err);
             alert('Failed to connect to server. Please try again.');
             submitBtn.disabled = false;
-            submitBtn.innerText = 'Schedule Event';
+            submitBtn.innerText = 'Book a Discovery Call';
         });
     });
 });
