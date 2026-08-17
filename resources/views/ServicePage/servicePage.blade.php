@@ -110,7 +110,7 @@
             <div class="glass-card text-start">
                 <h6 class="subtitle-text text-uppercase mb-3">SOCIAL MEDIA MANAGEMENT</h6>
                 <h1 class="title-text mb-4">Your Brand Deserves More Than a Feed.</h1>
-                <a href="#" class="gradient-btn">Book a Discovery Call &rarr;</a>
+                <a href="{{ route('book-now') }}" class="gradient-btn">Book a Discovery Call &rarr;</a>
             </div>
         </div>
     </section>

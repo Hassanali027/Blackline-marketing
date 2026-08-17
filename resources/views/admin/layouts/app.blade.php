@@ -55,8 +55,18 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.footer-settings') }}" class="{{ request()->routeIs('admin.footer-settings') ? 'active' : '' }}">
+                            <i data-feather="layout"></i> <span>Footer Settings</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.faqs.index') }}" class="{{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
                             <i data-feather="help-circle"></i> <span>FAQs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.appointments.index') }}" class="{{ request()->routeIs('admin.appointments.*') ? 'active' : '' }}">
+                            <i data-feather="calendar"></i> <span>Appointments</span>
                         </a>
                     </li>
                 </ul>

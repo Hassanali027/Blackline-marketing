@@ -3,7 +3,7 @@
     <div>
       <h2>{{ $title ?? 'Ready to build your movement?' }}</h2>
       <p>{{ $description ?? "Let's create a brand that commands attention and builds lasting influence starting with a conversation." }}</p>
-      <a class="gold-btn" href="{{ $href ?? route('contact') }}">{{ $button ?? 'Book a Strategy Call' }} &nbsp;→</a>
+      <a class="gold-btn" href="{{ $href ?? route('book-now') }}">{{ $button ?? 'Book a Strategy Call' }} &nbsp;→</a>
     </div>
   </div>
 </section>

@@ -27,6 +27,8 @@ Route::get('/faqs', [FaqController::class, 'index'])->name('faqs');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog-post');
 Route::view('/contact-us', 'contact')->name('contact');
+Route::get('/book-now', [\App\Http\Controllers\BookNowController::class, 'index'])->name('book-now');
+Route::post('/book-now', [\App\Http\Controllers\BookNowController::class, 'store'])->name('book-now.store');
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [\App\Http\Controllers\AdminAuthController::class, 'showLoginForm'])->name('admin.login');
@@ -109,5 +111,13 @@ Route::prefix('admin')->group(function () {
         // Contact Settings
         Route::get('contact-settings', [\App\Http\Controllers\AdminContactSettingsController::class, 'edit'])->name('admin.contact-settings');
         Route::post('contact-settings', [\App\Http\Controllers\AdminContactSettingsController::class, 'update'])->name('admin.contact-settings.update');
+
+        // Footer Settings
+        Route::get('footer-settings', [\App\Http\Controllers\AdminFooterSettingsController::class, 'edit'])->name('admin.footer-settings');
+        Route::post('footer-settings', [\App\Http\Controllers\AdminFooterSettingsController::class, 'update'])->name('admin.footer-settings.update');
+
+        // Appointments Settings
+        Route::get('appointments', [\App\Http\Controllers\AdminAppointmentController::class, 'index'])->name('admin.appointments.index');
+        Route::delete('appointments/{id}', [\App\Http\Controllers\AdminAppointmentController::class, 'destroy'])->name('admin.appointments.destroy');
     });
 });

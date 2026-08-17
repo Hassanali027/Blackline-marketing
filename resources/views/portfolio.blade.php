@@ -21,7 +21,7 @@
     <div class="portfolio-hero__panel">
       <span>{{ $heroSettings['badge'] ?? 'CASE STUDIES' }}</span>
       <h1>{{ $heroSettings['heading'] ?? 'Brands Worth Remembering.' }}</h1>
-      <a class="gold-button" href="{{ $heroSettings['btn_link'] ?? '#portfolio-grid' }}">{{ $heroSettings['btn_text'] ?? 'Book a Discovery Call' }} <b>→</b></a>
+      <a class="gold-button" href="{{ $heroSettings['btn_link'] ?? route('book-now') }}">{{ $heroSettings['btn_text'] ?? 'Book a Discovery Call' }} <b>→</b></a>
     </div>
   </section>
 

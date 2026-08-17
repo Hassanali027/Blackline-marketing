@@ -15,7 +15,7 @@
 <body>
 @include('components.header')
 <main>
-<section class="hero" style="background: url('{{ asset($heroSettings['image'] ?? 'assets/pdf/asset-12.png') }}') center/cover no-repeat;"><div class="service-page-container"><div class="hero-box"><span>{{ $heroSettings['small_text'] ?? 'SOCIAL MEDIA MANAGEMENT' }}</span><h1>{{ $heroSettings['heading'] ?? 'Your Brand Deserves More Than a Feed.' }}</h1><a href="{{ $heroSettings['btn_link'] ?? '#contact' }}" class="gold-btn">{!! $heroSettings['btn_text'] ?? 'Book a Discovery Call&nbsp; →' !!}</a></div></div></section>
+<section class="hero" style="background: url('{{ asset($heroSettings['image'] ?? 'assets/pdf/asset-12.png') }}') center/cover no-repeat;"><div class="service-page-container"><div class="hero-box"><span>{{ $heroSettings['small_text'] ?? 'SOCIAL MEDIA MANAGEMENT' }}</span><h1>{{ $heroSettings['heading'] ?? 'Your Brand Deserves More Than a Feed.' }}</h1><a href="{{ $heroSettings['btn_link'] ?? route('book-now') }}" class="gold-btn">{!! $heroSettings['btn_text'] ?? 'Book a Discovery Call&nbsp; →' !!}</a></div></div></section>
 <section class="overview service-page-container" id="about">
     <div>
         <span class="label">{{ $overviewSettings['label'] ?? 'OVERVIEW' }}</span>

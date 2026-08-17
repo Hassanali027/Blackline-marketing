@@ -1,3 +1,17 @@
+<style>
+.site-header {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease !important;
+}
+.site-header.header-hidden {
+    transform: translateY(-100%) !important;
+}
+.site-header.header-scrolled {
+    background-color: rgba(40, 40, 43, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+}
+</style>
+
 <header class="site-header" id="top">
   <div class="container header-inner">
     <a class="logo" href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" alt="BlackLine Marketing"></a>
@@ -25,7 +39,7 @@
       </ul>
     </nav>
 
-    <a href="{{ route('contact') }}" class="btn btn-gold header-cta">Book a Call</a>
+    <a href="{{ route('book-now') }}" class="btn btn-gold header-cta">Book a Call</a>
 
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -76,6 +90,42 @@
         document.addEventListener('DOMContentLoaded', initBurger);
     } else {
         initBurger();
+    }
+
+    // Scroll Hide / Show logic
+    var header = document.querySelector('.site-header');
+    if (header) {
+        var lastScrollTop = 0;
+        var scrollThreshold = 10;
+        
+        window.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop < 0) return;
+            
+            // Background color change when scrolled down past a bit
+            if (scrollTop > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            // Don't hide if menu is open
+            var nav = document.getElementById('nav');
+            if (nav && nav.classList.contains('is-open')) return;
+            
+            if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) {
+                return;
+            }
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
     }
 })();
 </script>

@@ -1913,7 +1913,7 @@ button {
     <h1 class="hero-title">{!! $heading !!}</h1>
     <p class="hero-sub">{{ $heroSettings['description'] ?? 'We build identity systems, campaigns, and digital experiences for labels ready to lead their category not blend into it.' }}</p>
     <div class="hero-actions">
-      <a href="/contact-us" class="btn btn-gold btn-lg">Book a Discovery Call
+      <a href="{{ route('book-now') }}" class="btn btn-gold btn-lg">Book a Discovery Call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="{{ route('portfolio') }}" class="btn btn-ghost btn-lg">View Our Work</a>
