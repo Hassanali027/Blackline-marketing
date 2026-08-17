@@ -33,13 +33,24 @@
                 </div>
 
                 <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="author_id" style="display: block; margin-bottom: 8px; color: var(--muted);">Author</label>
+                    <select id="author_id" name="author_id" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
+                        <option value="">Select an Author (Optional)</option>
+                        @foreach($authors as $author)
+                            <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>{{ $author->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
                     <label for="short_description" style="display: block; margin-bottom: 8px; color: var(--muted);">Short Description (Excerpt)</label>
                     <textarea id="short_description" name="short_description" style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px; height: 80px;">{{ old('short_description') }}</textarea>
                 </div>
 
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label for="content" style="display: block; margin-bottom: 8px; color: var(--muted);">Blog Content *</label>
-                    <textarea id="content" name="content">{{ old('content') }}</textarea>
+                    <div id="editorjs"></div>
+                    <textarea id="content" name="content" style="display:none;">{{ old('content') }}</textarea>
                 </div>
             </div>
 
@@ -79,38 +90,129 @@
     </form>
 </div>
 
-<!-- CKEditor 5 -->
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<!-- Editor.js -->
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#content' ), {
-            toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'insertTable', 'undo', 'redo' ]
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
+    const editorTools = {};
+    if (typeof Header !== 'undefined') editorTools.header = Header;
+    if (typeof List !== 'undefined') editorTools.list = List;
+    if (typeof Checklist !== 'undefined') editorTools.checklist = Checklist;
+    if (typeof Quote !== 'undefined') editorTools.quote = Quote;
+    if (typeof Delimiter !== 'undefined') editorTools.delimiter = Delimiter;
+    if (typeof Table !== 'undefined') editorTools.table = Table;
+    if (typeof CodeTool !== 'undefined') editorTools.code = CodeTool;
+    if (typeof RawTool !== 'undefined') editorTools.raw = RawTool;
+    if (typeof LinkTool !== 'undefined') editorTools.linkTool = LinkTool;
+    if (typeof SimpleImage !== 'undefined') editorTools.image = SimpleImage;
+
+    let editorConfig = {
+        holder: 'editorjs',
+        placeholder: 'Click here to start writing your blog...',
+        tools: editorTools,
+        onChange: () => {
+            editor.save().then((outputData) => {
+                document.querySelector('#content').value = JSON.stringify(outputData);
+            }).catch((error) => {
+                console.error('Saving failed: ', error);
+            });
+        }
+    };
+
+    try {
+        const contentVal = document.querySelector('#content').value;
+        if(contentVal && contentVal.trim().startsWith('{')) {
+            const parsedData = JSON.parse(contentVal);
+            if (parsedData && parsedData.blocks) {
+                editorConfig.data = parsedData;
+            }
+        }
+    } catch(e) {
+        console.error("Could not parse initial data as JSON", e);
+    }
+
+    const editor = new EditorJS(editorConfig);
 </script>
 <style>
-    /* Dark mode adjustments for CKEditor */
-    .ck.ck-editor__main>.ck-editor__editable {
-        background: rgba(0,0,0,0.2) !important;
-        border-color: rgba(255,255,255,0.1) !important;
-        color: #fff !important;
+    /* Light mode adjustments for Editor.js */
+    #editorjs {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 20px;
+        color: #333;
         min-height: 400px;
     }
-    .ck.ck-toolbar {
-        background: rgba(255,255,255,0.05) !important;
-        border-color: rgba(255,255,255,0.1) !important;
+
+    /* Make text, placeholder and icons dark for white background */
+    .ce-block__content {
+        color: #333 !important;
     }
-    .ck.ck-toolbar .ck-button {
-        color: #fff !important;
+    [data-placeholder]:empty::before {
+        color: #999 !important;
     }
-    .ck.ck-toolbar .ck-button:hover {
-        background: rgba(255,255,255,0.1) !important;
+    .ce-toolbar__plus, .ce-toolbar__settings-btn {
+        color: #333 !important;
     }
-    .ck.ck-toolbar .ck-button.ck-on {
-        background: rgba(229, 202, 131, 0.2) !important;
-        color: var(--gold) !important;
+    .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover {
+        background-color: #f0f0f0 !important;
+    }
+
+    .ce-block__content, .ce-toolbar__content {
+        max-width: calc(100% - 80px) !important;
+    }
+    .ce-toolbar__actions {
+        color: #333;
+    }
+    .ce-popover, .ce-settings {
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .ce-popover__item:hover, .ce-settings__button:hover {
+        background-color: #f5f5f5;
+        color: #333 !important;
+    }
+    .ce-popover-item__icon {
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #eee;
+    }
+    .ce-inline-tool {
+        color: #333;
+    }
+    .ce-inline-toolbar {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .ce-inline-toolbar__buttons, .ce-inline-toolbar__actions {
+        background-color: #fff;
+    }
+    .ce-inline-tool:hover {
+        background-color: #f5f5f5;
+    }
+    .codex-editor__redactor {
+        padding-bottom: 50px !important;
+    }
+    .cdx-input {
+        background: #fff;
+        color: #333;
+        border: 1px solid #ccc;
+    }
+    ::selection {
+        background: rgba(229, 202, 131, 0.3);
     }
 </style>
 @endsection

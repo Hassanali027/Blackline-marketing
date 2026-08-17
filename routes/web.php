@@ -95,5 +95,19 @@ Route::prefix('admin')->group(function () {
             'update' => 'admin.blogs.update',
             'destroy' => 'admin.blogs.destroy',
         ]);
+
+        // Authors Management
+        Route::resource('authors', \App\Http\Controllers\AdminAuthorController::class)->names([
+            'index' => 'admin.authors.index',
+            'create' => 'admin.authors.create',
+            'store' => 'admin.authors.store',
+            'edit' => 'admin.authors.edit',
+            'update' => 'admin.authors.update',
+            'destroy' => 'admin.authors.destroy',
+        ]);
+
+        // Contact Settings
+        Route::get('contact-settings', [\App\Http\Controllers\AdminContactSettingsController::class, 'edit'])->name('admin.contact-settings');
+        Route::post('contact-settings', [\App\Http\Controllers\AdminContactSettingsController::class, 'update'])->name('admin.contact-settings.update');
     });
 });

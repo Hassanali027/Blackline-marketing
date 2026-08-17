@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -10,13 +11,14 @@ class AdminBlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::with('author')->latest()->get();
         return view('admin.blogs.index', compact('blogs'));
     }
 
     public function create()
     {
-        return view('admin.blogs.create');
+        $authors = Author::all();
+        return view('admin.blogs.create', compact('authors'));
     }
 
     public function store(Request $request)
@@ -25,6 +27,7 @@ class AdminBlogController extends Controller
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'content' => 'required',
+            'author_id' => 'nullable|exists:authors,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -49,6 +52,7 @@ class AdminBlogController extends Controller
             'short_description' => $request->short_description,
             'content' => $request->content,
             'image' => $imagePath,
+            'author_id' => $request->author_id,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,
@@ -59,7 +63,8 @@ class AdminBlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        return view('admin.blogs.edit', compact('blog'));
+        $authors = Author::all();
+        return view('admin.blogs.edit', compact('blog', 'authors'));
     }
 
     public function update(Request $request, Blog $blog)
@@ -68,6 +73,7 @@ class AdminBlogController extends Controller
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'content' => 'required',
+            'author_id' => 'nullable|exists:authors,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -96,6 +102,7 @@ class AdminBlogController extends Controller
             'short_description' => $request->short_description,
             'content' => $request->content,
             'image' => $imagePath,
+            'author_id' => $request->author_id,
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
             'meta_keywords' => $request->meta_keywords,

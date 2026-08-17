@@ -38,11 +38,23 @@
                         <a href="{{ route('admin.case-study-page') }}" class="{{ request()->routeIs('admin.case-study-page') ? 'active' : '' }}">
                             <i data-feather="file-text"></i> <span>Case Study Page Setting</span>
                         </a>
+                    </li>
                     <li>
                         <a href="{{ route('admin.blogs.index') }}" class="{{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
                             <i data-feather="edit-3"></i> <span>Blogs</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.authors.index') }}" class="{{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
+                            <i data-feather="user"></i> <span>Authors</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.contact-settings') }}" class="{{ request()->routeIs('admin.contact-settings') ? 'active' : '' }}">
+                            <i data-feather="phone-call"></i> <span>Contact Info</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.faqs.index') }}" class="{{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
                             <i data-feather="help-circle"></i> <span>FAQs</span>
                         </a>

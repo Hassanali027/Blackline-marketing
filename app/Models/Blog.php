@@ -19,5 +19,11 @@ class Blog extends Model
         'meta_title',
         'meta_description',
         'meta_keywords',
+        'author_id',
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
