@@ -65,4 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Benefits Section Scroll Animation
+  const benefitsSection = document.querySelector('.benefits');
+  if (benefitsSection) {
+    const benefitsObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    
+    benefitsObserver.observe(benefitsSection);
+  }
 });

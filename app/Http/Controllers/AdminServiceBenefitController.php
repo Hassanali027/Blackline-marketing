@@ -41,7 +41,8 @@ class AdminServiceBenefitController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'required|image|max:5000'
+            'icon' => 'nullable|image|max:5000',
+            'icon_class' => 'nullable|string'
         ]);
 
         $benefits = $this->getBenefits($service);
@@ -58,7 +59,8 @@ class AdminServiceBenefitController extends Controller
             'id' => Str::uuid()->toString(),
             'title' => $request->title,
             'description' => $request->description,
-            'icon' => $iconPath
+            'icon' => $iconPath,
+            'icon_class' => $request->icon_class
         ];
 
         $service->update(['benefits' => array_values($benefits)]);
@@ -90,7 +92,8 @@ class AdminServiceBenefitController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'nullable|image|max:5000'
+            'icon' => 'nullable|image|max:5000',
+            'icon_class' => 'nullable|string'
         ]);
 
         $benefits = $this->getBenefits($service);
@@ -104,6 +107,7 @@ class AdminServiceBenefitController extends Controller
 
         $benefits[$benefitIndex]['title'] = $request->title;
         $benefits[$benefitIndex]['description'] = $request->description;
+        $benefits[$benefitIndex]['icon_class'] = $request->icon_class;
 
         if ($request->hasFile('icon')) {
             $file = $request->file('icon');

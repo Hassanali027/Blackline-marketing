@@ -61,7 +61,13 @@
     <div class="cards">
         @foreach($benefits as $card)
         <article>
-            <i><img src="{{ asset($card['icon']) }}" alt="{{ $card['title'] }}"></i>
+            <i>
+                @if(!empty($card['icon_class']))
+                    {!! $card['icon_class'] !!}
+                @elseif(!empty($card['icon']))
+                    <img src="{{ asset($card['icon']) }}" alt="{{ $card['title'] }}">
+                @endif
+            </i>
             <h3>{{ $card['title'] }}</h3>
             <p>{{ $card['description'] }}</p>
         </article>
@@ -125,7 +131,7 @@
             <p class="step-desc">{{ $item['description'] }}</p>
           </div>
           <div class="step-icon">
-            <img src="{{ asset($item['icon']) }}" alt="{{ $item['title'] }}" style="width: 24px; height: 24px; filter: invert(0.8) sepia(1) saturate(3) hue-rotate(345deg) brightness(1.2);">
+            <span style="display: inline-block; width: 24px; height: 24px; background: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%); -webkit-mask: url('{{ asset($item['icon']) }}') center/contain no-repeat; mask: url('{{ asset($item['icon']) }}') center/contain no-repeat;" aria-label="{{ $item['title'] }}"></span>
           </div>
         </div>
         @endforeach
@@ -149,8 +155,8 @@
   </div>
   <div class="plans">
     @foreach($pricingPlans as $plan)
-    <article>
-      <h3>{{ $plan['name'] }}</h3>
+    <article class="{{ strpos(strtolower($plan['name']), 'icon') !== false ? 'featured' : '' }}">
+      <h3>@if(strpos(strtolower($plan['name']), 'icon') !== false)<i class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5 10.6 8 15 9.5 10.6 11 9 15.5 7.4 11 3 9.5 7.4 8z"/><path d="M17 13.5 17.9 16l2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z"/><path d="M17.5 3v3M16 4.5h3"/></svg></i> @endif{{ trim(str_replace(['✨', '✧', '✣', '+'], '', $plan['name'])) }}</h3>
       <p>{{ $plan['description'] }}</p>
       <strong>AED {{ $plan['price'] }}@if(!empty($plan['price_small']))<small>{{ $plan['price_small'] }}</small>@endif</strong>
       <a href="{{ $plan['btn_link'] }}">{{ $plan['btn_text'] }}</a>
