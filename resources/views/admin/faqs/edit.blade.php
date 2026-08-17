@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <label for="answer">Answer <span style="color: #F44336;">*</span></label>
-            <textarea name="answer" id="answer" class="form-control" rows="5" required>{{ old('answer', $faq->answer) }}</textarea>
+            <textarea name="answer" id="answer" class="form-control" rows="5">{{ old('answer', $faq->answer) }}</textarea>
             @error('answer') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>
 

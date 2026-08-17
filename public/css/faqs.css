@@ -87,7 +87,11 @@ body {
 }
 
 .faq-section h2 {
-    color: var(--gold);
+    background: linear-gradient(90deg, #AF8445 0%, #E8C988 34%, #E5CA83 67%, #AF8445 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     font-size: 26px;
     margin-bottom: 30px;
 }
@@ -95,20 +99,27 @@ body {
 .faq-item {
     border-top: 1px solid var(--border);
     padding: 25px 0;
+    cursor: pointer;
 }
 
 .faq-item:last-child {
     border-bottom: 1px solid var(--border);
 }
 
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 20px;
+}
+
 .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
     font-size: 16px;
     font-weight: 500;
     user-select: none;
+    margin: 0;
+    line-height: 1.4;
+    padding-top: 2px;
 }
 
 .faq-icon {
@@ -120,12 +131,21 @@ body {
     border-radius: 50%;
     background: #d4d4d4;
     color: var(--bg);
-    font-size: 18px;
-    font-weight: normal;
     flex-shrink: 0;
     margin-left: 15px;
-    line-height: 0;
-    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.icon-close {
+    display: none;
+}
+
+.faq-item.active .icon-plus {
+    display: none;
+}
+
+.faq-item.active .icon-close {
+    display: block;
 }
 
 .faq-item.active .faq-icon {
@@ -133,18 +153,45 @@ body {
 }
 
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, margin-top 0.3s ease;
+    display: none;
     font-size: 13px;
     color: #DEDEDE;
     line-height: 1.7;
-    max-width: 700px;
-    margin-left: 50%;
-    transform: translateX(-20%);
+    padding-right: 20px;
+}
+
+/* Active State */
+.faq-item.active .faq-grid {
+    grid-template-columns: 1fr 1fr auto;
+    gap: 40px;
 }
 
 .faq-item.active .faq-answer {
-    /* Set by JS based on scrollHeight */
-    margin-top: 15px;
+    display: block;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .faq-item.active .faq-grid {
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+    }
+    .faq-item.active .faq-question {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .faq-item.active .faq-icon-col {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    .faq-item.active .faq-answer {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        padding-right: 0;
+    }
 }

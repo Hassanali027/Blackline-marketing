@@ -134,5 +134,25 @@
 
 <div class="custom-cursor"></div>
 <script src="{{ asset('js/home.js') }}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const noNumbersFields = ['first_name', 'last_name', 'company', 'details'];
+    noNumbersFields.forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', function() {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+            });
+        }
+    });
+
+    const phoneEl = document.getElementById('phone');
+    if (phoneEl) {
+        phoneEl.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    }
+  });
+</script>
 </body>
 </html>

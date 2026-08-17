@@ -1,3 +1,7 @@
+p {
+    text-align: justify;
+}
+
 .case-study-hero {
     position: relative;
     height: 60vh;
@@ -141,8 +145,21 @@
 }
 
 @media (max-width: 900px) {
+    .market-challenge-section {
+        padding-top: 30px;
+    }
 
-    .market-challenge-header,
+    .market-challenge-header {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .market-challenge-intro {
+        margin-top: 0;
+        font-size: 15px;
+    }
+
     .market-challenge-content {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -188,7 +205,8 @@
 .insight-item:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 35px; /* Center of the 70px icon */
+    top: 35px;
+    /* Center of the 70px icon */
     left: 50%;
     width: 100%;
     height: 1px;
@@ -229,12 +247,48 @@
 }
 
 @media (max-width: 900px) {
+    .insight-title {
+        margin-bottom: 30px;
+    }
+
+    .insight-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .insight-icon img, .insight-icon svg {
+        width: 45px;
+        height: 45px;
+    }
+
     .insight-timeline {
         flex-direction: column;
-        gap: 60px;
+        align-items: center;
+        gap: 30px;
     }
+
+    .insight-item-desc {
+        max-width: 90%;
+        margin: 0 auto;
+        text-align: justify;
+    }
+
     .insight-item:not(:last-child)::after {
-        display: none;
+        content: '';
+        display: block;
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 45px;
+        height: 45px;
+        margin-top: 15px;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2v12H4l8 8 8-8h-5V2H9z' fill='%23cca752'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        align-self: center;
+        transform: none;
     }
 }
 
@@ -282,13 +336,18 @@
 }
 
 @media (max-width: 900px) {
+    .strategy-life-title {
+        margin-bottom: 20px;
+        font-size: 2rem;
+    }
+
     .strategy-life-text-grid {
         grid-template-columns: 1fr;
-        padding: 0 20px;
+        padding: 0;
         gap: 30px;
         margin-bottom: 40px;
     }
-    
+
     .strategy-life-image img {
         height: 300px;
     }
@@ -298,7 +357,7 @@
 .results-section {
     background-color: #222222;
     color: #ffffff;
-    padding: 100px 0;
+    padding: 30px 0;
     font-family: 'Inter', sans-serif;
 }
 
@@ -344,9 +403,14 @@
 }
 
 @media (max-width: 900px) {
+    .results-title {
+        margin-bottom: 20px;
+    }
+
     .results-intro {
         padding-left: 0;
     }
+
     .results-stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 60px 40px;
@@ -437,12 +501,36 @@
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(4, 240px);
     }
-    .work-motion-item:nth-child(1) { grid-column: 1; grid-row: 1; }
-    .work-motion-item:nth-child(2) { grid-column: 2; grid-row: 1; }
-    .work-motion-item:nth-child(3) { grid-column: 1; grid-row: 2; }
-    .work-motion-item:nth-child(4) { grid-column: 2; grid-row: 2; }
-    .work-motion-item:nth-child(5) { grid-column: 1; grid-row: 3; }
-    .work-motion-item:nth-child(6) { grid-column: 2; grid-row: 3; }
+
+    .work-motion-item:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .work-motion-item:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .work-motion-item:nth-child(3) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .work-motion-item:nth-child(4) {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .work-motion-item:nth-child(5) {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .work-motion-item:nth-child(6) {
+        grid-column: 2;
+        grid-row: 3;
+    }
 }
 
 /* Video Section */
@@ -480,7 +568,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
 }
 
@@ -508,12 +596,14 @@
     .video-container {
         height: 250px;
     }
+
     .play-button {
         width: 50px;
         height: 50px;
         bottom: 20px;
         left: 20px;
     }
+
     .play-icon {
         border-top: 8px solid transparent;
         border-bottom: 8px solid transparent;
