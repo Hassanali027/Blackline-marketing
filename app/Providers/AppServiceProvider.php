@@ -23,6 +23,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Share services index with all views for navbar dynamic links
+        view()->composer('*', function ($view) {
+            $services = [];
+            try {
+                if (\Illuminate\Support\Facades\Schema::hasTable('services')) {
+                    $services = \App\Models\Service::select('id', 'title', 'slug')->get()->toArray();
+                }
+            } catch (\Exception $e) {
+                // Ignore during initial setup if DB is not ready
+            }
+            $view->with('servicesList', $services);
+        });
     }
 }

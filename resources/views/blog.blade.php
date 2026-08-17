@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing & Branding Blog | BlackLine Marketing</title>
+    <meta name="description" content="Read the latest insights, strategies, and industry news on digital marketing, social media, and branding from BlackLine Marketing.">
+    <meta name="keywords" content="marketing blog, digital marketing tips, branding strategies, social media news">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
+</head>
+<body>
+    @include('components.header')
+    
+    <main class="blog-page">
+        <!-- Hero Section -->
+        <section class="blog-hero">
+            <div class="container">
+                <h1 class="blog-title">Blogs</h1>
+                <p class="blog-subtitle">Strategic insights, creative thinking, platform updates, and practical ideas for brands looking to build influence in a constantly changing digital world.</p>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <section class="blog-filters">
+            <div class="container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Blogs</button>
+                    @foreach($categories as $category)
+                        @if(!empty($category))
+                            <button class="filter-btn" data-filter="{{ Str::slug($category) }}">{{ $category }}</button>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Grid -->
+        <section class="blog-grid-section">
+            <div class="container">
+                <div class="blog-grid" id="blog-grid">
+                    @forelse($blogs as $blog)
+                    <a href="{{ route('blog-post', $blog->slug) }}" class="blog-card" data-category="{{ Str::slug($blog->category) }}">
+                        <div class="blog-card-image">
+                            <img src="{{ $blog->image ? asset($blog->image) : 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=800&auto=format&fit=crop' }}" alt="{{ $blog->title }}">
+                        </div>
+                        <div class="blog-card-content">
+                            <h3 class="blog-card-title">{{ $blog->title }}</h3>
+                            <p class="blog-card-excerpt">{{ Str::limit($blog->short_description, 100) }}</p>
+                            <p class="blog-card-meta">{{ $blog->created_at->format('M d, Y') }}</p>
+                        </div>
+                    </a>
+                    @empty
+                        <div style="grid-column: 1/-1; text-align: center; color: var(--muted); padding: 50px 0;">No blogs published yet.</div>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    @include('components.footer')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add to clicked
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    blogCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

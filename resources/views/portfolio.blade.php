@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Portfolio | BlackLine Marketing</title>
-  <meta name="description" content="Case studies and digital experiences created by BlackLine Marketing.">
+  <meta name="description" content="Explore our portfolio of successful digital marketing campaigns, branding projects, and web development case studies by BlackLine Marketing.">
+  <meta name="keywords" content="digital marketing portfolio, branding case studies, marketing projects, BlackLine Marketing work">
+  <meta name="robots" content="index, follow">
 
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   <link rel="stylesheet" href="{{ asset('css/portfolio.css') }}">
@@ -15,11 +17,11 @@
 @include('components.header')
 
 <main>
-  <section class="portfolio-hero">
+  <section class="portfolio-hero" style="background-image: url('{{ asset($heroSettings['image'] ?? 'assets/portfolio/hero.png') }}');">
     <div class="portfolio-hero__panel">
-      <span>CASE STUDIES</span>
-      <h1>Brands Worth Remembering.</h1>
-      <a class="gold-button" href="#portfolio-grid">Book a Discovery Call <b>→</b></a>
+      <span>{{ $heroSettings['badge'] ?? 'CASE STUDIES' }}</span>
+      <h1>{{ $heroSettings['heading'] ?? 'Brands Worth Remembering.' }}</h1>
+      <a class="gold-button" href="{{ $heroSettings['btn_link'] ?? '#portfolio-grid' }}">{{ $heroSettings['btn_text'] ?? 'Book a Discovery Call' }} <b>→</b></a>
     </div>
   </section>
 
@@ -34,53 +36,33 @@
         <button type="button" class="close-filter-btn" aria-label="Close Filter">✕</button>
         <h3>FILTER BY INDUSTRY</h3>
         <div class="filter-options">
-          <label><input type="checkbox" value="small"> Small</label>
-          <label><input type="checkbox" value="fashion"> Fashion</label>
-          <label><input type="checkbox" value="hospitality"> Hospitality</label>
-          <label><input type="checkbox" value="real-estate"> Real Estate</label>
-          <label><input type="checkbox" value="beauty"> Beauty</label>
-          <label><input type="checkbox" value="personal"> Personal Brands</label>
-          <label><input type="checkbox" value="restaurants"> Restaurants</label>
-          <label><input type="checkbox" value="events"> Events</label>
+          @forelse($industries as $industry)
+            <label style="text-transform: capitalize;"><input type="checkbox" value="{{ $industry }}"> {{ $industry }}</label>
+          @empty
+            <span style="font-size: 13px; color: var(--muted);">No industries found.</span>
+          @endforelse
         </div>
         <button type="button" class="apply-filter-btn">Apply Filter</button>
       </div>
     </div>
 
     <div class="portfolio-grid">
-      <article class="project project--mclaren" data-category="web">
-        <div class="project-img-wrapper"><img src="{{ asset('assets/portfolio/mclaren-golf.png') }}" alt="McLaren Golf ecommerce website shown on a laptop"></div>
-        <h3>McLaren Golf</h3><p>High-performance engineered eCommerce experience.</p><a href="#">View Work</a>
+      @forelse($projects as $project)
+      <article class="project" data-category="{{ $project->industry }}">
+        <div class="project-img-wrapper"><img src="{{ asset($project->image) }}" alt="{{ $project->title }}"></div>
+        <h3>{{ $project->title }}</h3>
+        <p>{{ $project->description }}</p>
+        <a href="{{ $project->btn_link }}">{{ $project->btn_text }}</a>
       </article>
-      <article class="project project--natare" data-category="web">
-        <div class="project-img-wrapper"><img src="{{ asset('assets/portfolio/natare.png') }}" alt="Natare stainless steel pools website design"></div>
-        <h3>Natare</h3><p>Highest quality stainless steel pools.</p><a href="#">View Work</a>
-      </article>
-      <article class="project project--colorado" data-category="web">
-        <div class="project-img-wrapper"><img src="{{ asset('assets/portfolio/colorado-rafting.png') }}" alt="Colorado Rafting website on a laptop"></div>
-        <h3>Colorado Rafting</h3><p>Experience the adventure.</p><a href="#">View Work</a>
-      </article>
-      <article class="project project--imagine" data-category="brand">
-        <div class="project-img-wrapper"><img src="{{ asset('assets/portfolio/imagine-software.png') }}" alt="Imagine Software glowing brand mark"></div>
-        <h3>Imagine Software</h3><p>Technology reimagined.</p><a href="#">View Work</a>
-      </article>
-      <article class="project project--mystery" data-category="brand">
-        <div class="project-img-wrapper"><img src="{{ asset('assets/portfolio/night-of-mystery.png') }}" alt="Night of Mystery detective experience"></div>
-        <h3>Night of Mystery</h3><p>Can you solve the mystery?</p><a href="#">View Work</a>
-      </article>
-      <article class="project project--lantech" data-category="web">
-        <div class="project-img-wrapper"><img src="{{ asset('assets/portfolio/lantech.png') }}" alt="Lantech website shown on a laptop"></div>
-        <h3>Lantech</h3><p>We transformed the machines.</p><a href="#">View Work</a>
-      </article>
+      @empty
+      <div style="grid-column: span 2; text-align: center; padding: 40px 0; color: var(--muted);">
+        No projects added to showcase yet.
+      </div>
+      @endforelse
     </div>
   </section>
 
-  <section class="portfolio-newsletter">
-    <div class="portfolio-container">
-      <h2>Sign Up For Exclusive Offers And Updates!</h2>
-      <form><label class="sr-only" for="portfolio-email">Email</label><input id="portfolio-email" type="email" placeholder="Email"><button type="submit">Subscribe</button></form>
-    </div>
-  </section>
+  @include('components.faqs-section')
 </main>
 
 @include('components.footer')

@@ -1,4 +1,4 @@
-﻿/* Black Line Marketing — home page interactions */
+/* Black Line Marketing — home page interactions */
 (function () {
     'use strict';
 
@@ -89,6 +89,22 @@
         var next = document.getElementById('workNext');
         if (prev) prev.addEventListener('click', function () { openPanel(currentIndex() - 1); });
         if (next) next.addEventListener('click', function () { openPanel(currentIndex() + 1); });
+        var workTrack = document.getElementById('work-scroll-track');
+        if (workTrack) {
+            window.addEventListener('scroll', function() {
+                var rect = workTrack.getBoundingClientRect();
+                var stickPoint = window.innerHeight / 2 - 225; // 225 is half of the 450px height
+                var trackHeight = rect.height - window.innerHeight;
+                if (trackHeight > 0) {
+                    if (rect.top <= stickPoint && rect.bottom >= window.innerHeight) {
+                        var progress = (stickPoint - rect.top) / trackHeight;
+                        var panelIndex = Math.floor(progress * panels.length);
+                        panelIndex = Math.min(panelIndex, panels.length - 1);
+                        openPanel(panelIndex);
+                    }
+                }
+            });
+        }
     }
 
     /* ---------- Testimonial slider ---------- */
@@ -228,10 +244,10 @@
 
         // Ring hover interactions
         const rings = [
-            { href: '#p1', labelClass: '.lbl-strategy' },
-            { href: '#p2', labelClass: '.lbl-story' },
-            { href: '#p3', labelClass: '.lbl-exec' },
-            { href: '#p4', labelClass: '.lbl-results' }
+            { href: '#p1', labelClass: '.lbl-strategy', connClass: '.conn-1', nodeClass: '.node-1' },
+            { href: '#p2', labelClass: '.lbl-story', connClass: '.conn-2', nodeClass: '.node-2' },
+            { href: '#p3', labelClass: '.lbl-exec', connClass: '.conn-3', nodeClass: '.node-3' },
+            { href: '#p4', labelClass: '.lbl-results', connClass: '.conn-4', nodeClass: '.node-4' }
         ];
 
         rings.forEach(item => {
@@ -241,14 +257,20 @@
             if (useEl && label) {
                 const textPath = document.querySelector(`textPath[href="${item.href}"]`);
                 const textEl = textPath ? textPath.closest('text') : null;
+                const connEl = document.querySelector(item.connClass);
+                const nodeEl = document.querySelector(item.nodeClass);
 
                 const enter = () => {
                     label.classList.add('is-hovered');
                     useEl.classList.add('is-hovered');
+                    if (connEl) connEl.classList.add('is-hovered');
+                    if (nodeEl) nodeEl.classList.add('is-hovered');
                 };
                 const leave = () => {
                     label.classList.remove('is-hovered');
                     useEl.classList.remove('is-hovered');
+                    if (connEl) connEl.classList.remove('is-hovered');
+                    if (nodeEl) nodeEl.classList.remove('is-hovered');
                 };
 
                 useEl.style.cursor = 'pointer';
@@ -262,4 +284,31 @@
                 }
             }
         });
+
+        // Mobile cards auto-hover on scroll
+        const cards = document.querySelectorAll('.card');
+        if (cards.length > 0) {
+            const cardObserver = new IntersectionObserver((entries) => {
+                if (window.innerWidth <= 900) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-hovered');
+                        } else {
+                            entry.target.classList.remove('is-hovered');
+                        }
+                    });
+                }
+            }, {
+                rootMargin: '-35% 0px -35% 0px', // Triggers when the card is near the middle of the viewport
+                threshold: 0
+            });
+
+            cards.forEach(card => cardObserver.observe(card));
+            
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 900) {
+                    cards.forEach(card => card.classList.remove('is-hovered'));
+                }
+            });
+        }
     });

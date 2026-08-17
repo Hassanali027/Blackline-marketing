@@ -120,9 +120,9 @@ a {
     min-height: 600px;
     background: url("assets/pdf/asset-12.png") center/cover no-repeat;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     position: relative;
-    padding: 170px 0 40px;
+    padding: 100px 0 40px;
 }
 
 .hero .service-page-container,
@@ -227,9 +227,21 @@ h1 {
     margin-right: 10px;
 }
 
+.overview-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.overview-img-wrapper img,
 .overview img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 17px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .benefits {
@@ -295,7 +307,7 @@ h1 {
 
 
 .pricing {
-    padding: 30px 0 90px;
+    padding: 30px 0 15px;
 }
 
 .center {
@@ -427,7 +439,7 @@ h1 {
 }
 
 .faq {
-    padding: 10px 0 85px;
+    padding: 10px 0 5px;
 }
 
 .faq h2 {
@@ -674,7 +686,7 @@ summary:focus-visible {
    ========================================================= */
 .process-section {
     background: #1f2024;
-    padding: 85px 0 95px;
+    padding: 5px 0 95px;
     position: relative;
     overflow: hidden;
 }
@@ -693,6 +705,14 @@ summary:focus-visible {
     flex: 0 0 240px;
     max-width: 240px;
     z-index: 2;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.process-left-content.revealed {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .process-label {
@@ -731,6 +751,25 @@ summary:focus-visible {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+}
+
+.gold-crescent {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    transition: stroke-dashoffset 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gold-crescent.revealed {
+    stroke-dashoffset: 0;
+}
+
+.dashed-orbit {
+    opacity: 0;
+    transition: opacity 1s ease 0.3s;
+}
+
+.dashed-orbit.revealed {
+    opacity: 0.85;
 }
 
 /* SVG Connector Lines Animation */
@@ -915,6 +954,19 @@ summary:focus-visible {
 }
 
 @media (max-width: 991px) {
+    .hero {
+        min-height: 500px;
+        padding: 100px 0 20px;
+    }
+
+    .hero-box {
+        padding: 40px 24px 35px;
+    }
+
+    .hero-box h1 {
+        font-size: 30px;
+    }
+
     .process-section {
         padding: 60px 0 70px;
     }
@@ -922,23 +974,26 @@ summary:focus-visible {
     .process-container {
         flex-direction: column;
         align-items: stretch;
-        gap: 36px;
+        gap: 0px;
     }
 
     .process-left-content {
         max-width: 100%;
         text-align: center;
-        padding-bottom: 100px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
     }
 
     .process-left-content .process-title {
         font-size: 32px;
+        margin-bottom: 0;
     }
 
     .process-visual-wrapper {
         min-width: 0;
         max-width: 100%;
         height: auto;
+        margin-top: -60px;
     }
 
     .process-arc-svg {
@@ -950,18 +1005,20 @@ summary:focus-visible {
         height: auto;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        padding-left: 24px;
+        gap: 40px;
+        padding-left: 0;
     }
 
     .process-cards-list::before {
         content: '';
         position: absolute;
-        left: 2px;
-        top: 24px;
-        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
         width: 2px;
         border-left: 2px dashed rgba(255, 255, 255, 0.35);
+        z-index: 0;
     }
 
     .process-step-pill {
@@ -972,25 +1029,43 @@ summary:focus-visible {
         height: auto;
         min-height: 80px;
         border-radius: 24px;
-        padding: 16px 20px 16px 36px;
+        padding: 35px 20px 20px 20px;
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto !important;
+        flex-direction: column;
+        text-align: center;
+        z-index: 1;
+        background: #191b1e;
     }
 
     .step-num-badge {
-        left: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -20px !important;
         width: 40px;
         height: 40px;
         font-size: 16px;
     }
+    
+    .process-step-pill:hover .step-num-badge {
+        transform: translateX(-50%) scale(1.1);
+    }
+
+    .step-text {
+        text-align: center;
+    }
 
     .step-title {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .step-desc {
-        font-size: 12px;
+        font-size: 13.5px;
+    }
+
+    .step-icon {
+        margin: 12px auto 0;
     }
 }
 
@@ -999,31 +1074,23 @@ summary:focus-visible {
         font-size: 26px;
     }
 
-    .process-cards-list {
-        padding-left: 18px;
-    }
-
-    .process-cards-list::before {
-        left: 0px;
-    }
-
     .process-step-pill {
-        padding: 14px 16px 14px 30px;
+        padding: 30px 16px 16px 16px;
         border-radius: 18px;
     }
 
     .step-num-badge {
-        left: -18px;
         width: 36px;
         height: 36px;
         font-size: 14px;
+        top: -18px !important;
     }
 
     .step-icon {
         width: 26px;
         height: 26px;
         min-width: 26px;
-        margin-left: 10px;
+        margin-left: 0;
     }
 
     .step-icon svg {
@@ -1181,7 +1248,7 @@ summary:focus-visible {
     }
 
     .overview {
-        padding: 62px 0 30px;
+        padding: 25px 0 30px;
     }
 
     .overview p {
@@ -1193,7 +1260,7 @@ summary:focus-visible {
     }
 
     .benefits {
-        padding: 45px 0 60px;
+        padding: 8px 0 60px;
     }
 
     .benefit-head {
@@ -1328,7 +1395,7 @@ summary:focus-visible {
    HEADER
    ========================================================= */
 .site-header {
-    position: sticky;
+
     top: 0;
     z-index: 60;
     background: var(--bg);

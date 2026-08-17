@@ -1,4 +1,4 @@
-@include('components.newsletter')
+
 <footer class="site-footer">
   <!-- ============ NEWSLETTER ============ -->
   <section class="newsletter">

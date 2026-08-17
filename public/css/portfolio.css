@@ -49,8 +49,8 @@ input {
     height: 600px;
     background: url('/assets/portfolio/hero.png') center/cover;
     display: flex;
-    align-items: center;
-    padding: 0 max(7vw, 50px)
+    align-items: flex-end;
+    padding: 100px max(7vw, 50px) 40px;
 }
 
 .portfolio-hero__panel {

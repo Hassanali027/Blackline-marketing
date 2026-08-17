@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs - Black Line Marketing</title>
+    <title>Frequently Asked Questions | Black Line Marketing</title>
+    <meta name="description" content="Find answers to commonly asked questions about Black Line Marketing's services, pricing, process, and more.">
+    <meta name="keywords" content="marketing FAQs, agency questions, digital marketing pricing, marketing process, Black Line Marketing">
+    <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,186 +25,31 @@
 
     <div class="faqs-filters-wrapper container">
         <div class="faqs-filters">
-            <button class="active" data-target="pricing-faqs">Pricing</button>
-            <button data-target="process-faqs">Process</button>
-            <button data-target="timelines-faqs">Timelines</button>
-            <button data-target="communication-faqs">Communication</button>
-            <button data-target="content-creation-faqs">Content creation</button>
-            <button data-target="payments-faqs">Payments</button>
-            <button data-target="contracts-faqs">Contracts</button>
+            @foreach($faqs as $category => $categoryFaqs)
+                <button class="{{ $loop->first ? 'active' : '' }}" data-target="{{ Str::slug($category) }}-faqs">{{ $category }}</button>
+            @endforeach
         </div>
     </div>
 
     <div class="faqs-container container">
-        <!-- Pricing Section -->
-        <div class="faq-section active-section" id="pricing-faqs">
-            <h2>Pricing</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>What are your standard retainer packages?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>We offer customized retainer packages based on your brand's unique needs, scope of work, and aggressive growth targets. Packages typically start at $3,500/month.</p>
-                </div>
+        @foreach($faqs as $category => $categoryFaqs)
+            <div class="faq-section {{ $loop->first ? 'active-section' : '' }}" id="{{ Str::slug($category) }}-faqs">
+                <h2>{{ $category }}</h2>
+                @foreach($categoryFaqs as $faq)
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>{{ $faq->question }}</span>
+                            <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content" style="color: var(--muted); line-height: 1.6;">
+                                {!! $faq->answer !!}
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Are there any hidden setup fees?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>No. We believe in complete transparency. Any initial onboarding or setup fees are clearly outlined in your custom proposal before we sign anything.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Can we adjust our budget midway through a campaign?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, we maintain flexibility. If we see an opportunity to double down on a winning strategy, we can scale your ad spend and resources up or down as needed.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Process Section -->
-        <div class="faq-section" id="process-faqs">
-            <h2>Process</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>How does the onboarding process work?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Our onboarding takes exactly 7 days. We dive deep into your brand, gain access to your accounts, set up tracking, and deliver a comprehensive 90-day strategy blueprint.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Do you work with our existing brand guidelines?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Absolutely. We respect the brand equity you've built. We'll absorb your brand guidelines and ensure all content we produce matches your tone and visual identity.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Timelines Section -->
-        <div class="faq-section" id="timelines-faqs">
-            <h2>Timelines</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>When can we expect to see results?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>While some quick wins can happen in the first 30 days, we ask clients to commit to a 90-day minimum to allow our strategies to gain traction and optimize properly.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>How long does content production take?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>From ideation to final approval, standard social assets take about 2 weeks. Larger video campaigns or complex interactive assets may take 3-4 weeks.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Communication Section -->
-        <div class="faq-section" id="communication-faqs">
-            <h2>Communication</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>How often will we meet?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>We hold bi-weekly strategy syncs and provide an in-depth monthly performance review. You'll also have a dedicated Slack channel for day-to-day communication.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Who will be my point of contact?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>You will be assigned a dedicated Account Director who acts as your strategic partner and main point of contact, supported by a full team of specialists.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Content Creation Section -->
-        <div class="faq-section" id="content-creation-faqs">
-            <h2>Content creation</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Do you handle video production?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes. Our in-house creative team handles end-to-end video production, from scripting and storyboarding to shooting, editing, and final delivery.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Do we get to approve content before it goes live?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>100%. Nothing goes live without your final approval. We provide a visual content calendar two weeks in advance for your review.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payments Section -->
-        <div class="faq-section" id="payments-faqs">
-            <h2>Payments</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>What payment methods do you accept?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>We accept all major credit cards, ACH transfers, and wire transfers. Payments are processed securely via Stripe.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>How does billing work?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Retainers are billed on the 1st of every month on a recurring subscription basis. Ad spend is typically billed directly to your own credit card.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contracts Section -->
-        <div class="faq-section" id="contracts-faqs">
-            <h2>Contracts</h2>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Are we locked into a long-term contract?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>We typically start with a 90-day pilot agreement. After that, we move to a rolling month-to-month contract with a 30-day cancellation notice.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Who owns the content you create?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>You do. Once paid for, all creative assets, ad accounts, and data belong 100% to your company.</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </main>
 

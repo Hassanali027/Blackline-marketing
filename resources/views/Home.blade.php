@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Black Line Marketing — Where Brands Become Icons</title>
-<meta name="description" content="We build identity systems, campaigns, and digital experiences for labels ready to lead their category not blend into it.">
+<title>Black Line Marketing | Leading Digital Marketing & Branding Agency</title>
+<meta name="description" content="Black Line Marketing builds identity systems, campaigns, and digital experiences for brands ready to lead their category, not blend into it.">
+<meta name="keywords" content="digital marketing agency, branding, social media strategy, web development, SEO, Black Line Marketing">
+<meta name="robots" content="index, follow">
 
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 <style>
@@ -190,7 +192,7 @@ button {
    HEADER
    ========================================================= */
 .site-header {
-    
+  
     top: 0;
     z-index: 60;
     background: var(--bg);
@@ -333,7 +335,7 @@ button {
    ========================================================= */
 .hero {
     position: relative;
-    min-height: 610px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -474,7 +476,7 @@ button {
 .card::after {
     content: "";
     position: absolute;
-    inset: 0 0 -20px 0;
+    inset: -15px -15px -35px -15px;
     z-index: -2;
 }
 
@@ -482,11 +484,11 @@ button {
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--grad-gold);
-    z-index: -1;
-    border-radius: var(--radius);
+    border-radius: inherit;
+    background: var(--gold);
     clip-path: inset(0 100% 0 0);
-    transition: clip-path 0.6s var(--ease);
+    transition: clip-path .45s var(--ease);
+    z-index: -1;
 }
 
 .card:hover::before {
@@ -643,6 +645,17 @@ button {
    ========================================================= */
 .work {
     padding-block: 40px
+}
+
+.slide-up-anim {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s cubic-bezier(.22, .61, .36, 1), transform 0.8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.slide-up-anim.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .work-strip {
@@ -1070,6 +1083,9 @@ button {
     border: 2px solid var(--gold);
     transition: .25s var(--ease);
     cursor: pointer;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 /* .dot.is-active,
@@ -1179,15 +1195,73 @@ button {
     transform: translateY(-50%);
 }
 
+/* Base text alignments */
 .lbl-strategy,
 .lbl-results {
     right: 82.5%;
-    text-align: right
+    text-align: center;
 }
 
 .lbl-story,
 .lbl-exec {
-    left: 82.5%
+    left: 82.5%;
+    text-align: center;
+}
+
+/* Hover Outwards (translate) */
+.lbl-strategy:hover,
+.lbl-strategy.is-hovered,
+.lbl-results:hover,
+.lbl-results.is-hovered {
+    transform: translate(-12px, -50%);
+}
+
+.lbl-story:hover,
+.lbl-story.is-hovered,
+.lbl-exec:hover,
+.lbl-exec.is-hovered {
+    transform: translate(12px, -50%);
+}
+
+/* Positioning the descriptions absolutely */
+.lbl-strategy p,
+.lbl-story p {
+    bottom: 100%;
+    margin-bottom: 6px;
+}
+
+.lbl-results p,
+.lbl-exec p {
+    top: 100%;
+    margin-top: 6px;
+}
+
+.lbl-strategy p,
+.lbl-results p {
+    right: -140px;
+}
+
+.lbl-story p,
+.lbl-exec p {
+    left: -140px;
+}
+
+/* Description Hover Animations */
+.lbl-strategy p,
+.lbl-story p {
+    transform: translateY(10px);
+}
+
+.lbl-results p,
+.lbl-exec p {
+    transform: translateY(-10px);
+}
+
+.ring-label:hover p,
+.ring-label.is-hovered p {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .lbl-strategy,
@@ -1229,6 +1303,13 @@ button {
     margin: 0;
     font-size: 20px;
     font-weight: 700
+}
+
+.ps-desc {
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .ps-core {
@@ -1382,7 +1463,7 @@ button {
    FOOTER
    ========================================================= */
 .site-footer {
-    padding-top: 58px
+    padding-top: 0px
 }
 
 .foot-grid {
@@ -1533,6 +1614,10 @@ button {
     }
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 @media (max-width:980px) {
     .burger {
         display: flex
@@ -1540,14 +1625,17 @@ button {
 
     .nav {
         position: fixed;
-        inset: 80px 0 auto 0;
+        inset: 80px 0 auto 0; /* Auto bottom so it only grows as tall as its content */
+        max-height: calc(100vh - 80px); /* Prevent it from exceeding screen height */
         background: #1F1F22;
         border-bottom: 1px solid var(--gold-line);
-        padding: 134px 24px 26px;
+        padding: 40px 24px 40px; /* Reduced bottom padding */
         margin: 0;
         transform: translateY(-120%);
         transition: transform .4s var(--ease);
         z-index: 55;
+        overflow-y: auto; /* Allow scrolling inside the menu if content exceeds screen */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
 
     .nav.is-open {
@@ -1626,9 +1714,9 @@ button {
 
 @media (max-width:820px) {
     .work-strip {
-        flex-direction: column;
-        height: auto;
-        padding-bottom: 70px
+        display: block;
+        height: 550px;
+        padding-bottom: 0;
     }
 
     .work-nav {
@@ -1658,18 +1746,22 @@ button {
     }
 
     .work-panel {
-        flex: 0 0 auto;
-        height: 150px
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s var(--ease);
     }
 
     .work-panel.is-open {
-        height: 470px
+        opacity: 1;
+        pointer-events: auto;
+        height: 100%;
     }
 
     .work-vtitle {
-        top: 50%;
-        left: 26px;
-        transform: translateY(-50%) rotate(0deg);
+        display: none;
     }
 
     .work-body {
@@ -1807,17 +1899,24 @@ button {
 <!-- ============ HERO ============ -->
 <section class="hero">
   <video class="hero-bg" autoplay loop muted playsinline>
-    <source src="{{ asset('videos/blackline-marketing-video.mp4') }}" type="video/mp4">
+    <source src="{{ asset($heroSettings['video'] ?? 'videos/blackline-marketing-video.mp4') }}" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="container hero-inner">
-    <h1 class="hero-title">Where Brands<br>Become <span class="gold">Icons</span></h1>
-    <p class="hero-sub">We build identity systems, campaigns, and digital experiences<br>for labels ready to lead their category not blend into it.</p>
+    @php
+        $heading = $heroSettings['heading'] ?? 'Where Brands<br>Become Icons';
+        $primaryWord = $heroSettings['primary_word'] ?? 'Icons';
+        if ($primaryWord) {
+            $heading = preg_replace('/(' . preg_quote($primaryWord, '/') . ')/i', '<span class="gold">$1</span>', $heading, 1);
+        }
+    @endphp
+    <h1 class="hero-title">{!! $heading !!}</h1>
+    <p class="hero-sub">{{ $heroSettings['description'] ?? 'We build identity systems, campaigns, and digital experiences for labels ready to lead their category not blend into it.' }}</p>
     <div class="hero-actions">
-      <a href="#cta" class="btn btn-gold btn-lg">Book a Discovery Call
+      <a href="/contact-us" class="btn btn-gold btn-lg">Book a Discovery Call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="#work" class="btn btn-ghost btn-lg">View Our Work</a>
+      <a href="{{ route('portfolio') }}" class="btn btn-ghost btn-lg">View Our Work</a>
     </div>
   </div>
 </section>
@@ -1956,73 +2055,24 @@ button {
     <div id="work-scroll-track" style="height: 300vh; position: relative; margin-top: 30px;">
       <div id="work-sticky-wrapper" style="position: sticky; top: calc(50vh - 225px);">
         <div class="work-strip" id="workStrip">
-      <article class="work-panel is-open" data-title="Aurelio">
-        <video src="{{ asset('videos/work-first-video.mp4') }}?v=1" muted playsinline></video>
-        <span class="work-vtitle">Aurelio</span>
+      @foreach($caseStudies as $index => $study)
+      <article class="work-panel {{ $index === 0 ? 'is-open' : '' }}" data-title="{{ $study['title'] }}">
+        <video src="{{ asset($study['video'] ?? 'videos/work-first-video.mp4') }}" muted playsinline></video>
+        <span class="work-vtitle">{{ $study['title'] }}</span>
         <button class="play" aria-label="Play showreel">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
         </button>
         <div class="work-body">
-          <h3>Aurelio</h3>
-          <p class="work-metric">80%+ increase in reservations</p>
-          <p class="work-desc">Combining advanced technology and decades of industry insight, we design and develop bespoke full-cycle solutions tailored to deliver your unique software vision.</p>
-          <a href="#" class="btn btn-gold btn-sm">View Case Study
+          <h3>{{ $study['title'] }}</h3>
+          <p class="work-metric">{{ $study['metric'] }}</p>
+          <p class="work-desc">{{ $study['description'] }}</p>
+          <a href="{{ $study['btn_link'] ?? '#' }}" class="btn btn-gold btn-sm">{{ $study['btn_text'] ?? 'View Case Study' }}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
         </div>
         <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
       </article>
-
-      <article class="work-panel" data-title="Osteria Nine">
-        <video src="{{ asset('videos/work-first-video.mp4') }}?v=2" muted playsinline></video>
-        <span class="work-vtitle">Osteria Nine</span>
-        <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
-        </button>
-        <div class="work-body">
-          <h3>Osteria Nine</h3>
-          <p class="work-metric">3.4x return on ad spend</p>
-          <p class="work-desc">Combining advanced technology and decades of industry insight, we design and develop bespoke full-cycle solutions tailored to deliver your unique software vision.</p>
-          <a href="#" class="btn btn-gold btn-sm">View Case Study
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-      </article>
-
-      <article class="work-panel" data-title="Meridian Group">
-        <video src="{{ asset('videos/work-first-video.mp4') }}?v=3" muted playsinline></video>
-        <span class="work-vtitle">Meridian Group</span>
-        <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
-        </button>
-        <div class="work-body">
-          <h3>Meridian Group</h3>
-          <p class="work-metric">220% lift in qualified leads</p>
-          <p class="work-desc">Combining advanced technology and decades of industry insight, we design and develop bespoke full-cycle solutions tailored to deliver your unique software vision.</p>
-          <a href="#" class="btn btn-gold btn-sm">View Case Study
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-      </article>
-
-      <article class="work-panel" data-title="Nova Fashion House">
-        <video src="{{ asset('videos/work-first-video.mp4') }}?v=4" muted playsinline></video>
-        <span class="work-vtitle">Nova Fashion House</span>
-        <button class="play" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
-        </button>
-        <div class="work-body">
-          <h3>Nova Fashion House</h3>
-          <p class="work-metric">1.2M organic impressions</p>
-          <p class="work-desc">Combining advanced technology and decades of industry insight, we design and develop bespoke full-cycle solutions tailored to deliver your unique software vision.</p>
-          <a href="#" class="btn btn-gold btn-sm">View Case Study
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-      </article>
+      @endforeach
 
     </div>
       </div>
@@ -2082,8 +2132,8 @@ button {
 
           <path id="p1" d="M 435.2 190.5 A 190 190 0 0 1 581.5 44.2"/>
           <path id="p2" d="M 660.5 44.2 A 190 190 0 0 1 806.8 190.5"/>
-          <path id="p3" d="M 806.8 269.5 A 190 190 0 0 1 660.5 415.8"/>
-          <path id="p4" d="M 581.5 415.8 A 190 190 0 0 1 435.2 269.5"/>
+          <path id="p3" d="M 660.5 415.8 A 190 190 0 0 0 806.8 269.5"/>
+          <path id="p4" d="M 435.2 269.5 A 190 190 0 0 0 581.5 415.8"/>
         </defs>
 
         <use href="#p1" class="arc" stroke="url(#g1)"/>
@@ -2121,10 +2171,10 @@ button {
 
     <!-- compact version of the same 4 steps, shown on small screens -->
     <ol class="process-steps">
-      <li><span class="ps-num">Step 1</span><h3>Strategy</h3></li>
-      <li><span class="ps-num">Step 2</span><h3>Storytelling</h3></li>
-      <li><span class="ps-num">Step 3</span><h3>Execution</h3></li>
-      <li><span class="ps-num">Step 4</span><h3>Results</h3></li>
+      <li><span class="ps-num">Step 1</span><h3>Strategy</h3><p class="ps-desc">Deep research and audience psychology to map your brand's unique position in the market.</p></li>
+      <li><span class="ps-num">Step 2</span><h3>Storytelling</h3><p class="ps-desc">Crafting compelling narratives that resonate with your audience and bring your vision to life.</p></li>
+      <li><span class="ps-num">Step 3</span><h3>Execution</h3><p class="ps-desc">Flawless technical delivery and deployment to turn your strategic roadmap into reality.</p></li>
+      <li><span class="ps-num">Step 4</span><h3>Results</h3><p class="ps-desc">Data-driven optimization and analytics to ensure maximum return on your investment.</p></li>
       <li class="ps-core"><strong>Revenue Engine</strong><span><b class="gold">15%</b> Higher Lead Growth</span></li>
     </ol>
   </div>
@@ -2138,31 +2188,7 @@ button {
 (function () {
     'use strict';
 
-    /* ---------- Mobile nav ---------- */
-    var burger = document.getElementById('burger');
-    var nav = document.getElementById('nav');
-
-    if (burger && nav) {
-        burger.addEventListener('click', function () {
-            var open = nav.classList.toggle('is-open');
-            burger.classList.toggle('is-open', open);
-            burger.setAttribute('aria-expanded', String(open));
-        });
-
-        nav.addEventListener('click', function (e) {
-            var drop = e.target.closest('.has-drop > a');
-            if (drop && window.matchMedia('(max-width:980px)').matches) {
-                e.preventDefault();
-                drop.parentElement.classList.toggle('is-open');
-                return;
-            }
-            if (e.target.closest('a')) {
-                nav.classList.remove('is-open');
-                burger.classList.remove('is-open');
-                burger.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
+    /* Mobile nav logic is now handled in components/header.blade.php */
 
     /* ---------- Work accordion ---------- */
     var strip = document.getElementById('workStrip');
@@ -2332,16 +2358,13 @@ button {
 
         if (workSection && workTitle && workDesc) {
             const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
                     workSection.classList.add('is-visible');
                     startTypingWorkTitle();
-                } else {
-                    workSection.classList.remove('is-visible');
-                    clearTypeTimers();
-                    workTitle.innerHTML = '';
-                    workDesc.innerHTML = '';
+                    observer.disconnect(); // Stop observing to prevent layout shift loops
                 }
-            }, { threshold: 0.15 });
+            }, { threshold: 0.05 });
             
             observer.observe(workSection);
             
@@ -2365,7 +2388,7 @@ button {
                     if (i < text1.length) {
                         span.innerHTML += text1.charAt(i);
                         i++;
-                        typeTimers.push(setTimeout(type1, 20));
+                        typeTimers.push(setTimeout(type1, 10));
                     } else {
                         type2();
                     }
@@ -2375,7 +2398,7 @@ button {
                     if (j < text2.length) {
                         workTitle.appendChild(document.createTextNode(text2.charAt(j)));
                         j++;
-                        typeTimers.push(setTimeout(type2, 20));
+                        typeTimers.push(setTimeout(type2, 10));
                     }
                 }
                 
@@ -2383,7 +2406,7 @@ button {
                     if (k < text3.length) {
                         workDesc.innerHTML += text3.charAt(k);
                         k++;
-                        typeTimers.push(setTimeout(type3, 10)); // slightly faster
+                        typeTimers.push(setTimeout(type3, 5)); // slightly faster
                     }
                 }
                 

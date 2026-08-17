@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Case Study | BlackLine Marketing</title>
+  <title>Our Work & Case Studies | BlackLine Marketing</title>
+  <meta name="description" content="Explore Black Line Marketing case studies. See how we transform brands, execute strategies, and deliver measurable results.">
+  <meta name="keywords" content="marketing case studies, branding portfolio, marketing results, digital strategy, brand transformation">
+  <meta name="robots" content="index, follow">
   
   <!-- Main CSS for header, footer and global styles -->
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -13,12 +16,12 @@
 @include('components.header')
 
 <main>
-    <section class="case-study-hero">
+    <section class="case-study-hero" style="background-image: url('{{ asset($hero['image'] ?? 'images/work-nova.jpg') }}');">
         <div class="container">
             <div class="case-study-hero-content">
-                <div class="case-study-hero-category">FASHION</div>
-                <h1 class="case-study-hero-title">Maison Noir</h1>
-                <p class="case-study-hero-subtitle">Building a Brand Designed to Be Remembered.</p>
+                <div class="case-study-hero-category">{{ $hero['badge'] ?? 'FASHION' }}</div>
+                <h1 class="case-study-hero-title">{{ $hero['heading'] ?? 'Maison Noir' }}</h1>
+                <p class="case-study-hero-subtitle">{{ $hero['description'] ?? 'Building a Brand Designed to Be Remembered.' }}</p>
             </div>
         </div>
     </section>
@@ -26,47 +29,25 @@
     <section class="market-challenge-section">
         <div class="container">
             <div class="market-challenge-header">
-                <h2 class="market-challenge-title">Turning a Market Challenge<br>Into an Opportunity.</h2>
-                <p class="market-challenge-intro">Every ambitious brand faces a point where its existing presence no longer reflects its ambition. The challenge was to create a stronger position, connect with the right audience, and build momentum in a competitive market.</p>
+                <h2 class="market-challenge-title">{!! $challenge['heading'] ?? 'Turning a Market Challenge<br>Into an Opportunity.' !!}</h2>
+                <p class="market-challenge-intro">{{ $challenge['description'] ?? 'Every ambitious brand faces a point where its existing presence no longer reflects its ambition. The challenge was to create a stronger position, connect with the right audience, and build momentum in a competitive market.' }}</p>
             </div>
             
             <div class="market-challenge-content">
                 <div class="market-challenge-list">
+                    @foreach($challenge['points'] ?? [] as $index => $point)
                     <div class="challenge-item">
-                        <span class="challenge-item-number">01.</span>
+                        <span class="challenge-item-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}.</span>
                         <div class="challenge-item-content">
-                            <h3 class="challenge-item-title">Existing Position</h3>
-                            <p class="challenge-item-desc">The existing brand presence wasn't communicating the level of quality or ambition behind the business.</p>
+                            <h3 class="challenge-item-title">{{ $point['title'] }}</h3>
+                            <p class="challenge-item-desc">{{ $point['description'] }}</p>
                         </div>
                     </div>
-                    
-                    <div class="challenge-item">
-                        <span class="challenge-item-number">02.</span>
-                        <div class="challenge-item-content">
-                            <h3 class="challenge-item-title">Market Competition</h3>
-                            <p class="challenge-item-desc">A crowded market made it difficult to stand apart and capture meaningful attention.</p>
-                        </div>
-                    </div>
-
-                    <div class="challenge-item">
-                        <span class="challenge-item-number">03.</span>
-                        <div class="challenge-item-content">
-                            <h3 class="challenge-item-title">Audience Connection</h3>
-                            <p class="challenge-item-desc">The brand was reaching people, but not consistently turning attention into meaningful engagement.</p>
-                        </div>
-                    </div>
-
-                    <div class="challenge-item">
-                        <span class="challenge-item-number">04.</span>
-                        <div class="challenge-item-content">
-                            <h3 class="challenge-item-title">Growth Challenge</h3>
-                            <p class="challenge-item-desc">Without a clear strategic direction, growth remained inconsistent and difficult to scale.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 
                 <div class="market-challenge-image">
-                    <img src="{{ asset('images/work-meridian.jpg') }}" alt="Market Challenge Collage">
+                    <img src="{{ asset($challenge['image'] ?? 'images/work-meridian.jpg') }}" alt="Market Challenge Collage">
                 </div>
             </div>
         </div>
@@ -113,13 +94,13 @@
 
     <section class="strategy-life-section">
         <div class="container">
-            <h2 class="strategy-life-title">Bringing the Strategy to Life.</h2>
+            <h2 class="strategy-life-title">{{ $strategy['heading'] }}</h2>
             <div class="strategy-life-text-grid">
-                <p class="strategy-life-text">Once the strategy was defined, we translated the vision into a cohesive creative direction. Every visual element was carefully considered to establish a distinctive brand presence across social media, campaigns, photography, and video.</p>
-                <p class="strategy-life-text">From the first concept to the final execution, each touchpoint was designed with purpose. We combined creative storytelling, consistent visual language, and platform-specific content to turn the strategy into an experience that captures attention and drives meaningful engagement.</p>
+                <p class="strategy-life-text">{{ $strategy['description_1'] }}</p>
+                <p class="strategy-life-text">{{ $strategy['description_2'] }}</p>
             </div>
             <div class="strategy-life-image">
-                <img src="{{ asset('images/work-nova.jpg') }}" alt="Bringing the Strategy to Life">
+                <img src="{{ asset($strategy['image'] ?? 'images/work-nova.jpg') }}" alt="Bringing the Strategy to Life">
             </div>
         </div>
     </section>
@@ -152,31 +133,40 @@
 
     <section class="work-motion-section">
         <div class="container">
-            <h2 class="work-motion-title">The Work, In Motion.</h2>
-            <div class="work-motion-grid">
-                {{-- Col 1: HERMES tall --}}
-                <div class="work-motion-item">
-                    <img src="{{ asset('images/left.jpg') }}" alt="Hermes Fashion">
+            <h2 class="work-motion-title">{{ $work_motion['heading'] }}</h2>
+            <div class="grid-container">
+                <!-- Column 1 -->
+                <div class="column">
+                    <div class="grid-item">
+                        <img src="{{ asset($work_motion['image_1'] ?? 'images/left.jpg') }}" alt="Work Motion 1" class="img-1">
+                    </div>
                 </div>
-                {{-- Col 2: B&W fashion top --}}
-                <div class="work-motion-item">
-                    <img src="{{ asset('images/e3daa32d63e4b525d4d953d43fca4bac8663a408.jpg') }}" alt="Fashion Editorial">
+
+                <!-- Column 2 -->
+                <div class="column">
+                    <div class="grid-item">
+                        <img src="{{ asset($work_motion['image_2'] ?? 'images/e3daa32d63e4b525d4d953d43fca4bac8663a408.jpg') }}" alt="Work Motion 2" class="img-2">
+                    </div>
+                    <div class="grid-item">
+                        <img src="{{ asset($work_motion['image_3'] ?? 'images/75380b79c3a2b132c49c08f7ba4bf3c2cef763d7.jpg') }}" alt="Work Motion 3" class="img-3">
+                    </div>
                 </div>
-                {{-- Col 2: Birkin bag bottom --}}
-                <div class="work-motion-item">
-                    <img src="{{ asset('images/75380b79c3a2b132c49c08f7ba4bf3c2cef763d7.jpg') }}" alt="Birkin Bag">
+
+                <!-- Column 3 -->
+                <div class="column">
+                    <div class="grid-item">
+                        <img src="{{ asset($work_motion['image_4'] ?? 'images/ce777daf76ee5541c189407447390a60a69f9148.jpg') }}" alt="Work Motion 4" class="img-4">
+                    </div>
+                    <div class="grid-item">
+                        <img src="{{ asset($work_motion['image_5'] ?? 'images/6b43bbe1f1ef199886ab7fc8478b9fa2e9bec8c0.jpg') }}" alt="Work Motion 5" class="img-5">
+                    </div>
                 </div>
-                {{-- Col 3: FIORE Billboard top --}}
-                <div class="work-motion-item">
-                    <img src="{{ asset('images/ce777daf76ee5541c189407447390a60a69f9148.jpg') }}" alt="Fiore Billboard">
-                </div>
-                {{-- Col 3: The Pare website bottom --}}
-                <div class="work-motion-item">
-                    <img src="{{ asset('images/6b43bbe1f1ef199886ab7fc8478b9fa2e9bec8c0.jpg') }}" alt="The Pare Website">
-                </div>
-                {{-- Col 4: Woman at sunset tall --}}
-                <div class="work-motion-item">
-                    <img src="{{ asset('images/3e21a292ef2acb2f4638dacec719d43784164505.jpg') }}" alt="Woman at Sunset">
+
+                <!-- Column 4 -->
+                <div class="column">
+                    <div class="grid-item">
+                        <img src="{{ asset($work_motion['image_6'] ?? 'images/3e21a292ef2acb2f4638dacec719d43784164505.jpg') }}" alt="Work Motion 6" class="img-6">
+                    </div>
                 </div>
             </div>
         </div>
@@ -185,14 +175,23 @@
     <!-- Video Section -->
     <section class="video-section">
         <div class="container">
-            <div class="video-container">
-                <img src="{{ asset('images/hero.jpg') }}" alt="Video Poster Thumbnail">
-                <div class="play-button">
-                    <div class="play-icon"></div>
-                </div>
+            <div class="video-container" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                @if(!empty($video['video_file']))
+                    <video controls poster="{{ asset($video['thumbnail']) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                        <source src="{{ asset($video['video_file']) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                @else
+                    <img src="{{ asset($video['thumbnail'] ?? 'images/hero.jpg') }}" alt="Video Poster Thumbnail" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;">
+                        <div class="play-icon"></div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
+
+    @include('components.faqs-section')
 </main>
 
 @include('components.footer')

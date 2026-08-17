@@ -1,0 +1,124 @@
+@extends('admin.layouts.app')
+
+@section('content')
+<div class="admin-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+        <h1>Case Study Videos</h1>
+        <p>Manage the dynamic video cards shown in the Work section on the homepage.</p>
+    </div>
+    <a href="{{ route('admin.case-studies.create') }}" class="btn-gold" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+        <i data-feather="plus"></i> Add New Case Study
+    </a>
+</div>
+
+@if (session('success'))
+<div class="alert" style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4CAF50; color: #4CAF50; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+    {{ session('success') }}
+</div>
+@endif
+
+@if (session('error') || $errors->any())
+<div class="alert" style="background: rgba(244, 67, 54, 0.1); border: 1px solid #F44336; color: #F44336; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+    {{ session('error') ?? $errors->first() }}
+</div>
+@endif
+
+<div class="admin-card" style="padding: 0; overflow: hidden;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="border-bottom: 1px solid var(--gold-line); background: rgba(255,255,255,0.02);">
+                <th style="padding: 18px 24px; font-weight: 600; color: var(--muted);">Heading</th>
+                <th style="padding: 18px 24px; font-weight: 600; color: var(--muted);">Metric (Yellow Text)</th>
+                <th style="padding: 18px 24px; font-weight: 600; color: var(--muted);">Video</th>
+                <th style="padding: 18px 24px; font-weight: 600; color: var(--muted); text-align: right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($studies as $study)
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 18px 24px; font-weight: 500;">{{ $study['title'] }}</td>
+                <td style="padding: 18px 24px; color: var(--gold);">{{ $study['metric'] }}</td>
+                <td style="padding: 18px 24px; font-size: 14px; color: var(--muted-2);">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i data-feather="film" style="width: 16px; height: 16px;"></i>
+                        {{ basename($study['video']) }}
+                    </div>
+                </td>
+                <td style="padding: 18px 24px; text-align: right;">
+                    <div style="display: inline-flex; gap: 10px;">
+                        <a href="{{ route('admin.case-studies.edit', $study['id']) }}" class="action-btn edit-btn" title="Edit">
+                            <i data-feather="edit-2"></i>
+                        </a>
+                        <form action="{{ route('admin.case-studies.destroy', $study['id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this case study?');" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="action-btn delete-btn" title="Delete">
+                                <i data-feather="trash-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="4" style="padding: 30px; text-align: center; color: var(--muted);">
+                    No case studies found. Click "Add New Case Study" to get started.
+                </td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
+
+<style>
+.admin-card {
+    background: #1B1B1D;
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
+}
+.btn-gold {
+    background: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%);
+    background-size: 200% auto;
+    color: #24201A;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-gold:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(196, 155, 84, 0.3);
+}
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+.action-btn i, .action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+.action-btn.edit-btn:hover {
+    background: rgba(229, 202, 131, 0.15);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+.action-btn.delete-btn:hover {
+    background: rgba(244, 67, 54, 0.15);
+    color: #F44336;
+    border-color: #F44336;
+}
+</style>
+@endsection
