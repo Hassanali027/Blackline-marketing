@@ -404,7 +404,7 @@ button {
     align-items: center;
 }
 
-.about-media img {
+dia img {
     width: 100%;
     border-radius: var(--radius-lg);
     aspect-ratio: 529/489;
@@ -607,7 +607,7 @@ button {
 /* Card Hover -> Pill Arrow changes */
 .card:hover .pill-arrow {
     border-color: #000;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80') center/cover;
     color: #fff;
     padding-inline: 30px;
     justify-content: space-between;
@@ -639,7 +639,8 @@ button {
 
 .card:hover .pill-arrow .circle {
     border-color: #fff;
-    color: #fff; /* Ensure arrow is white */
+    color: #fff;
+    /* Ensure arrow is white */
 }
 
 /* =========================================================
@@ -655,12 +656,15 @@ button {
     gap: 16px;
     height: 537px;
     overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
 }
 
 .work-strip::-webkit-scrollbar {
-    display: none; /* Chrome/Safari/Webkit */
+    display: none;
+    /* Chrome/Safari/Webkit */
 }
 
 .work-panel {
@@ -1140,10 +1144,21 @@ button {
     stroke-width: 1.6
 }
 
-.conn-1 { d: path("M 230 150 L 325 150 Q 350 150 369 133 L 451 60"); }
-.conn-2 { d: path("M 1012 150 L 917 150 Q 892 150 873 133 L 791 60"); }
-.conn-3 { d: path("M 230 310 L 325 310 Q 350 310 369 327 L 451 400"); }
-.conn-4 { d: path("M 1012 310 L 917 310 Q 892 310 873 327 L 791 400"); }
+.conn-1 {
+    d: path("M 230 150 L 325 150 Q 350 150 369 133 L 451 60");
+}
+
+.conn-2 {
+    d: path("M 1012 150 L 917 150 Q 892 150 873 133 L 791 60");
+}
+
+.conn-3 {
+    d: path("M 230 310 L 325 310 Q 350 310 369 327 L 451 400");
+}
+
+.conn-4 {
+    d: path("M 1012 310 L 917 310 Q 892 310 873 327 L 791 400");
+}
 
 .node {
     fill: #FAF9F6
@@ -1225,41 +1240,66 @@ button {
 }
 
 /* Base text alignments */
-.lbl-strategy, .lbl-results {
+.lbl-strategy,
+.lbl-results {
     right: 82.5%;
     text-align: right;
 }
-.lbl-story, .lbl-exec {
+
+.lbl-story,
+.lbl-exec {
     left: 82.5%;
     text-align: left;
 }
 
 /* Hover Outwards (translate) */
-.lbl-strategy:hover, .lbl-strategy.is-hovered,
-.lbl-results:hover, .lbl-results.is-hovered {
+.lbl-strategy:hover,
+.lbl-strategy.is-hovered,
+.lbl-results:hover,
+.lbl-results.is-hovered {
     transform: translate(-12px, -50%);
 }
-.lbl-story:hover, .lbl-story.is-hovered,
-.lbl-exec:hover, .lbl-exec.is-hovered {
+
+.lbl-story:hover,
+.lbl-story.is-hovered,
+.lbl-exec:hover,
+.lbl-exec.is-hovered {
     transform: translate(12px, -50%);
 }
 
 /* Positioning the descriptions absolutely */
-.lbl-strategy p, .lbl-story p {
+.lbl-strategy p,
+.lbl-story p {
     bottom: 100%;
     margin-bottom: 6px;
 }
-.lbl-results p, .lbl-exec p {
+
+.lbl-results p,
+.lbl-exec p {
     top: 100%;
     margin-top: 6px;
 }
 
-.lbl-strategy p, .lbl-results p { right: -140px; }
-.lbl-story p, .lbl-exec p { left: -140px; }
+.lbl-strategy p,
+.lbl-results p {
+    right: -140px;
+}
+
+.lbl-story p,
+.lbl-exec p {
+    left: -140px;
+}
 
 /* Description Hover Animations */
-.lbl-strategy p, .lbl-story p { transform: translateY(10px); }
-.lbl-results p, .lbl-exec p { transform: translateY(-10px); }
+.lbl-strategy p,
+.lbl-story p {
+    transform: translateY(10px);
+}
+
+.lbl-results p,
+.lbl-exec p {
+    transform: translateY(-10px);
+}
 
 .ring-label:hover p,
 .ring-label.is-hovered p {
@@ -1887,28 +1927,40 @@ button {
         font-size: 26px
     }
 }
-    .custom-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 30px;
-        height: 30px;
-        border: 2px solid var(--gold); /* Primary gold color */
-        border-radius: 50%; /* Make it round */
-        pointer-events: none; /* Allows clicking through it */
-        transform: translate(-50%, -50%); /* Centers the gap exactly on the mouse point */
-        z-index: 99999; /* Ensure it's on top of everything */
-        transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s; /* Smooth delay effect */
-        box-shadow: 0 0 8px rgba(229, 202, 131, 0.3); /* Slight glow matching the gold color */
-    }
-    .custom-cursor.cursor-hover {
-        width: 60px;
-        height: 60px;
-        background-color: rgba(229, 202, 131, 0.15); /* Slight fill inside the circle */
-    }
-    .custom-cursor.cursor-black {
-        border-color: #000;
-    }
-    .custom-cursor.cursor-primary {
-        border-color: var(--gold) !important;
-    }
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--gold);
+    /* Primary gold color */
+    border-radius: 50%;
+    /* Make it round */
+    pointer-events: none;
+    /* Allows clicking through it */
+    transform: translate(-50%, -50%);
+    /* Centers the gap exactly on the mouse point */
+    z-index: 99999;
+    /* Ensure it's on top of everything */
+    transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s;
+    /* Smooth delay effect */
+    box-shadow: 0 0 8px rgba(229, 202, 131, 0.3);
+    /* Slight glow matching the gold color */
+}
+
+.custom-cursor.cursor-hover {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(229, 202, 131, 0.15);
+    /* Slight fill inside the circle */
+}
+
+.custom-cursor.cursor-black {
+    border-color: #000;
+}
+
+.custom-cursor.cursor-primary {
+    border-color: var(--gold) !important;
+}
