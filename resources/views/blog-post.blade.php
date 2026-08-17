@@ -216,7 +216,7 @@
                         
                         const a = document.createElement('a');
                         a.href = '#' + heading.id;
-                        a.textContent = heading.textContent;
+                        a.textContent = heading.textContent.trim();
                         
                         // Add some indentation for smaller headings
                         if(heading.tagName.toLowerCase() === 'h3') {

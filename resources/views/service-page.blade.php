@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/service.css') }}">
     <script src="{{ asset('js/service.js') }}" defer></script>
+    <style>
+        @media (max-width: 768px) {
+            .step-icon {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
 @include('components.header')

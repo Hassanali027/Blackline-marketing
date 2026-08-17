@@ -245,7 +245,7 @@ h1 {
 }
 
 .benefits {
-    padding: 25px 0 70px;
+    padding: 25px 0 30px;
 }
 
 .benefit-head {
@@ -552,7 +552,7 @@ summary:focus-visible {
     text-align: center;
     overflow: hidden;
     position: relative;
-    margin-block: 40px 80px;
+    margin-block: 20px 60px;
     box-sizing: border-box;
 }
 
@@ -600,6 +600,14 @@ summary:focus-visible {
 
     .overview {
         gap: 35px;
+    }
+
+    .benefits {
+        padding-bottom: 10px;
+    }
+
+    .overview-img-wrapper {
+        min-height: 350px;
     }
 
     .cards {
@@ -685,8 +693,8 @@ summary:focus-visible {
    PROCESS SECTION (Figma Pixel-Perfect Match)
    ========================================================= */
 .process-section {
-    background: #1f2024;
-    padding: 5px 0 95px;
+    background: transparent;
+    padding: 5px 0 40px;
     position: relative;
     overflow: hidden;
 }
@@ -968,7 +976,7 @@ summary:focus-visible {
     }
 
     .process-section {
-        padding: 60px 0 70px;
+        padding: 0px 0 30px;
     }
 
     .process-container {
@@ -993,7 +1001,7 @@ summary:focus-visible {
         min-width: 0;
         max-width: 100%;
         height: auto;
-        margin-top: -60px;
+        margin-top: -88px;
     }
 
     .process-arc-svg {
@@ -1047,7 +1055,7 @@ summary:focus-visible {
         height: 40px;
         font-size: 16px;
     }
-    
+
     .process-step-pill:hover .step-num-badge {
         transform: translateX(-50%) scale(1.1);
     }
@@ -1309,6 +1317,7 @@ summary:focus-visible {
     }
 
     .center {
+        margin-top: -50px;
         margin-bottom: 32px;
     }
 

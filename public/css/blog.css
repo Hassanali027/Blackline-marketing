@@ -2,12 +2,12 @@
 .blog-page {
     background-color: var(--bg);
     color: var(--text);
-    padding-bottom: 80px;
+    padding-bottom: 20px;
 }
 
 /* Hero Section */
 .blog-hero {
-    padding: 80px 0 40px;
+    padding: 40px 0 20px;
     text-align: center;
 }
 
@@ -34,14 +34,16 @@
 .filter-buttons {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 15px;
+    max-width: fit-content;
+    margin: 0 auto;
 }
 
 .filter-btn {
     background-color: transparent;
     color: var(--text);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 0.2px solid #E0BD4A;
     padding: 12px 24px;
     border-radius: 8px;
     font-size: 0.95rem;
@@ -63,7 +65,7 @@
 
 /* Blog Grid */
 .blog-grid-section {
-    padding: 20px 0 60px;
+    padding: 20px 0 30px;
 }
 
 .blog-grid {
@@ -75,7 +77,7 @@
 .blog-card {
     background-color: #38383a; /* Dark gray matching design */
     border-radius: 24px;
-    padding: 18px;
+    padding: 9px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -225,5 +227,17 @@
     
     .newsletter-form {
         flex-direction: column;
+    }
+    
+    .filter-buttons {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+    
+    .filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
     }
 }
