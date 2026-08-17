@@ -35,8 +35,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.case-study-page') }}" class="{{ request()->routeIs('admin.case-study-page') ? 'active' : '' }}">
-                            <i data-feather="file-text"></i> <span>Case Study Page Setting</span>
+                        <a href="{{ route('admin.case-study-pages.index') }}" class="{{ request()->routeIs('admin.case-study-pages.*') ? 'active' : '' }}">
+                            <i data-feather="file-text"></i> <span>Case Study Pages</span>
                         </a>
                     </li>
                     <li>
