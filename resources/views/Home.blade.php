@@ -643,8 +643,21 @@ button {
 /* =========================================================
    WORK / PORTFOLIO
    ========================================================= */
+.work-pin-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .work {
-    padding-block: 40px
+    padding-block: 40px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 50;
 }
 
 .slide-up-anim {
@@ -1015,7 +1028,8 @@ button {
 .testi-media .play {
     opacity: 1;
     width: 88px;
-    height: 88px
+    height: 88px;
+    top: 50%;
 }
 
 .testi-media.is-playing-video .play {
@@ -1925,7 +1939,7 @@ button {
 <section class="about">
   <div class="container about-grid">
     <div class="about-media">
-      <img src="{{ asset('images/the-world-most-iconic.jpg') }}" alt="Dark luxury interior">
+      <img src="{{ asset('images/home-about-section.webp') }}" alt="Dark luxury interior">
     </div>
     <div class="about-copy">
       <h2 class="h2">The <span class="gold">world's</span> most iconic brands have one thing in common they're impossible to ignore.</h2>
@@ -1953,7 +1967,7 @@ button {
         </span>
         <h3>Social Media Management</h3>
         <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <a href="{{ route('services.show', 'social-media-management') }}" class="pill-arrow" aria-label="Read more">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2047,13 +2061,13 @@ button {
 </section>
 
 <!-- ============ WORK ============ -->
+<div class="work-pin-wrapper" id="workPinWrapper">
 <section class="work slide-up-anim" id="work">
   <div class="container">
     <h2 class="h2 section-title" id="work-title" style="min-height: 40px; margin-bottom: 0;"></h2>
     <p class="section-sub" id="work-desc" style="margin-top: 10px; min-height: 24px;"></p>
 
-    <div id="work-scroll-track" style="height: 300vh; position: relative; margin-top: 30px;">
-      <div id="work-sticky-wrapper" style="position: sticky; top: calc(50vh - 225px);">
+    <div style="margin-top: 30px;">
         <div class="work-strip" id="workStrip">
       @foreach($caseStudies as $index => $study)
       <article class="work-panel {{ $index === 0 ? 'is-open' : '' }}" data-title="{{ $study['title'] }}">
@@ -2075,10 +2089,10 @@ button {
       @endforeach
 
     </div>
-      </div>
     </div>
   </div>
 </section>
+</div>
 
 <!-- ============ STATS ============ -->
 <section class="stats">
@@ -2190,30 +2204,60 @@ button {
 
     /* Mobile nav logic is now handled in components/header.blade.php */
 
-    /* ---------- Work accordion ---------- */
+    /* ---------- Work accordion (Scroll Pinned) ---------- */
     var strip = document.getElementById('workStrip');
-    if (strip) {
+    var pinWrapper = document.getElementById('workPinWrapper');
+    if (strip && pinWrapper) {
         var panels = Array.prototype.slice.call(strip.querySelectorAll('.work-panel'));
+        
+        var totalPanels = panels.length;
+        // Provide enough scroll space to cycle through panels
+        pinWrapper.style.height = (totalPanels * 100) + 'vh';
 
         function openPanel(i) {
-            i = (i + panels.length) % panels.length;
+            i = (i + totalPanels) % totalPanels;
             panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
         }
+
         function currentIndex() {
             return panels.findIndex(function (p) { return p.classList.contains('is-open'); });
         }
 
+        window.addEventListener('scroll', function () {
+            var rect = pinWrapper.getBoundingClientRect();
+            var windowHeight = window.innerHeight;
+            
+            if (rect.top <= 0 && rect.bottom >= windowHeight) {
+                var scrolled = -rect.top;
+                var maxScroll = rect.height - windowHeight;
+                if (maxScroll <= 0) maxScroll = 1;
+                
+                var progress = scrolled / maxScroll;
+                var newIndex = Math.floor(progress * totalPanels);
+                
+                if (newIndex >= totalPanels) newIndex = totalPanels - 1;
+                if (newIndex < 0) newIndex = 0;
+                
+                if (newIndex !== currentIndex()) {
+                    openPanel(newIndex);
+                }
+            } else if (rect.top > 0) {
+                if (currentIndex() !== 0) openPanel(0);
+            } else if (rect.bottom < windowHeight) {
+                if (currentIndex() !== totalPanels - 1) openPanel(totalPanels - 1);
+            }
+        }, { passive: true });
+
         panels.forEach(function (panel, i) {
             panel.addEventListener('click', function (e) {
-                if (e.target.closest('.play')) return;   // let the play button do its own thing
-                openPanel(i);
+                if (e.target.closest('.play')) return;
+                
+                // If clicked, scroll the page to that panel's specific scroll offset
+                var maxScroll = pinWrapper.offsetHeight - window.innerHeight;
+                var targetScroll = window.scrollY + pinWrapper.getBoundingClientRect().top + (i / totalPanels) * maxScroll + 10;
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
             });
         });
-
-        var prev = document.getElementById('workPrev');
-        var next = document.getElementById('workNext');
-        if (prev) prev.addEventListener('click', function () { openPanel(currentIndex() - 1); });
-        if (next) next.addEventListener('click', function () { openPanel(currentIndex() + 1); });
     }
 
     /* ---------- Testimonial slider ---------- */
