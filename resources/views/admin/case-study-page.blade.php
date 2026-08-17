@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="admin-header">
-    <h1>Case Study Page Setting</h1>
+    <a href="{{ route('admin.case-study-pages.index') }}" style="color: var(--gold); text-decoration: none; font-size: 14px; margin-bottom: 10px; display: inline-block;">
+        &larr; Back to Case Study Pages
+    </a>
+    <h1>Edit: {{ $page->title }}</h1>
     <p>Manage the dynamic sections on the case study page.</p>
 </div>
 
@@ -13,7 +16,7 @@
 @endif
 
 <div class="admin-card">
-    <form action="{{ route('admin.case-study-page.update') }}" method="POST" enctype="multipart/form-data" class="admin-form">
+    <form action="{{ route('admin.case-study-pages.update', $slug) }}" method="POST" enctype="multipart/form-data" class="admin-form">
         @csrf
 
         <!-- Tabs -->

@@ -23,6 +23,7 @@ Route::get('/services', [\App\Http\Controllers\ServicePageController::class, 'in
 Route::get('/services/{slug}', [\App\Http\Controllers\ServicePageController::class, 'show'])->name('services.show');
 Route::get('/portfolio', [\App\Http\Controllers\PortfolioController::class, 'index'])->name('portfolio');
 Route::get('/case-study', [CaseStudyController::class, 'index'])->name('case-study');
+Route::get('/case-study/{slug}', [CaseStudyController::class, 'show'])->name('case-study.show');
 Route::get('/faqs', [FaqController::class, 'index'])->name('faqs');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog-post');
@@ -47,9 +48,12 @@ Route::prefix('admin')->group(function () {
         Route::post('portfolio-hero', [\App\Http\Controllers\AdminPortfolioController::class, 'update'])->name('admin.portfolio-hero.update');
         Route::resource('portfolio/items', \App\Http\Controllers\AdminPortfolioItemController::class)->names('admin.portfolio.items')->except(['show']);
 
-        // Case Studies Management
-        Route::get('case-study-page', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'edit'])->name('admin.case-study-page');
-        Route::post('case-study-page', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'update'])->name('admin.case-study-page.update');
+        // Dynamic Case Study Pages Management
+        Route::get('case-study-pages', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'index'])->name('admin.case-study-pages.index');
+        Route::post('case-study-pages', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'store'])->name('admin.case-study-pages.store');
+        Route::delete('case-study-pages/{id}', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'destroy'])->name('admin.case-study-pages.destroy');
+        Route::get('case-study-pages/{slug}/edit', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'edit'])->name('admin.case-study-pages.edit');
+        Route::post('case-study-pages/{slug}/update', [\App\Http\Controllers\AdminCaseStudyPageController::class, 'update'])->name('admin.case-study-pages.update');
         Route::resource('home-case-studies', \App\Http\Controllers\AdminCaseStudyController::class)->names('admin.case-studies')->except(['show']);
 
         // FAQs routes

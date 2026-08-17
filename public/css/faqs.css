@@ -14,6 +14,13 @@ body {
     color: var(--text);
     font-family: 'Plus Jakarta Sans', sans-serif;
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 .faqs-hero {
@@ -37,8 +44,6 @@ body {
 
 .faqs-filters-wrapper {
     margin: 20px auto 60px;
-    margin-right: calc(-50vw + 50%);
-    padding-right: calc(50vw - 50% + 24px);
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -52,6 +57,12 @@ body {
     align-items: center;
     gap: 14px;
     flex-wrap: nowrap;
+}
+
+@media (min-width: 768px) {
+    .faqs-filters {
+        justify-content: center;
+    }
 }
 
 .faqs-filters button {
