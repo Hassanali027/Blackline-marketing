@@ -93,8 +93,17 @@
                 grid-template-columns: 1fr auto;
                 gap: 15px;
             }
+            .page-faqs-section .faq-item.active .faq-question-col {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .page-faqs-section .faq-item.active .faq-icon-col {
+                grid-column: 2;
+                grid-row: 1;
+            }
             .page-faqs-section .faq-item.active .faq-answer-col {
                 grid-column: 1 / -1;
+                grid-row: 2;
                 padding-right: 0;
             }
         }
