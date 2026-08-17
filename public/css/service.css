@@ -1641,6 +1641,10 @@ summary:focus-visible {
    FOOTER
    ========================================================= */
 .site-footer {
+    --gold: #E5CA83;
+    --gold-deep: #BC9554;
+    --grad-gold: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     padding-top: 0;
     background: var(--bg);
 }
@@ -1649,8 +1653,8 @@ summary:focus-visible {
     display: grid;
     grid-template-columns: 1.55fr 1fr 1.15fr 1.1fr;
     gap: 44px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .foot-logo {
@@ -1767,7 +1771,7 @@ summary:focus-visible {
 
 .foot-bottom {
     border-top: 1px solid rgba(255, 255, 255, .12);
-    padding-block: 30px;
+    padding-block: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;

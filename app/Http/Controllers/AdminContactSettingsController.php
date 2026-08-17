@@ -16,7 +16,8 @@ class AdminContactSettingsController extends Controller
             'contact_facebook',
             'contact_twitter',
             'contact_instagram',
-            'contact_youtube'
+            'contact_youtube',
+            'contact_linkedin'
         ])->pluck('value', 'key');
 
         return view('admin.contact-settings.edit', compact('settings'));
@@ -32,6 +33,7 @@ class AdminContactSettingsController extends Controller
             'contact_twitter' => 'nullable|url',
             'contact_instagram' => 'nullable|url',
             'contact_youtube' => 'nullable|url',
+            'contact_linkedin' => 'nullable|url',
         ]);
 
         $keys = [
@@ -41,7 +43,8 @@ class AdminContactSettingsController extends Controller
             'contact_facebook',
             'contact_twitter',
             'contact_instagram',
-            'contact_youtube'
+            'contact_youtube',
+            'contact_linkedin'
         ];
 
         foreach ($keys as $key) {

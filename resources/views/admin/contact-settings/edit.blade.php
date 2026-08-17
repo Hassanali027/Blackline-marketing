@@ -64,6 +64,11 @@
                 <label for="contact_youtube" style="display: block; margin-bottom: 8px; color: var(--muted);">YouTube URL</label>
                 <input type="url" id="contact_youtube" name="contact_youtube" value="{{ json_decode($settings['contact_youtube'] ?? 'null') }}" placeholder="https://youtube.com/..." style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
             </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="contact_linkedin" style="display: block; margin-bottom: 8px; color: var(--muted);">LinkedIn URL</label>
+                <input type="url" id="contact_linkedin" name="contact_linkedin" value="{{ json_decode($settings['contact_linkedin'] ?? 'null') }}" placeholder="https://linkedin.com/..." style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
+            </div>
         </div>
 
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: right;">

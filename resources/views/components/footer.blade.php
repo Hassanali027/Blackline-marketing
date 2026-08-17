@@ -17,6 +17,7 @@
   $contact_twitter = isset($settingsData['contact_twitter']) ? json_decode($settingsData['contact_twitter']) : '#';
   $contact_instagram = isset($settingsData['contact_instagram']) ? json_decode($settingsData['contact_instagram']) : '#';
   $contact_youtube = isset($settingsData['contact_youtube']) ? json_decode($settingsData['contact_youtube']) : '#';
+  $contact_linkedin = isset($settingsData['contact_linkedin']) ? json_decode($settingsData['contact_linkedin']) : '#';
 @endphp
 
 <footer class="site-footer">
@@ -43,6 +44,9 @@
         @endif
         @if($contact_instagram)
         <a href="{{ $contact_instagram }}" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        @endif
+        @if($contact_linkedin)
+        <a href="{{ $contact_linkedin }}" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H4.3V20h2.64zM5.62 4a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1M20 13.6c0-3.05-1.63-4.47-3.8-4.47-1.75 0-2.54.96-2.98 1.64V9.35h-2.64V20h2.64v-5.95c0-1.57.3-3.09 2.24-3.09s1.9 1.79 1.9 3.19V20H20z"/></svg></a>
         @endif
         @if($contact_youtube)
         <a href="{{ $contact_youtube }}" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.9a2.5 2.5 0 0 0-1.76-1.77C18.28 5.7 12 5.7 12 5.7s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.9C2 9.47 2 12 2 12s0 2.53.4 4.1a2.5 2.5 0 0 0 1.76 1.77c1.56.43 7.84.43 7.84.43s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77C22 14.53 22 12 22 12s0-2.53-.4-4.1M10 15.1V8.9l5.2 3.1z"/></svg></a>

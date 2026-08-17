@@ -3,6 +3,8 @@
     --text: #FAF9F6;
     --gold: #E5CA83;
     --gold-deep: #BC9554;
+    --grad-gold: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%);
+    --grad-gold-text: linear-gradient(100deg, #BC9554 0%, #E9CE8B 45%, #E5CA83 60%, #C09A5C 100%);
     --border: rgba(255, 255, 255, 0.15);
     --btn-bg: rgba(255, 255, 255, 0.05);
 }
