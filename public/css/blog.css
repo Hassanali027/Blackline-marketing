@@ -7,8 +7,28 @@
 
 /* Hero Section */
 .blog-hero {
-    padding: 40px 0 20px;
+    position: relative;
+    padding: 50px 0 80px;
     text-align: center;
+    background-image: url('../images/work-nova.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.blog-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+
+.blog-hero .container {
+    position: relative;
+    z-index: 2;
 }
 
 .blog-title {

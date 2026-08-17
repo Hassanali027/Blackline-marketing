@@ -33,7 +33,7 @@
           </div>
         </li>
         <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
-        <li><a href="{{ route('case-study') }}">Case Study</a></li>
+        <!-- <li><a href="{{ route('case-study') }}">Case Study</a></li> -->
         <li><a href="{{ route('blogs') }}">Blogs</a></li>
         <li><a href="{{ route('faqs') }}">FAQ`s</a></li>
         <li><a href="{{ route('contact') }}">Contact Us</a></li>
