@@ -246,7 +246,7 @@
                 </span>
                 <span id="metaSelectedZone" style="display:none;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> 
-                    Dubai, United Arab Emirates Time
+                    <span class="user-timezone-display">Dubai, United Arab Emirates Time</span>
                 </span>
             </div>
         </div>
@@ -370,7 +370,7 @@
                 <h4>Time Zone</h4>
                 <div class="timezone-selector">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> 
-                    Dubai, United Arab Emirates Time (GST) 
+                    <span class="user-timezone-display">Dubai, United Arab Emirates Time (GST)</span> 
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px;"><polyline points="6 9 12 15 18 9"/></svg>
                 </div>
             </div>
@@ -423,7 +423,7 @@
                 </div>
                 <div class="success-meta-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    <span>Dubai, United Arab Emirates Time (GST)</span>
+                    <span class="user-timezone-display">Dubai, United Arab Emirates Time (GST)</span>
                 </div>
                 <div class="success-meta-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
@@ -477,6 +477,18 @@
 window.bookedSlots = @json($bookedSlots);
 
 document.addEventListener('DOMContentLoaded', function() {
+    try {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const tzName = new Intl.DateTimeFormat('en-US', { timeZoneName: 'short' }).formatToParts(new Date()).find(p => p.type === 'timeZoneName')?.value || '';
+        const displayString = timeZone.replace(/\//g, ', ').replace(/_/g, ' ') + (tzName ? ` (${tzName})` : '');
+        
+        document.querySelectorAll('.user-timezone-display').forEach(el => {
+            el.innerText = displayString;
+        });
+    } catch (e) {
+        console.error("Error setting timezone: ", e);
+    }
+
     const dayCells = document.querySelectorAll('.day-cell:not(.next-month)');
     const timeSlotsPanel = document.getElementById('timeSlotsPanel');
     const selectedDateText = document.getElementById('selectedDateText');
