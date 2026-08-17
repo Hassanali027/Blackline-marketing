@@ -37,13 +37,24 @@
                 <h2>{{ $category }}</h2>
                 @foreach($categoryFaqs as $faq)
                     <div class="faq-item">
-                        <div class="faq-question">
-                            <span>{{ $faq->question }}</span>
-                            <span class="faq-icon">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content" style="color: var(--muted); line-height: 1.6;">
-                                {!! $faq->answer !!}
+                        <div class="faq-grid">
+                            <div class="faq-question">
+                                <span>{{ $faq->question }}</span>
+                            </div>
+                            <div class="faq-answer">
+                                <div class="faq-answer-content" style="color: var(--muted); line-height: 1.6;">
+                                    {!! $faq->answer !!}
+                                </div>
+                            </div>
+                            <div class="faq-icon-col" style="display: flex; justify-content: flex-end;">
+                                <div class="faq-icon">
+                                    <svg class="icon-plus" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.25 5.25V0H6.75V5.25H12V6.75H6.75V12H5.25V6.75H0V5.25H5.25Z" fill="#1a1a1a"/>
+                                    </svg>
+                                    <svg class="icon-close" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 1.06066L10.9393 0L6 4.93934L1.06066 0L0 1.06066L4.93934 6L0 10.9393L1.06066 12L6 7.06066L10.9393 12L12 10.9393L7.06066 6L12 1.06066Z" fill="#1a1a1a"/>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,27 +123,19 @@
         const faqItems = document.querySelectorAll('.faq-item');
         
         faqItems.forEach(item => {
-            // Remove inline styles set for the initial active state in HTML
-            // so our JS logic takes over smoothly.
-            const answer = item.querySelector('.faq-answer');
-            if(item.classList.contains('active')) {
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-            }
-            
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
+            item.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
+                
+                // Optional: Close others
+                // faqItems.forEach(i => {
+                //     i.classList.remove('active');
+                //     i.querySelector('.faq-icon').textContent = '+';
+                // });
                 
                 if (!isActive) {
                     item.classList.add('active');
-                    item.querySelector('.faq-icon').innerHTML = '&times;'; // × symbol
-                    answer.style.maxHeight = answer.scrollHeight + "px";
-                    answer.style.marginTop = '15px';
                 } else {
                     item.classList.remove('active');
-                    item.querySelector('.faq-icon').textContent = '+';
-                    answer.style.maxHeight = null;
-                    answer.style.marginTop = '0';
                 }
             });
         });

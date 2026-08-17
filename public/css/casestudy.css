@@ -1,3 +1,7 @@
+p {
+    text-align: justify;
+}
+
 .case-study-hero {
     position: relative;
     height: 60vh;
@@ -52,7 +56,7 @@
 
 /* Market Challenge Section */
 .market-challenge-section {
-    background-color: #121212;
+
     color: #ffffff;
     padding: 100px 0;
     font-family: 'Inter', sans-serif;
@@ -141,8 +145,22 @@
 }
 
 @media (max-width: 900px) {
+    .market-challenge-section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
 
-    .market-challenge-header,
+    .market-challenge-header {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+
+    .market-challenge-intro {
+        margin-top: 0;
+        font-size: 15px;
+    }
+
     .market-challenge-content {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -156,7 +174,6 @@
 
 /* Insight Into Direction Section */
 .insight-direction-section {
-    background-color: #1a1a1a;
     color: #ffffff;
     padding: 0px 0;
     text-align: center;
@@ -230,19 +247,54 @@
 }
 
 @media (max-width: 900px) {
+    .insight-title {
+        margin-bottom: 30px;
+    }
+
+    .insight-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .insight-icon img,
+    .insight-icon svg {
+        width: 45px;
+        height: 45px;
+    }
+
     .insight-timeline {
         flex-direction: column;
-        gap: 60px;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .insight-item-desc {
+        max-width: 90%;
+        margin: 0 auto;
+        text-align: justify;
     }
 
     .insight-item:not(:last-child)::after {
-        display: none;
+        content: '';
+        display: block;
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 45px;
+        height: 45px;
+        margin-top: 15px;
+        background-color: transparent;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 2v12H4l8 8 8-8h-5V2H9z' fill='%23cca752'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        align-self: center;
+        transform: none;
     }
 }
 
 /* Strategy to Life Section */
 .strategy-life-section {
-    background-color: #242424;
     color: #ffffff;
     padding: 0px 0;
     font-family: 'Inter', sans-serif;
@@ -284,9 +336,14 @@
 }
 
 @media (max-width: 900px) {
+    .strategy-life-title {
+        margin-bottom: 20px;
+        font-size: 2rem;
+    }
+
     .strategy-life-text-grid {
         grid-template-columns: 1fr;
-        padding: 0 20px;
+        padding: 0;
         gap: 30px;
         margin-bottom: 40px;
     }
@@ -298,9 +355,9 @@
 
 /* Results Section */
 .results-section {
-    background-color: #222222;
+    /* background-color: #222222; */
     color: #ffffff;
-    padding: 100px 0;
+    padding: 0px 0;
     font-family: 'Inter', sans-serif;
 }
 
@@ -346,6 +403,10 @@
 }
 
 @media (max-width: 900px) {
+    .results-title {
+        margin-bottom: 0px;
+    }
+
     .results-intro {
         padding-left: 0;
     }
@@ -364,9 +425,8 @@
 
 /* Work In Motion Section */
 .work-motion-section {
-    background-color: #1c1c1c;
     color: #ffffff;
-    padding: 50px 0;
+    padding: 0px 0;
     font-family: 'Inter', sans-serif;
 }
 
@@ -491,7 +551,7 @@
 
 /* Video Section */
 .video-section {
-    background-color: #1c1c1c;
+
     padding: 80px 0;
 }
 

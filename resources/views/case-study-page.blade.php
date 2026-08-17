@@ -112,19 +112,19 @@
             
             <div class="results-stats-grid">
                 <div class="stat-item">
-                    <span class="stat-number">+184%</span>
+                    <span class="stat-number" data-target="184" data-prefix="+" data-suffix="%">+0%</span>
                     <span class="stat-label">Engagement Growth</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">+72%</span>
+                    <span class="stat-number" data-target="72" data-prefix="+" data-suffix="%">+0%</span>
                     <span class="stat-label">Organic Reach</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">3.4x</span>
+                    <span class="stat-number" data-target="3.4" data-prefix="" data-suffix="x" data-decimals="1">0.0x</span>
                     <span class="stat-label">ROAS</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">+58K</span>
+                    <span class="stat-number" data-target="58" data-prefix="+" data-suffix="K">+0K</span>
                     <span class="stat-label">Audience Growth</span>
                 </div>
             </div>
@@ -173,14 +173,17 @@
     </section>
 
     <!-- Video Section -->
-    <section class="video-section">
-        <div class="container">
-            <div class="video-container" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+    <section class="video-section" style="padding: 40px 20px;">
+        <div class="container" style="max-width: 1000px; margin: 0 auto;">
+            <div class="video-container" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 20px;">
                 @if(!empty($video['video_file']))
-                    <video controls poster="{{ asset($video['thumbnail']) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    <video id="caseStudyVideo" poster="{{ asset($video['thumbnail']) }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         <source src="{{ asset($video['video_file']) }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div id="playVideoButton" class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; cursor: pointer;">
+                        <div class="play-icon"></div>
+                    </div>
                 @else
                     <img src="{{ asset($video['thumbnail'] ?? 'images/hero.jpg') }}" alt="Video Poster Thumbnail" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                     <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;">
@@ -191,9 +194,73 @@
         </div>
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('caseStudyVideo');
+            const playBtn = document.getElementById('playVideoButton');
+            if(video && playBtn) {
+                playBtn.addEventListener('click', function() {
+                    video.play();
+                    playBtn.style.display = 'none';
+                    video.setAttribute('controls', 'controls');
+                });
+            }
+        });
+    </script>
+
     @include('components.faqs-section')
 </main>
 
 @include('components.footer')
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 100; // The lower the slower
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const prefix = counter.getAttribute('data-prefix') || '';
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const hasDecimals = counter.hasAttribute('data-decimals');
+                
+                let count = 0;
+                
+                const updateCount = () => {
+                    const inc = target / speed;
+                    
+                    if (count < target) {
+                        count += inc;
+                        if (count > target) count = target;
+                        
+                        let displayCount = hasDecimals ? count.toFixed(1) : Math.ceil(count);
+                        counter.innerText = prefix + displayCount + suffix;
+                        setTimeout(updateCount, 15);
+                    } else {
+                        counter.innerText = prefix + (hasDecimals ? target.toFixed(1) : target) + suffix;
+                    }
+                };
+                
+                updateCount();
+            });
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const resultsSection = document.querySelector('.results-stats-grid');
+        if (resultsSection) {
+            observer.observe(resultsSection);
+        }
+    });
+</script>
+
 </body>
 </html>
