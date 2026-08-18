@@ -34,7 +34,7 @@ class AdminHeroController extends Controller
             'heading' => 'required|string',
             'primary_word' => 'nullable|string',
             'description' => 'required|string',
-            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $settings = $this->getSettings();

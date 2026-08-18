@@ -26,7 +26,7 @@ class AdminFeedbackController extends Controller
             'role' => 'required|string|max:255',
             'description' => 'required|string',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5000',
-            'video' => 'required|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'required|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $logoPath = '';
@@ -72,7 +72,7 @@ class AdminFeedbackController extends Controller
             'role' => 'required|string|max:255',
             'description' => 'required|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5000',
-            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $logoPath = $feedback->logo;

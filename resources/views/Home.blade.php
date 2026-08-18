@@ -2045,8 +2045,8 @@ button {
           <img src="{{ asset('images/social-media-management.svg') }}" alt="Social Media Management">
         </span>
         <h3>Social Media Management</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="{{ route('services.show', 'social-media-management') }}" class="pill-arrow" aria-label="Read more">
+        <p>Turn social media into a powerful engine for brand authority, engagement, and consistent organic growth.</p>
+        <a href="{{ route('services.show', 'social-media-management') }}" class="pill-arrow" aria-label="Read more about Social Media Management">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2057,8 +2057,8 @@ button {
           <img src="{{ asset('images/media-advertising.svg') }}" alt="Paid Advertising">
         </span>
         <h3>Paid Advertising</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Data-driven performance marketing campaigns across Meta, Google, and TikTok engineered for maximum ROI.</p>
+        <a href="{{ route('services.show', 'paid-advertising') }}" class="pill-arrow" aria-label="Read more about Paid Advertising">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2069,8 +2069,8 @@ button {
           <img src="{{ asset('images/instagram-management.svg') }}" alt="Instagram Growth">
         </span>
         <h3>Instagram Growth</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Scale your reach, foster deep community engagement, and turn profile visitors into loyal paying customers.</p>
+        <a href="{{ route('services.show', 'instagram-growth') }}" class="pill-arrow" aria-label="Read more about Instagram Growth">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2081,8 +2081,8 @@ button {
           <img src="{{ asset('images/tik-tok-strategy.svg') }}" alt="TikTok Strategy">
         </span>
         <h3>TikTok Strategy</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Viral creative frameworks, high-retention video production, and culture-first storytelling that commands attention.</p>
+        <a href="{{ route('services.show', 'tiktok-strategy') }}" class="pill-arrow" aria-label="Read more about TikTok Strategy">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2093,8 +2093,8 @@ button {
           <img src="{{ asset('images/brand-identity.svg') }}" alt="Brand Identity">
         </span>
         <h3>Brand Identity</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Distinct visual systems, positioning, and timeless aesthetic direction that make your business instantly recognizable.</p>
+        <a href="{{ route('services.show', 'brand-identity') }}" class="pill-arrow" aria-label="Read more about Brand Identity">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2105,8 +2105,8 @@ button {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5 10.6 8 15 9.5 10.6 11 9 15.5 7.4 11 3 9.5 7.4 8z"/><path d="M17 13.5 17.9 16l2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z"/><path d="M17.5 3v3M16 4.5h3"/></svg>
         </span>
         <h3>Creative Direction</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Elevate your visual storytelling with bespoke campaign aesthetics, photography direction, and artful production.</p>
+        <a href="{{ route('services.show', 'creative-direction') }}" class="pill-arrow" aria-label="Read more about Creative Direction">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2117,8 +2117,8 @@ button {
           <img src="{{ asset('images/influencer-marketing.svg') }}" alt="Influencer Marketing">
         </span>
         <h3>Influencer Marketing</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Curated creator partnerships and authentic endorsements that build brand trust and drive high-converting traffic.</p>
+        <a href="{{ route('services.show', 'influencer-marketing') }}" class="pill-arrow" aria-label="Read more about Influencer Marketing">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
@@ -2129,8 +2129,8 @@ button {
           <img src="{{ asset('images/resturent-marketing.svg') }}" alt="Restaurant Marketing">
         </span>
         <h3>Restaurant Marketing</h3>
-        <p>Bring your most complex software vision to life with innovation and scalability in mind.</p>
-        <a href="#" class="pill-arrow" aria-label="Read more">
+        <p>Specialized culinary storytelling, foot-traffic campaigns, and appetizing social content tailored for F&B brands.</p>
+        <a href="{{ route('services.show', 'restaurant-marketing') }}" class="pill-arrow" aria-label="Read more about Restaurant Marketing">
           <span class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           <span class="line"></span>
         </a>
