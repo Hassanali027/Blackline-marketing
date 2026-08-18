@@ -1225,8 +1225,14 @@ button {
 
 .arc {
     fill: none;
-    stroke-width: 65;
+    stroke-width: 50.2;
     stroke-linecap: round;
+    transition: filter 0.3s var(--ease);
+}
+
+.arc:hover,
+.arc.is-hovered {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
 }
 
 .tri {
@@ -1261,7 +1267,7 @@ button {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 17.7%;
+    width: 19.76%;
     aspect-ratio: 1;
     border-radius: 50%;
     background: #FAF9F6;
@@ -1330,6 +1336,13 @@ button {
     transform: translate(12px, -50%);
 }
 
+.ring-label p {
+    text-align: justify;
+    text-align-last: center;
+    width: 220px;
+    white-space: normal;
+}
+
 /* Positioning the descriptions absolutely */
 .lbl-strategy p,
 .lbl-story p {
@@ -1343,15 +1356,14 @@ button {
     margin-top: 6px;
 }
 
-.ring-label p {
-    width: 190px;
-    left: 50%;
-    margin-left: -95px;
-    text-align: justify;
-    text-align-last: center;
-    white-space: normal;
-    font-size: clamp(13px, 1.1vw, 16px);
-    line-height: 1.4;
+.lbl-strategy p,
+.lbl-results p {
+    right: -140px;
+}
+
+.lbl-story p,
+.lbl-exec p {
+    left: -140px;
 }
 
 /* Description Hover Animations */
@@ -2244,10 +2256,10 @@ button {
           <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0D073"/><stop offset="1" stop-color="#E7C76C"/></linearGradient>
           <linearGradient id="g4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#E4C169"/><stop offset="1" stop-color="#DDBB63"/></linearGradient>
 
-          <path id="p1" d="M 435.2 190.5 A 190 190 0 0 1 581.5 44.2"/>
-          <path id="p2" d="M 660.5 44.2 A 190 190 0 0 1 806.8 190.5"/>
-          <path id="p3" d="M 660.5 415.8 A 190 190 0 0 0 806.8 269.5"/>
-          <path id="p4" d="M 435.2 269.5 A 190 190 0 0 0 581.5 415.8"/>
+          <path id="p1" d="M 433.2 200.9 A 190 190 0 0 1 591.9 42.2"/>
+          <path id="p2" d="M 650.1 42.2 A 190 190 0 0 1 808.8 200.9"/>
+          <path id="p3" d="M 650.1 417.8 A 190 190 0 0 0 808.8 259.1"/>
+          <path id="p4" d="M 433.2 259.1 A 190 190 0 0 0 591.9 417.8"/>
         </defs>
 
         <use href="#p1" class="arc" stroke="url(#g1)"/>
@@ -2256,10 +2268,10 @@ button {
         <use href="#p4" class="arc" stroke="url(#g4)"/>
 
         <!-- flow arrows -->
-        <polygon class="tri" transform="rotate(-16, 565, 44.2)" points="561,38 573,44.2 561,50.4"/>
-        <polygon class="tri" transform="rotate(-16, 806.8, 175)" points="800.8,171 806.8,183 812.8,171"/>
-        <polygon class="tri" transform="rotate(-16, 675, 415.8)" points="679,409.8 667,415.8 679,421.8"/>
-        <polygon class="tri" transform="rotate(-16, 435.2, 285)" points="429.2,289 435.2,277 441.2,289"/>
+        <polygon class="tri" points="571,38 583,44.2 571,50.4"/>
+        <polygon class="tri" points="800.8,181 806.8,193 812.8,181"/>
+        <polygon class="tri" points="669,409.8 657,415.8 669,421.8"/>
+        <polygon class="tri" points="429.2,279 435.2,267 441.2,279"/>
 
         <text class="step-txt"><textPath href="#p1" startOffset="50%" text-anchor="middle">Step 1</textPath></text>
         <text class="step-txt"><textPath href="#p2" startOffset="50%" text-anchor="middle">Step 2</textPath></text>

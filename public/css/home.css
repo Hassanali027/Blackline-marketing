@@ -1118,13 +1118,14 @@ button {
 
 .arc {
     fill: none;
-    stroke-width: 65;
+    stroke-width: 50.2;
     stroke-linecap: round;
-    transition: stroke-width 0.3s var(--ease);
+    transition: filter 0.3s var(--ease);
 }
 
+.arc:hover,
 .arc.is-hovered {
-    stroke-width: 76;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
 }
 
 .tri {
