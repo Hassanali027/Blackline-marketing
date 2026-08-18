@@ -297,6 +297,8 @@ h1 {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    padding: 35px 30px;
+    min-height: 285px;
 }
 
 .benefits.animate-in .cards article {
@@ -328,9 +330,7 @@ h1 {
     transition-delay: 0.55s;
 }
 
-padding: 35px 30px;
-min-height: 285px;
-}
+
 
 .cards i {
     display: grid;
@@ -338,10 +338,15 @@ min-height: 285px;
     width: 55px;
     height: 55px;
     border-radius: 13px;
-    background: #4c4a46;
+    background: transparent;
     color: #f1c568;
     font-size: 24px;
     font-style: normal;
+    transition: background 0.3s ease;
+}
+
+.cards article:hover i {
+    background: #4c4a46;
 }
 
 .cards i img,
@@ -400,12 +405,34 @@ min-height: 285px;
     padding: 30px 25px;
     min-height: auto;
     transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.plan-badge {
+    position: absolute;
+    top: 35px;
+    right: 16px;
+    background: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%);
+    color: #000000;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .plans h3 {
     font-size: 21px;
     margin: 0;
     transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.plan-badge+h3 {
+    padding-right: 115px;
 }
 
 .plans article>p,
@@ -466,40 +493,41 @@ min-height: 285px;
 }
 
 @media (hover: hover) and (min-width: 992px) {
-    .plans article.featured:hover {
+    .plans article:hover {
         background: linear-gradient(155deg, #f0ce81, #d1a955);
         border-color: #f0ce81;
         color: #383838;
     }
 
-    .plans article.featured:hover h3,
-    .plans article.featured:hover strong,
-    .plans article.featured:hover strong small,
-    .plans article.featured:hover h4,
-    .plans article.featured:hover ul,
-    .plans article.featured:hover li,
-    .plans article.featured:hover p,
-    .plans article.featured:hover>p {
+    .plans article:hover h3,
+    .plans article:hover strong,
+    .plans article:hover strong small,
+    .plans article:hover h4,
+    .plans article:hover ul,
+    .plans article:hover li,
+    .plans article:hover p,
+    .plans article:hover>p {
         color: #383838;
     }
 
-    .plans article.featured:hover>a {
-        background: #202022;
-        color: #fff;
-        border-color: #202022;
+    .plans article:hover>a {
+        background: #28282B;
+        color: #E5CA83;
+        border-color: #28282B;
     }
 
-    .plans article.featured:hover>a:hover {
+    .plans article:hover>a:hover {
         background: #000;
         border-color: #000;
     }
+
+    .plans article:hover .plan-badge {
+        background: #28282B;
+        color: #E5CA83;
+    }
 }
 
-.plans article.featured {
-    background: linear-gradient(155deg, #f0ce81, #d1a955);
-    border-color: #f0ce81;
-    color: #383838;
-}
+
 
 .plan-icon {
     display: inline-flex;
@@ -515,29 +543,7 @@ min-height: 285px;
 .plan-icon svg {
     width: 28px;
     height: 28px;
-    stroke: #383838;
-}
-
-.plans article.featured h3,
-.plans article.featured strong,
-.plans article.featured strong small,
-.plans article.featured h4,
-.plans article.featured ul,
-.plans article.featured li,
-.plans article.featured p,
-.plans article.featured>p {
-    color: #383838;
-}
-
-.plans article.featured>a {
-    background: #202022;
-    color: #fff;
-    border-color: #202022;
-}
-
-.plans article.featured>a:hover {
-    background: #000;
-    border-color: #000;
+    stroke: currentColor;
 }
 
 .faq {

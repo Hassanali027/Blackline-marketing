@@ -23,7 +23,7 @@ class AdminAuthorController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'picture' => 'nullable|file',
             'linkedin_url' => 'nullable|url',
             'twitter_url' => 'nullable|url',
         ]);
@@ -57,7 +57,7 @@ class AdminAuthorController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'picture' => 'nullable|file',
             'linkedin_url' => 'nullable|url',
             'twitter_url' => 'nullable|url',
         ]);

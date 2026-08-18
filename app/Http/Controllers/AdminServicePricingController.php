@@ -47,7 +47,8 @@ class AdminServicePricingController extends Controller
             'btn_text' => 'required|string|max:100',
             'btn_link' => 'required|string|max:255',
             'bullets' => 'required|string',
-            'best_for' => 'nullable|string'
+            'best_for' => 'nullable|string',
+            'badge_text' => 'nullable|string|max:50'
         ]);
 
         $plans = $this->getPlans($service);
@@ -61,7 +62,8 @@ class AdminServicePricingController extends Controller
             'btn_text' => $request->btn_text,
             'btn_link' => $request->btn_link,
             'bullets' => $request->bullets,
-            'best_for' => $request->best_for
+            'best_for' => $request->best_for,
+            'badge_text' => $request->badge_text
         ];
 
         $service->update(['pricing' => array_values($plans)]);
@@ -97,7 +99,8 @@ class AdminServicePricingController extends Controller
             'btn_text' => 'required|string|max:100',
             'btn_link' => 'required|string|max:255',
             'bullets' => 'required|string',
-            'best_for' => 'nullable|string'
+            'best_for' => 'nullable|string',
+            'badge_text' => 'nullable|string|max:50'
         ]);
 
         $plans = $this->getPlans($service);
@@ -117,7 +120,8 @@ class AdminServicePricingController extends Controller
             'btn_text' => $request->btn_text,
             'btn_link' => $request->btn_link,
             'bullets' => $request->bullets,
-            'best_for' => $request->best_for
+            'best_for' => $request->best_for,
+            'badge_text' => $request->badge_text
         ]);
 
         $service->update(['pricing' => array_values($plans)]);
