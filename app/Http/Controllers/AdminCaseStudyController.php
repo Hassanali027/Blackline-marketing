@@ -27,7 +27,7 @@ class AdminCaseStudyController extends Controller
             'description' => 'required|string',
             'btn_text' => 'required|string|max:255',
             'btn_link' => 'required|string',
-            'video' => 'required|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'required|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $videoPath = '';
@@ -67,7 +67,7 @@ class AdminCaseStudyController extends Controller
             'description' => 'required|string',
             'btn_text' => 'required|string|max:255',
             'btn_link' => 'required|string',
-            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $videoPath = $study->video;

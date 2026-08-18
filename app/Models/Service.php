@@ -13,11 +13,12 @@ class Service extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id', 'title', 'slug', 'hero', 'overview', 'benefits_header', 'benefits',
+        'id', 'title', 'slug', 'show_in_footer', 'hero', 'overview', 'benefits_header', 'benefits',
         'process_header', 'process', 'pricing_header', 'pricing'
     ];
 
     protected $casts = [
+        'show_in_footer' => 'boolean',
         'hero' => 'array',
         'overview' => 'array',
         'benefits_header' => 'array',
