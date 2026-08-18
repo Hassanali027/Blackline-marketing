@@ -1350,14 +1350,6 @@ button {
 .lbl-story p,
 .lbl-exec p {
     left: -140px;
-.lbl-strategy p,
-.lbl-results p {
-    right: -140px;
-}
-
-.lbl-story p,
-.lbl-exec p {
-    left: -140px;
 }
 
 /* Description Hover Animations */
