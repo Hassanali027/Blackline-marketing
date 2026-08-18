@@ -14,11 +14,11 @@ class Service extends Model
 
     protected $fillable = [
         'id', 'title', 'slug', 'hero', 'overview', 'benefits_header', 'benefits',
-        'process_header', 'process', 'pricing_header', 'pricing',
-        'meta_title', 'meta_description', 'meta_keywords'
+        'process_header', 'process', 'pricing_header', 'pricing'
     ];
 
     protected $casts = [
+        'show_in_footer' => 'boolean',
         'hero' => 'array',
         'overview' => 'array',
         'benefits_header' => 'array',

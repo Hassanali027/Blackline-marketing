@@ -775,8 +775,9 @@ button {
 
 .work-panel.is-open .work-body {
     opacity: 1;
+    margin-bottom: 10px;
     transform: none;
-    pointer-events: auto
+    pointer-events: auto;
 }
 
 .work-panel.is-playing-video .work-body,
@@ -1798,7 +1799,8 @@ button {
 
     .work-body {
         padding: 0 26px 30px;
-        max-width: none
+        max-width: none;
+        bottom: 30px;
     }
 
     .news-grid {

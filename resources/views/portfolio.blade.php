@@ -18,9 +18,9 @@
 @include('components.header')
 
 <main>
-  <section class="portfolio-hero" style="background-image: url('{{ asset($heroSettings['image'] ?? 'assets/portfolio/hero.png') }}');">
+  <section class="portfolio-hero" style="background-image: url('{{ asset($heroSettings['image'] ?? 'images/portfolio-banner.webp') }}');" role="img" aria-label="portfolio banner" title="Portfolio Banner">
     <div class="portfolio-hero__panel">
-      <span>{{ $heroSettings['badge'] ?? 'CASE STUDIES' }}</span>
+      <span style="text-transform: uppercase;">{{ $heroSettings['badge'] ?? 'CASE STUDIES' }}</span>
       <h1>{{ $heroSettings['heading'] ?? 'Brands Worth Remembering.' }}</h1>
       <a class="gold-button" href="{{ $heroSettings['btn_link'] ?? route('book-now') }}">{{ $heroSettings['btn_text'] ?? 'Book a Discovery Call' }} <b>→</b></a>
     </div>
