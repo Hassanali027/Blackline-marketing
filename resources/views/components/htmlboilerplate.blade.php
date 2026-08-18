@@ -25,7 +25,7 @@
             --gold-line: #4B4430;
             --gold-line-hover: #C9A961;
 
-            --grad-gold: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%);
+            --grad-gold: linear-gradient(110deg, rgba(175, 132, 69, 1) 0%, rgba(232, 201, 136, 1) 33%, rgba(229, 202, 131, 1) 66%, rgba(175, 132, 69, 1) 100%);
             --grad-gold-text: linear-gradient(100deg, #BC9554 0%, #E9CE8B 45%, #E5CA83 60%, #C09A5C 100%);
 
             --container: 1242px;

@@ -63,7 +63,7 @@
         <div class="form-group">
             <label for="bullets">Bullets List</label>
             <textarea name="bullets" id="bullets" class="form-control" rows="5" required>{{ old('bullets', $overviewSettings['bullets'] ?? '') }}</textarea>
-            <small style="color: var(--muted); font-size: 13px; display: block; margin-top: 6px;">Enter one bullet point per line.</small>
+            <small style="color: var(--muted); font-size: 13px; display: block; margin-top: 6px;">Just press enter to create new bullets.</small>
             @error('bullets') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>
 

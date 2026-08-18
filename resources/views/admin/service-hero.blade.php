@@ -42,7 +42,7 @@
         @csrf
 
         <div class="form-group">
-            <label for="small_text">Small Text (Eyebrow)</label>
+            <label for="small_text">Badge</label>
             <input type="text" name="small_text" id="small_text" class="form-control" value="{{ old('small_text', $heroSettings['small_text'] ?? '') }}" required>
             @error('small_text') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>

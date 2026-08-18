@@ -138,3 +138,90 @@
     </div>
   </div>
 </footer>
+
+<!-- Custom Cursor Element -->
+<div class="custom-cursor"></div>
+
+<style>
+    .custom-cursor {
+        position: fixed;
+        top: -100px;
+        left: -100px;
+        width: 30px;
+        height: 30px;
+        border: 2px solid var(--gold, #E5CA83); /* Primary gold color */
+        border-radius: 50%; /* Make it round */
+        pointer-events: none; /* Allows clicking through it */
+        transform: translate(-50%, -50%); /* Centers the gap exactly on the mouse point */
+        z-index: 99999; /* Ensure it's on top of everything */
+        transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s; /* Smooth delay effect */
+        box-shadow: 0 0 8px rgba(229, 202, 131, 0.3); /* Slight glow matching the gold color */
+        display: none;
+    }
+    @media (pointer: fine) {
+        .custom-cursor {
+            display: block;
+        }
+    }
+    .custom-cursor.cursor-hover {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(229, 202, 131, 0.15); /* Slight fill inside the circle */
+    }
+    .custom-cursor.cursor-black {
+        border-color: #000;
+    }
+    .custom-cursor.cursor-primary {
+        border-color: var(--gold, #E5CA83) !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cursor = document.querySelector('.custom-cursor');
+        if (!cursor) return;
+        
+        // Update circle position on mouse move
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Add visual feedback on click (shrinks the circle slightly)
+        document.addEventListener('mousedown', () => {
+            if (!cursor.classList.contains('cursor-hover')) {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
+            } else {
+                cursor.style.transform = 'translate(-50%, -50%) scale(0.9)'; // less shrink if already large
+            }
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+
+        // Hover effect on buttons, links, and cards using event delegation
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .card, .btn, .filter-button, .close-filter-btn, .burger')) {
+                cursor.classList.add('cursor-hover');
+            }
+            if (e.target.closest('.card')) {
+                cursor.classList.add('cursor-black');
+            }
+            if (e.target.closest('.pill-arrow')) {
+                cursor.classList.add('cursor-primary');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (!e.relatedTarget || !e.relatedTarget.closest('a, button, .card, .btn, .filter-button, .close-filter-btn, .burger')) {
+                cursor.classList.remove('cursor-hover');
+            }
+            if (!e.relatedTarget || !e.relatedTarget.closest('.card')) {
+                cursor.classList.remove('cursor-black');
+            }
+            if (!e.relatedTarget || !e.relatedTarget.closest('.pill-arrow')) {
+                cursor.classList.remove('cursor-primary');
+            }
+        });
+    });
+</script>

@@ -95,6 +95,43 @@
         panelPrevs.forEach(function(btn) { btn.addEventListener('click', function(e) { e.stopPropagation(); openPanel(currentIndex() - 1); }); });
         panelNexts.forEach(function(btn) { btn.addEventListener('click', function(e) { e.stopPropagation(); openPanel(currentIndex() + 1); }); });
 
+        // Wheel event listener: transition to next/prev video when scrolling while playing
+        var isThrottled = false;
+        strip.addEventListener('wheel', function(e) {
+            var currentIdx = currentIndex();
+            var playingPanel = panels[currentIdx];
+            
+            if (playingPanel && playingPanel.classList.contains('is-playing-video')) {
+                e.preventDefault(); // Prevent default page scroll
+                
+                if (isThrottled) return;
+                isThrottled = true;
+                setTimeout(function() { isThrottled = false; }, 800); // Wait 800ms between transitions
+
+                if (e.deltaY > 0) {
+                    // Scrolled down -> next video
+                    if (currentIdx < panels.length - 1) {
+                        openPanel(currentIdx + 1);
+                    } else {
+                        // If it's the last one, maybe close the video so normal scroll resumes
+                        openPanel(currentIdx); // this won't change the index, but we need to stop video manually if we want
+                        playingPanel.classList.remove('is-playing-video');
+                        var vid = playingPanel.querySelector('video');
+                        if (vid) { vid.pause(); vid.currentTime = 0; }
+                    }
+                } else if (e.deltaY < 0) {
+                    // Scrolled up -> prev video
+                    if (currentIdx > 0) {
+                        openPanel(currentIdx - 1);
+                    } else {
+                        playingPanel.classList.remove('is-playing-video');
+                        var vid = playingPanel.querySelector('video');
+                        if (vid) { vid.pause(); vid.currentTime = 0; }
+                    }
+                }
+            }
+        }, { passive: false });
+
         var workTrack = document.getElementById('work-scroll-track');
         if (workTrack) {
             window.addEventListener('scroll', function() {
