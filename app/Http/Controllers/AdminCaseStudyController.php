@@ -27,13 +27,13 @@ class AdminCaseStudyController extends Controller
             'description' => 'required|string',
             'btn_text' => 'required|string|max:255',
             'btn_link' => 'required|string',
-            'video' => 'required|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'required|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $videoPath = '';
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }
@@ -67,13 +67,13 @@ class AdminCaseStudyController extends Controller
             'description' => 'required|string',
             'btn_text' => 'required|string|max:255',
             'btn_link' => 'required|string',
-            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $videoPath = $study->video;
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }

@@ -110,7 +110,7 @@ class AdminServicePageController extends Controller
         $imagePath = $hero['image'] ?? 'assets/pdf/asset-12.png';
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/service'), $filename);
             $imagePath = 'images/service/' . $filename;
         }
@@ -154,7 +154,7 @@ class AdminServicePageController extends Controller
         $imagePath = $overview['image'] ?? 'assets/pdf/asset-08.png';
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/service'), $filename);
             $imagePath = 'images/service/' . $filename;
         }

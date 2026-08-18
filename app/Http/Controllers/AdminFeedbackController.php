@@ -26,13 +26,13 @@ class AdminFeedbackController extends Controller
             'role' => 'required|string|max:255',
             'description' => 'required|string',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5000',
-            'video' => 'required|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'required|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $logoPath = '';
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images'), $filename);
             $logoPath = 'images/' . $filename;
         }
@@ -40,7 +40,7 @@ class AdminFeedbackController extends Controller
         $videoPath = '';
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }
@@ -72,13 +72,13 @@ class AdminFeedbackController extends Controller
             'role' => 'required|string|max:255',
             'description' => 'required|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5000',
-            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:50000'
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:256000'
         ]);
 
         $logoPath = $feedback->logo;
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images'), $filename);
             $logoPath = 'images/' . $filename;
         }
@@ -86,7 +86,7 @@ class AdminFeedbackController extends Controller
         $videoPath = $feedback->video;
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }

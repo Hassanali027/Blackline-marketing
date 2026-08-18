@@ -31,6 +31,7 @@ class ServicePageController extends Controller
         $faqs = \App\Models\Faq::whereJsonContains('pages', 'services')->get();
 
         return view('service-page', compact(
+            'service',
             'heroSettings',
             'overviewSettings',
             'benefitHeader',

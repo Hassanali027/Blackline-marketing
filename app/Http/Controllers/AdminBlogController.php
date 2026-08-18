@@ -40,7 +40,7 @@ class AdminBlogController extends Controller
         $imagePath = null;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('uploads/blogs'), $filename);
             $imagePath = 'uploads/blogs/' . $filename;
         }
@@ -90,7 +90,7 @@ class AdminBlogController extends Controller
         $imagePath = $blog->image;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('uploads/blogs'), $filename);
             $imagePath = 'uploads/blogs/' . $filename;
         }

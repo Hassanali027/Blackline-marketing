@@ -31,7 +31,7 @@ class AdminAuthorController extends Controller
         $picturePath = null;
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('uploads/authors'), $filename);
             $picturePath = 'uploads/authors/' . $filename;
         }
@@ -65,7 +65,7 @@ class AdminAuthorController extends Controller
         $picturePath = $author->picture;
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('uploads/authors'), $filename);
             $picturePath = 'uploads/authors/' . $filename;
         }

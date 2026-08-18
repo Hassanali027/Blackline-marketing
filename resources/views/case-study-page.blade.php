@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Our Work & Case Studies | BlackLine Marketing</title>
-  <meta name="description" content="Explore Black Line Marketing case studies. See how we transform brands, execute strategies, and deliver measurable results.">
-  <meta name="keywords" content="marketing case studies, branding portfolio, marketing results, digital strategy, brand transformation">
+  <title>{{ $page->title ?? ($hero['heading'] ?? 'Case Study') }} | BlackLine Marketing Case Study</title>
+  <meta name="description" content="{{ $hero['description'] ?? 'Explore Black Line Marketing case studies. See how we transform brands, execute strategies, and deliver measurable results.' }}">
+  <meta name="keywords" content="{{ strtolower($page->title ?? 'case study') }}, marketing case studies, branding portfolio, marketing results, digital strategy, BlackLine Marketing">
   <meta name="robots" content="index, follow">
   
   <!-- Main CSS for header, footer and global styles -->

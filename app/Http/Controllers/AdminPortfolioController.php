@@ -47,7 +47,7 @@ class AdminPortfolioController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/portfolio'), $filename);
             $settings['image'] = 'images/portfolio/' . $filename;
         }

@@ -54,7 +54,7 @@ class AdminServiceHeroController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/service'), $filename);
             $settings['image'] = 'images/service/' . $filename;
         }
