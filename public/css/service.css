@@ -428,6 +428,11 @@ h1 {
     font-size: 21px;
     margin: 0;
     transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.plan-badge + h3 {
+    padding-right: 115px;
 }
 
 .plans article>p,
