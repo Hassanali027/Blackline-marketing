@@ -9,9 +9,7 @@ class AdminSeoController extends Controller
 {
     private $pages = [
         'home' => 'Home Page',
-        'services' => 'Services Listing',
         'portfolio' => 'Portfolio Listing',
-        'case_studies' => 'Case Studies Listing',
         'faqs' => 'FAQs Page',
         'blogs' => 'Blogs Listing',
         'contact' => 'Contact Us',
