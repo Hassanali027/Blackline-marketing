@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Black Line Marketing | Leading Digital Marketing & Branding Agency</title>
-<meta name="description" content="Black Line Marketing builds identity systems, campaigns, and digital experiences for brands ready to lead their category, not blend into it.">
-<meta name="keywords" content="digital marketing agency, branding, social media strategy, web development, SEO, Black Line Marketing">
+<title>{{ !empty($seo['meta_title']) ? $seo['meta_title'] : 'Black Line Marketing | Leading Digital Marketing & Branding Agency' }}</title>
+<meta name="description" content="{{ !empty($seo['meta_description']) ? $seo['meta_description'] : 'Black Line Marketing builds identity systems, campaigns, and digital experiences for brands ready to lead their category, not blend into it.' }}">
+<meta name="keywords" content="{{ !empty($seo['meta_keywords']) ? $seo['meta_keywords'] : 'digital marketing agency, branding, social media strategy, web development, SEO, Black Line Marketing' }}">
+<link rel="canonical" href="{{ url()->current() }}">
 <meta name="robots" content="index, follow">
 
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -665,9 +666,6 @@ button {
 .work {
     padding-top: clamp(40px, 8vh, 100px);
     padding-bottom: 40px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -2310,59 +2308,29 @@ button {
 
     /* Mobile nav logic is now handled in components/header.blade.php */
 
-    /* ---------- Work accordion (Scroll Pinned) ---------- */
+    /* ---------- Work accordion (Click Instead of Scroll) ---------- */
     var strip = document.getElementById('workStrip');
     var pinWrapper = document.getElementById('workPinWrapper');
     if (strip && pinWrapper) {
         var panels = Array.prototype.slice.call(strip.querySelectorAll('.work-panel'));
-        
         var totalPanels = panels.length;
-        // Provide enough scroll space to cycle through panels
-        pinWrapper.style.height = (totalPanels * 100) + 'vh';
 
         function openPanel(i) {
             i = (i + totalPanels) % totalPanels;
             panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
         }
 
-        function currentIndex() {
-            return panels.findIndex(function (p) { return p.classList.contains('is-open'); });
-        }
-
-        window.addEventListener('scroll', function () {
-            var rect = pinWrapper.getBoundingClientRect();
-            var windowHeight = window.innerHeight;
-            
-            if (rect.top <= 0 && rect.bottom >= windowHeight) {
-                var scrolled = -rect.top;
-                var maxScroll = rect.height - windowHeight;
-                if (maxScroll <= 0) maxScroll = 1;
-                
-                var progress = scrolled / maxScroll;
-                var newIndex = Math.floor(progress * totalPanels);
-                
-                if (newIndex >= totalPanels) newIndex = totalPanels - 1;
-                if (newIndex < 0) newIndex = 0;
-                
-                if (newIndex !== currentIndex()) {
-                    openPanel(newIndex);
-                }
-            } else if (rect.top > 0) {
-                if (currentIndex() !== 0) openPanel(0);
-            } else if (rect.bottom < windowHeight) {
-                if (currentIndex() !== totalPanels - 1) openPanel(totalPanels - 1);
-            }
-        }, { passive: true });
-
         panels.forEach(function (panel, i) {
             panel.addEventListener('click', function (e) {
                 if (e.target.closest('.play')) return;
-                
-                // If clicked, scroll the page to that panel's specific scroll offset
-                var maxScroll = pinWrapper.offsetHeight - window.innerHeight;
-                var targetScroll = window.scrollY + pinWrapper.getBoundingClientRect().top + (i / totalPanels) * maxScroll + 10;
-                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+                openPanel(i);
             });
+            
+            // Allow arrow clicks
+            var prevBtn = panel.querySelector('.work-prev');
+            var nextBtn = panel.querySelector('.work-next');
+            if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); openPanel(i - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); openPanel(i + 1); });
         });
     }
 

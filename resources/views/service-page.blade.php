@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <base href="{{ url('/') }}/">
-    <title>{{ $heroSettings['heading'] ?? 'Social Media Management' }} | BlackLine Marketing</title>
-    <meta name="description" content="Strategy-led marketing and management services by BlackLine Marketing. We build brands that command attention.">
-    <meta name="keywords" content="social media management, marketing services, brand strategy, digital agency">
+    <title>{{ !empty($service->meta_title) ? $service->meta_title : ($heroSettings['heading'] ?? 'Social Media Management') . ' | BlackLine Marketing' }}</title>
+    <meta name="description" content="{{ !empty($service->meta_description) ? $service->meta_description : 'Strategy-led marketing and management services by BlackLine Marketing. We build brands that command attention.' }}">
+    <meta name="keywords" content="{{ !empty($service->meta_keywords) ? $service->meta_keywords : 'social media management, marketing services, brand strategy, digital agency' }}">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/service.css') }}">

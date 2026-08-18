@@ -36,6 +36,9 @@
             <button type="button" class="tab-btn" data-tab="video-tab">
                 <i data-feather="play-circle"></i> Case Study Video
             </button>
+            <button type="button" class="tab-btn" data-tab="seo-tab">
+                <i data-feather="search"></i> SEO Settings
+            </button>
         </div>
 
         <!-- Hero Tab -->
@@ -248,6 +251,27 @@
                 </small>
                 @endif
                 @error('video_file') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
+            </div>
+        </div>
+
+        <!-- SEO Tab -->
+        <div class="tab-content" id="seo-tab" style="display: none;">
+            <div class="form-group">
+                <label for="meta_title">Meta Title</label>
+                <input type="text" name="meta_title" id="meta_title" class="form-control" value="{{ old('meta_title', $page->meta_title) }}">
+                @error('meta_title') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="meta_keywords">Meta Keywords</label>
+                <input type="text" name="meta_keywords" id="meta_keywords" class="form-control" value="{{ old('meta_keywords', $page->meta_keywords) }}" placeholder="e.g. digital marketing, social media">
+                @error('meta_keywords') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
+            </div>
+            
+            <div class="form-group">
+                <label for="meta_description">Meta Description</label>
+                <textarea name="meta_description" id="meta_description" class="form-control" style="height: 100px;">{{ old('meta_description', $page->meta_description) }}</textarea>
+                @error('meta_description') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
             </div>
         </div>
 

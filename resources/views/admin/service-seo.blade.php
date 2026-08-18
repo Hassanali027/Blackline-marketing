@@ -8,13 +8,13 @@
         </a>
         <div>
             <h1 style="font-size: 24px; font-weight: 700;">Edit Service Page: <span style="color: var(--gold);">{{ $slug }}</span></h1>
-            <p>Configure the layout and sections of this service page.</p>
+            <p>Configure SEO tags for this service page.</p>
         </div>
     </div>
 </div>
 
 <div style="margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
-    <a href="{{ route('admin.services.hero', $slug) }}" class="btn-gold" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+    <a href="{{ route('admin.services.hero', $slug) }}" class="btn-ghost" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
         <i data-feather="layout"></i> Hero Section
     </a>
     <a href="{{ route('admin.services.overview', $slug) }}" class="btn-ghost" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
@@ -29,7 +29,7 @@
     <a href="{{ route('admin.services.pricing.index', $slug) }}" class="btn-ghost" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
         <i data-feather="dollar-sign"></i> Pricing Section
     </a>
-    <a href="{{ route('admin.services.seo', $slug) }}" class="btn-ghost" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
+    <a href="{{ route('admin.services.seo', $slug) }}" class="btn-gold" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
         <i data-feather="search"></i> SEO Settings
     </a>
 </div>
@@ -41,47 +41,29 @@
 @endif
 
 <div class="admin-card">
-    <form action="{{ route('admin.services.hero.update', $slug) }}" method="POST" enctype="multipart/form-data" class="admin-form">
+    <form action="{{ route('admin.services.seo.update', $slug) }}" method="POST" class="admin-form">
         @csrf
 
         <div class="form-group">
-            <label for="small_text">Badge</label>
-            <input type="text" name="small_text" id="small_text" class="form-control" value="{{ old('small_text', $heroSettings['small_text'] ?? '') }}" required>
-            @error('small_text') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
+            <label for="meta_title">Meta Title</label>
+            <input type="text" name="meta_title" id="meta_title" class="form-control" value="{{ old('meta_title', $service->meta_title) }}">
+            @error('meta_title') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>
 
         <div class="form-group">
-            <label for="heading">Main Heading</label>
-            <input type="text" name="heading" id="heading" class="form-control" value="{{ old('heading', $heroSettings['heading'] ?? '') }}" required>
-            @error('heading') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="btn_text">Button Text</label>
-            <input type="text" name="btn_text" id="btn_text" class="form-control" value="{{ old('btn_text', $heroSettings['btn_text'] ?? '') }}" required>
-            @error('btn_text') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
+            <label for="meta_keywords">Meta Keywords</label>
+            <input type="text" name="meta_keywords" id="meta_keywords" class="form-control" value="{{ old('meta_keywords', $service->meta_keywords) }}" placeholder="e.g. digital marketing, social media">
+            @error('meta_keywords') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>
         
         <div class="form-group">
-            <label for="btn_link">Button Link (URL or #id)</label>
-            <input type="text" name="btn_link" id="btn_link" class="form-control" value="{{ old('btn_link', $heroSettings['btn_link'] ?? '') }}" required>
-            @error('btn_link') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="image">Background Image</label>
-            <input type="file" name="image" id="image" class="form-control" accept="image/png, image/jpeg, image/webp">
-            @if(!empty($heroSettings['image']))
-                <small style="color: var(--muted); font-size: 13px; display: block; margin-top: 6px;">Current Image: {{ $heroSettings['image'] }}</small>
-                <div style="margin-top: 10px; max-width: 300px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                    <img src="{{ asset($heroSettings['image']) }}" alt="Hero Background" style="width: 100%; display: block;">
-                </div>
-            @endif
-            @error('image') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
+            <label for="meta_description">Meta Description</label>
+            <textarea name="meta_description" id="meta_description" class="form-control" style="height: 100px;">{{ old('meta_description', $service->meta_description) }}</textarea>
+            @error('meta_description') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>
 
         <div style="margin-top: 30px;">
-            <button type="submit" class="btn btn-gold">Save Settings</button>
+            <button type="submit" class="btn btn-gold">Save SEO Settings</button>
         </div>
     </form>
 </div>

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Portfolio | BlackLine Marketing</title>
-  <meta name="description" content="Explore our portfolio of successful digital marketing campaigns, branding projects, and web development case studies by BlackLine Marketing.">
-  <meta name="keywords" content="digital marketing portfolio, branding case studies, marketing projects, BlackLine Marketing work">
+  <title>{{ !empty($seo['meta_title']) ? $seo['meta_title'] : 'Portfolio | BlackLine Marketing' }}</title>
+  <meta name="description" content="{{ !empty($seo['meta_description']) ? $seo['meta_description'] : 'Explore our portfolio of successful digital marketing campaigns, branding projects, and web development case studies by BlackLine Marketing.' }}">
+  <meta name="keywords" content="{{ !empty($seo['meta_keywords']) ? $seo['meta_keywords'] : 'digital marketing portfolio, branding case studies, marketing projects, BlackLine Marketing work' }}">
+  <link rel="canonical" href="{{ url()->current() }}">
   <meta name="robots" content="index, follow">
 
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">

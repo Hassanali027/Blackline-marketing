@@ -11,7 +11,10 @@ class BlogController extends Controller
         $categories = \App\Models\Blog::select('category')->distinct()->pluck('category')->toArray();
         $blogs = \App\Models\Blog::latest()->get();
 
-        return view('blog', compact('categories', 'blogs'));
+        $seoSetting = \App\Models\Setting::where('key', 'seo_blogs')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('blog', compact('categories', 'blogs', 'seo'));
     }
 
     public function show($slug)

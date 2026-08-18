@@ -26,11 +26,17 @@ class HomeController extends Controller
         $caseStudies = CaseStudy::all();
         $feedbacks = Feedback::all();
 
-        return view('Home', compact('heroSettings', 'caseStudies', 'feedbacks'));
+        $seoSetting = Setting::where('key', 'seo_home')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('Home', compact('heroSettings', 'caseStudies', 'feedbacks', 'seo'));
     }
 
     public function contact()
     {
-        return view('contact');
+        $seoSetting = Setting::where('key', 'seo_contact')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('contact', compact('seo'));
     }
 }

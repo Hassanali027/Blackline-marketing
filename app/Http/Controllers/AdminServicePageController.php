@@ -173,6 +173,34 @@ class AdminServicePageController extends Controller
     }
 
     /**
+     * SEO Settings Edit
+     */
+    public function editSeo($slug)
+    {
+        $service = Service::where('slug', $slug)->firstOrFail();
+        return view('admin.service-seo', compact('service', 'slug'));
+    }
+
+    public function updateSeo(Request $request, $slug)
+    {
+        $service = Service::where('slug', $slug)->firstOrFail();
+
+        $request->validate([
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string'
+        ]);
+
+        $service->update([
+            'meta_title' => $request->meta_title,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords
+        ]);
+
+        return back()->with('success', 'SEO settings updated successfully!');
+    }
+
+    /**
      * Update Headers for Benefits, Process, Pricing
      */
     public function updateBenefitsHeader(Request $request, $slug)

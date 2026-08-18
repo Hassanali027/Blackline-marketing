@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Our Case Studies | BlackLine Marketing</title>
-  <meta name="description" content="Explore Black Line Marketing case studies. See how we transform brands, execute strategies, and deliver measurable results.">
+  <title>{{ !empty($seo['meta_title']) ? $seo['meta_title'] : 'Our Case Studies | BlackLine Marketing' }}</title>
+  <meta name="description" content="{{ !empty($seo['meta_description']) ? $seo['meta_description'] : 'Explore Black Line Marketing case studies. See how we transform brands, execute strategies, and deliver measurable results.' }}">
+  <meta name="keywords" content="{{ !empty($seo['meta_keywords']) ? $seo['meta_keywords'] : 'case studies, black line marketing, portfolio' }}">
+  <link rel="canonical" href="{{ url()->current() }}">
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   <link rel="stylesheet" href="{{ asset('css/casestudy.css') }}?v={{ time() }}">
   <style>

@@ -29,6 +29,9 @@ class PortfolioController extends Controller
 
         $faqs = \App\Models\Faq::whereJsonContains('pages', 'portfolio')->get();
 
-        return view('portfolio', compact('heroSettings', 'projects', 'industries', 'faqs'));
+        $seoSetting = Setting::where('key', 'seo_portfolio')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('portfolio', compact('heroSettings', 'projects', 'industries', 'faqs', 'seo'));
     }
 }

@@ -14,6 +14,9 @@ class FaqController extends Controller
             return $faq->category ?: 'General';
         });
 
-        return view('faqs', compact('faqs'));
+        $seoSetting = \App\Models\Setting::where('key', 'seo_faqs')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('faqs', compact('faqs', 'seo'));
     }
 }

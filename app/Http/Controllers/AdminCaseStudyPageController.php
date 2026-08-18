@@ -125,7 +125,11 @@ class AdminCaseStudyPageController extends Controller
             'work_motion_image_6' => 'nullable|image|max:10000',
             // Video Validation
             'video_thumbnail' => 'nullable|image|max:10000',
-            'video_file' => 'nullable|mimes:mp4,mov,ogg,qt,webm|max:100000'
+            'video_file' => 'nullable|mimes:mp4,mov,ogg,qt,webm|max:100000',
+            // SEO Validation
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string'
         ]);
 
         // Save Hero
@@ -209,6 +213,11 @@ class AdminCaseStudyPageController extends Controller
             $video['video_file'] = 'videos/' . $filename;
         }
         $page->video = $video;
+
+        // Save SEO
+        $page->meta_title = $request->meta_title;
+        $page->meta_description = $request->meta_description;
+        $page->meta_keywords = $request->meta_keywords;
 
         $page->save();
 

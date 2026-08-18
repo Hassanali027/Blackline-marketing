@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketing & Branding Blog | BlackLine Marketing</title>
-    <meta name="description" content="Read the latest insights, strategies, and industry news on digital marketing, social media, and branding from BlackLine Marketing.">
-    <meta name="keywords" content="marketing blog, digital marketing tips, branding strategies, social media news">
+    <title>{{ !empty($seo['meta_title']) ? $seo['meta_title'] : 'Marketing & Branding Blog | BlackLine Marketing' }}</title>
+    <meta name="description" content="{{ !empty($seo['meta_description']) ? $seo['meta_description'] : 'Read the latest insights, strategies, and industry news on digital marketing, social media, and branding from BlackLine Marketing.' }}">
+    <meta name="keywords" content="{{ !empty($seo['meta_keywords']) ? $seo['meta_keywords'] : 'marketing blog, digital marketing tips, branding strategies, social media news' }}">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">

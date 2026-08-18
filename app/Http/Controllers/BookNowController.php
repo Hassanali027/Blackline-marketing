@@ -18,7 +18,10 @@ class BookNowController extends Controller
                 return $items->pluck('time_slot');
             });
 
-        return view('booknow', compact('bookedSlots'));
+        $seoSetting = \App\Models\Setting::where('key', 'seo_book_now')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('booknow', compact('bookedSlots', 'seo'));
     }
 
     public function store(Request $request)

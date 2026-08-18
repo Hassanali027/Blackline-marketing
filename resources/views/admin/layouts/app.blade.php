@@ -45,6 +45,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.seo-settings') }}" class="{{ request()->routeIs('admin.seo-settings') ? 'active' : '' }}">
+                            <i data-feather="search"></i> <span>Static Pages SEO</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.authors.index') }}" class="{{ request()->routeIs('admin.authors.*') ? 'active' : '' }}">
                             <i data-feather="user"></i> <span>Authors</span>
                         </a>

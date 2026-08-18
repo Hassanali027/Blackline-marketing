@@ -82,6 +82,9 @@ Route::prefix('admin')->group(function () {
             Route::get('overview', [\App\Http\Controllers\AdminServicePageController::class, 'editOverview'])->name('admin.services.overview');
             Route::post('overview', [\App\Http\Controllers\AdminServicePageController::class, 'updateOverview'])->name('admin.services.overview.update');
 
+            Route::get('seo', [\App\Http\Controllers\AdminServicePageController::class, 'editSeo'])->name('admin.services.seo');
+            Route::post('seo', [\App\Http\Controllers\AdminServicePageController::class, 'updateSeo'])->name('admin.services.seo.update');
+
             Route::post('benefits/header', [\App\Http\Controllers\AdminServicePageController::class, 'updateBenefitsHeader'])->name('admin.services.benefits.header');
             Route::resource('benefits', \App\Http\Controllers\AdminServiceBenefitController::class)->names('admin.services.benefits')->except(['show']);
 
@@ -111,6 +114,10 @@ Route::prefix('admin')->group(function () {
             'update' => 'admin.authors.update',
             'destroy' => 'admin.authors.destroy',
         ]);
+
+        // SEO Settings
+        Route::get('seo-settings', [\App\Http\Controllers\AdminSeoController::class, 'edit'])->name('admin.seo-settings');
+        Route::post('seo-settings', [\App\Http\Controllers\AdminSeoController::class, 'update'])->name('admin.seo-settings.update');
 
         // Contact Settings
         Route::get('contact-settings', [\App\Http\Controllers\AdminContactSettingsController::class, 'edit'])->name('admin.contact-settings');

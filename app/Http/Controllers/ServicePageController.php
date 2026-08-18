@@ -40,7 +40,8 @@ class ServicePageController extends Controller
             'pricingHeader',
             'pricingPlans',
             'slug',
-            'faqs'
+            'faqs',
+            'service'
         ));
     }
 }

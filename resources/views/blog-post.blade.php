@@ -6,6 +6,7 @@
     <title>{{ $blog->meta_title ?? $blog->title }} | BlackLine Marketing</title>
     <meta name="description" content="{{ $blog->meta_description ?? Str::limit(strip_tags($blog->content), 150) }}">
     <meta name="keywords" content="{{ $blog->meta_keywords ?? 'blog, marketing, branding' }}">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/blog-post.css') }}">

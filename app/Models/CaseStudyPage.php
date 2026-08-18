@@ -13,7 +13,8 @@ class CaseStudyPage extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id', 'title', 'slug', 'hero', 'challenge', 'strategy', 'work_motion', 'video'
+        'id', 'title', 'slug', 'hero', 'challenge', 'strategy', 'work_motion', 'video',
+        'meta_title', 'meta_description', 'meta_keywords'
     ];
 
     protected $casts = [

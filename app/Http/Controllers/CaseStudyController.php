@@ -12,7 +12,10 @@ class CaseStudyController extends Controller
         // For the main /case-study page, we might want to list all case studies
         // or redirect. For now, let's list them or fetch the first one.
         $pages = CaseStudyPage::all();
-        return view('case-study-index', compact('pages')); // if this view doesn't exist, we'll create a simple one or just show the first page.
+        $seoSetting = \App\Models\Setting::where('key', 'seo_case_studies')->first();
+        $seo = $seoSetting ? $seoSetting->value : null;
+
+        return view('case-study-index', compact('pages', 'seo'));
     }
 
     public function show($slug)

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frequently Asked Questions | Black Line Marketing</title>
-    <meta name="description" content="Find answers to commonly asked questions about Black Line Marketing's services, pricing, process, and more.">
-    <meta name="keywords" content="marketing FAQs, agency questions, digital marketing pricing, marketing process, Black Line Marketing">
+    <title>{{ !empty($seo['meta_title']) ? $seo['meta_title'] : 'Frequently Asked Questions | Black Line Marketing' }}</title>
+    <meta name="description" content="{{ !empty($seo['meta_description']) ? $seo['meta_description'] : 'Find answers to commonly asked questions about Black Line Marketing\'s services, pricing, process, and more.' }}">
+    <meta name="keywords" content="{{ !empty($seo['meta_keywords']) ? $seo['meta_keywords'] : 'marketing FAQs, agency questions, digital marketing pricing, marketing process, Black Line Marketing' }}">
+    <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -14,7 +14,8 @@ class Service extends Model
 
     protected $fillable = [
         'id', 'title', 'slug', 'hero', 'overview', 'benefits_header', 'benefits',
-        'process_header', 'process', 'pricing_header', 'pricing'
+        'process_header', 'process', 'pricing_header', 'pricing',
+        'meta_title', 'meta_description', 'meta_keywords'
     ];
 
     protected $casts = [

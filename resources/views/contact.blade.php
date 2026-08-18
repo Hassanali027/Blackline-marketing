@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact Us — Black Line Marketing</title>
-<meta name="description" content="Get in touch with Black Line Marketing.">
+<title>{{ !empty($seo['meta_title']) ? $seo['meta_title'] : 'Contact Us — Black Line Marketing' }}</title>
+<meta name="description" content="{{ !empty($seo['meta_description']) ? $seo['meta_description'] : 'Get in touch with Black Line Marketing.' }}">
+<meta name="keywords" content="{{ !empty($seo['meta_keywords']) ? $seo['meta_keywords'] : 'contact, black line marketing' }}">
+<link rel="canonical" href="{{ url()->current() }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
