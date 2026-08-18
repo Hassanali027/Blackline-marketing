@@ -48,7 +48,7 @@
                         <div class="blog-card-content">
                             <h3 class="blog-card-title">{{ $blog->title }}</h3>
                             <p class="blog-card-excerpt">{{ Str::limit($blog->short_description, 100) }}</p>
-                            <p class="blog-card-meta">{{ $blog->created_at->format('M d, Y') }}</p>
+                            <p class="blog-card-meta">{{ $blog->created_at->format('M d') }} &bull; {{ ceil(str_word_count(strip_tags($blog->content ?? $blog->short_description ?? '')) / 200) ?: 5 }} min read</p>
                         </div>
                     </a>
                     @empty
