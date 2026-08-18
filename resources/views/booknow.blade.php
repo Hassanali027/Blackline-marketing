@@ -137,6 +137,9 @@
       outline: none;
       resize: none;
   }
+  .form-group textarea {
+      min-height: 60px;
+  }
   .form-group input:focus, .form-group textarea:focus { 
       border-bottom-color: var(--gold, #d4af37); 
       color: #ffffff !important;
@@ -399,7 +402,7 @@
                 </div>
                 <div class="form-group">
                     <label>Additional notes</label>
-                    <textarea rows="1" name="notes" placeholder="Please share anything that will help prepare for our meeting." spellcheck="false"></textarea>
+                    <textarea rows="3" name="notes" placeholder="Please share anything that will help prepare for our meeting." spellcheck="false"></textarea>
                 </div>
                 <p class="terms-text">By proceeding, you confirm that you have read and agree to <a href="#">Calendly's Participant Terms</a> and <a href="#">Privacy Notice</a>.</p>
                 <button type="submit" class="schedule-btn">Book a Discovery Call</button>
