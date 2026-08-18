@@ -119,21 +119,6 @@
         var slides = track.children.length;
         var dots = Array.prototype.slice.call(document.querySelectorAll('#tDots .dot'));
         var index = 0;
-        var autoplayTimer;
-
-        function startAutoplay() {
-            stopAutoplay();
-            autoplayTimer = setInterval(function() {
-                var isVideoPlaying = track.querySelector('.testi-media.is-playing-video');
-                if (!isVideoPlaying) {
-                    goTo(index + 1);
-                }
-            }, 4000); // Auto scroll every 4 seconds
-        }
-
-        function stopAutoplay() {
-            if (autoplayTimer) clearInterval(autoplayTimer);
-        }
 
         function goTo(i) {
             index = (i + slides) % slides;
@@ -149,8 +134,6 @@
                     v.currentTime = 0;
                 }
             });
-            
-            startAutoplay(); // Reset timer on manual interaction
         }
 
         dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });

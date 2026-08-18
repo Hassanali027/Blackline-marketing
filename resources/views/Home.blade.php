@@ -665,6 +665,8 @@ button {
 .work {
     padding-top: clamp(40px, 8vh, 100px);
     padding-bottom: 40px;
+    position: sticky;
+    top: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -841,7 +843,7 @@ button {
     transition: opacity .45s var(--ease) .15s;
 }
 
-/* .work-panel.is-open .work-nav-arrows {
+.work-panel.is-open .work-nav-arrows {
     opacity: 1;
     pointer-events: auto;
 }
@@ -849,22 +851,6 @@ button {
 .work-panel.is-playing-video .work-nav-arrows {
     opacity: 0 !important;
     pointer-events: none !important;
-} */
-
-@media (max-width: 768px) {
-    .work-body {
-        padding: 0 20px 24px 20px; /* Reduced left/bottom padding for mobile */
-    }
-    .work-nav-arrows {
-        bottom: 24px;
-        right: 20px;
-    }
-    .work-panel.is-open {
-        height: 520px; /* Give it a bit more height on mobile to fit the text + button */
-    }
-    .work-body h3 {
-        font-size: 24px;
-    }
 }
 
 .work-arrow {
@@ -1230,7 +1216,7 @@ button {
 }
 
 .tri {
-    fill: #111111
+    fill: #28282B
 }
 
 .step-txt {
@@ -1247,10 +1233,10 @@ button {
     stroke-width: 1.6
 }
 
-.conn-1 { d: path("M 240 150 L 290 150 C 330 150 380 90 451 60"); }
-.conn-2 { d: path("M 1002 150 L 952 150 C 912 150 862 90 791 60"); }
-.conn-3 { d: path("M 240 310 L 290 310 C 330 310 380 370 451 400"); }
-.conn-4 { d: path("M 1002 310 L 952 310 C 912 310 862 370 791 400"); }
+.conn-1 { d: path("M 230 150 L 325 150 Q 350 150 369 133 L 451 60"); }
+.conn-2 { d: path("M 1012 150 L 917 150 Q 892 150 873 133 L 791 60"); }
+.conn-3 { d: path("M 230 310 L 325 310 Q 350 310 369 327 L 451 400"); }
+.conn-4 { d: path("M 1012 310 L 917 310 Q 892 310 873 327 L 791 400"); }
 
 .node {
     fill: #FAF9F6
@@ -1343,15 +1329,14 @@ button {
     margin-top: 6px;
 }
 
-.ring-label p {
-    width: 190px;
-    left: 50%;
-    margin-left: -95px;
-    text-align: justify;
-    text-align-last: center;
-    white-space: normal;
-    font-size: clamp(13px, 1.1vw, 16px);
-    line-height: 1.4;
+.lbl-strategy p,
+.lbl-results p {
+    right: -140px;
+}
+
+.lbl-story p,
+.lbl-exec p {
+    left: -140px;
 }
 
 /* Description Hover Animations */
@@ -2256,10 +2241,10 @@ button {
         <use href="#p4" class="arc" stroke="url(#g4)"/>
 
         <!-- flow arrows -->
-        <polygon class="tri" transform="rotate(-16, 565, 44.2)" points="561,38 573,44.2 561,50.4"/>
-        <polygon class="tri" transform="rotate(-16, 806.8, 175)" points="800.8,171 806.8,183 812.8,171"/>
-        <polygon class="tri" transform="rotate(-16, 675, 415.8)" points="679,409.8 667,415.8 679,421.8"/>
-        <polygon class="tri" transform="rotate(-16, 435.2, 285)" points="429.2,289 435.2,277 441.2,289"/>
+        <polygon class="tri" points="561,38 573,44.2 561,50.4"/>
+        <polygon class="tri" points="800.8,171 806.8,183 812.8,171"/>
+        <polygon class="tri" points="679,409.8 667,415.8 679,421.8"/>
+        <polygon class="tri" points="429.2,289 435.2,277 441.2,289"/>
 
         <text class="step-txt"><textPath href="#p1" startOffset="50%" text-anchor="middle">Step 1</textPath></text>
         <text class="step-txt"><textPath href="#p2" startOffset="50%" text-anchor="middle">Step 2</textPath></text>
@@ -2304,13 +2289,16 @@ button {
 
     /* Mobile nav logic is now handled in components/header.blade.php */
 
-    /* ---------- Work accordion (Hover Pinned) ---------- */
+    /* ---------- Work accordion (Scroll Pinned) ---------- */
     var strip = document.getElementById('workStrip');
     var pinWrapper = document.getElementById('workPinWrapper');
     if (strip && pinWrapper) {
         var panels = Array.prototype.slice.call(strip.querySelectorAll('.work-panel'));
-        var totalPanels = panels.length;
         
+        var totalPanels = panels.length;
+        // Provide enough scroll space to cycle through panels
+        pinWrapper.style.height = (totalPanels * 100) + 'vh';
+
         function openPanel(i) {
             i = (i + totalPanels) % totalPanels;
             panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
@@ -2320,38 +2308,39 @@ button {
             return panels.findIndex(function (p) { return p.classList.contains('is-open'); });
         }
 
-        var isThrottled = false;
-        
-        window.addEventListener('wheel', function (e) {
-            var activePanel = e.target.closest('.work-panel.is-open');
-            if (activePanel) {
-                var rect = pinWrapper.getBoundingClientRect();
-                // Allow hijacking only if section is mostly in view
-                if (Math.abs(rect.top) < window.innerHeight * 0.5) {
-                    var index = currentIndex();
-                    
-                    if (e.deltaY > 0 && index < totalPanels - 1) {
-                        e.preventDefault();
-                        if (!isThrottled) {
-                            openPanel(index + 1);
-                            isThrottled = true;
-                            setTimeout(function() { isThrottled = false; }, 800);
-                        }
-                    } else if (e.deltaY < 0 && index > 0) {
-                        e.preventDefault();
-                        if (!isThrottled) {
-                            openPanel(index - 1);
-                            isThrottled = true;
-                            setTimeout(function() { isThrottled = false; }, 800);
-                        }
-                    }
+        window.addEventListener('scroll', function () {
+            var rect = pinWrapper.getBoundingClientRect();
+            var windowHeight = window.innerHeight;
+            
+            if (rect.top <= 0 && rect.bottom >= windowHeight) {
+                var scrolled = -rect.top;
+                var maxScroll = rect.height - windowHeight;
+                if (maxScroll <= 0) maxScroll = 1;
+                
+                var progress = scrolled / maxScroll;
+                var newIndex = Math.floor(progress * totalPanels);
+                
+                if (newIndex >= totalPanels) newIndex = totalPanels - 1;
+                if (newIndex < 0) newIndex = 0;
+                
+                if (newIndex !== currentIndex()) {
+                    openPanel(newIndex);
                 }
+            } else if (rect.top > 0) {
+                if (currentIndex() !== 0) openPanel(0);
+            } else if (rect.bottom < windowHeight) {
+                if (currentIndex() !== totalPanels - 1) openPanel(totalPanels - 1);
             }
-        }, { passive: false });
+        }, { passive: true });
+
         panels.forEach(function (panel, i) {
             panel.addEventListener('click', function (e) {
                 if (e.target.closest('.play')) return;
-                openPanel(i);
+                
+                // If clicked, scroll the page to that panel's specific scroll offset
+                var maxScroll = pinWrapper.offsetHeight - window.innerHeight;
+                var targetScroll = window.scrollY + pinWrapper.getBoundingClientRect().top + (i / totalPanels) * maxScroll + 10;
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
             });
         });
     }
@@ -2362,7 +2351,6 @@ button {
         var slides = track.children.length;
         var dots = Array.prototype.slice.call(document.querySelectorAll('#tDots .dot'));
         var index = 0;
-        var autoPlayInterval;
 
         function goTo(i) {
             index = (i + slides) % slides;
@@ -2370,46 +2358,24 @@ button {
             dots.forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
         }
 
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(function() {
-                goTo(index + 1);
-            }, 4000); // 4 seconds
-        }
-
-        function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-        }
-
-        function resetAutoPlay() {
-            stopAutoPlay();
-            startAutoPlay();
-        }
-
-        dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); resetAutoPlay(); }); });
+        dots.forEach(function (d, i) { d.addEventListener('click', function () { goTo(i); }); });
 
         var tPrev = document.getElementById('tPrev');
         var tNext = document.getElementById('tNext');
-        if (tPrev) tPrev.addEventListener('click', function () { goTo(index - 1); resetAutoPlay(); });
-        if (tNext) tNext.addEventListener('click', function () { goTo(index + 1); resetAutoPlay(); });
+        if (tPrev) tPrev.addEventListener('click', function () { goTo(index - 1); });
+        if (tNext) tNext.addEventListener('click', function () { goTo(index + 1); });
 
         /* swipe on touch devices */
         var startX = null;
-        track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; stopAutoPlay(); }, { passive: true });
+        track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
         track.addEventListener('touchend', function (e) {
-            if (startX !== null) {
-                var dx = e.changedTouches[0].clientX - startX;
-                if (Math.abs(dx) > 50) goTo(index + (dx < 0 ? 1 : -1));
-                startX = null;
-            }
-            startAutoPlay();
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 50) goTo(index + (dx < 0 ? 1 : -1));
+            startX = null;
         });
 
-        // Pause on hover
-        track.parentElement.addEventListener('mouseenter', stopAutoPlay);
-        track.parentElement.addEventListener('mouseleave', startAutoPlay);
-
         goTo(0);
-        startAutoPlay();
     }
 
     /* ---------- Newsletter (demo only) ---------- */
