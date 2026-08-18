@@ -841,7 +841,7 @@ button {
     transition: opacity .45s var(--ease) .15s;
 }
 
-/* .work-panel.is-open .work-nav-arrows {
+.work-panel.is-open .work-nav-arrows {
     opacity: 1;
     pointer-events: auto;
 }
@@ -849,7 +849,7 @@ button {
 .work-panel.is-playing-video .work-nav-arrows {
     opacity: 0 !important;
     pointer-events: none !important;
-} */
+}
 
 .work-arrow {
     width: 44px;
@@ -1209,25 +1209,25 @@ button {
 
 .arc {
     fill: none;
-    stroke-width: 50.2;
+    stroke-width: 54px;
     stroke-linecap: round;
     transition: filter 0.3s var(--ease);
 }
 
 .arc:hover,
 .arc.is-hovered {
-    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+    filter: drop-shadow(0 0 12px rgba(244, 210, 102, 0.6));
 }
 
 .tri {
-    fill: #28282B
+    fill: #000000;
 }
 
 .step-txt {
     font-family: 'Neue Montreal', 'Helvetica Now', Canela, 'PP Editorial', sans-serif;
     font-size: 19px;
     font-weight: 800;
-    fill: #28282B;
+    fill: #000000;
     letter-spacing: .01em;
 }
 
@@ -1237,10 +1237,10 @@ button {
     stroke-width: 1.6
 }
 
-.conn-1 { d: path("M 230 150 L 325 150 Q 350 150 369 133 L 451 60"); }
-.conn-2 { d: path("M 1012 150 L 917 150 Q 892 150 873 133 L 791 60"); }
-.conn-3 { d: path("M 230 310 L 325 310 Q 350 310 369 327 L 451 400"); }
-.conn-4 { d: path("M 1012 310 L 917 310 Q 892 310 873 327 L 791 400"); }
+.conn-1 { d: path("M 312 206 L 364 206 C 374 206, 382 200, 385.5 192 A 240 240 0 0 1 467 46"); }
+.conn-2 { d: path("M 930 206 L 878 206 C 868 206, 860 200, 856.5 192 A 240 240 0 0 0 775 46"); }
+.conn-3 { d: path("M 312 254 L 364 254 C 374 254, 382 260, 385.5 268 A 240 240 0 0 0 467 414"); }
+.conn-4 { d: path("M 930 254 L 878 254 C 868 254, 860 260, 856.5 268 A 240 240 0 0 1 775 414"); }
 
 .node {
     fill: #FAF9F6
@@ -1295,14 +1295,14 @@ button {
 /* Base text alignments */
 .lbl-strategy,
 .lbl-results {
-    right: 82.5%;
-    text-align: center;
+    right: 76%;
+    text-align: right;
 }
 
 .lbl-story,
 .lbl-exec {
-    left: 82.5%;
-    text-align: center;
+    left: 76%;
+    text-align: left;
 }
 
 /* Hover Outwards (translate) */
@@ -1342,12 +1342,12 @@ button {
 
 .lbl-strategy p,
 .lbl-results p {
-    right: -140px;
+    right: 0;
 }
 
 .lbl-story p,
 .lbl-exec p {
-    left: -140px;
+    left: 0;
 }
 
 /* Description Hover Animations */
@@ -1370,12 +1370,12 @@ button {
 
 .lbl-strategy,
 .lbl-story {
-    top: 32.6%;
+    top: 44.8%;
 }
 
 .lbl-results,
 .lbl-exec {
-    top: 67.4%;
+    top: 55.2%;
 }
 
 /* compact step list (small screens) */
@@ -2244,10 +2244,10 @@ button {
 
       <svg class="ring" viewBox="0 0 1242 460" role="img" aria-label="Four step process">
         <defs>
-          <linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F6DE96"/><stop offset="1" stop-color="#FBE7AA"/></linearGradient>
-          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBE7AA"/><stop offset="1" stop-color="#F3D77D"/></linearGradient>
-          <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0D073"/><stop offset="1" stop-color="#E7C76C"/></linearGradient>
-          <linearGradient id="g4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#E4C169"/><stop offset="1" stop-color="#DDBB63"/></linearGradient>
+          <linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F4D266"/><stop offset="1" stop-color="#F7DC84"/></linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7DC84"/><stop offset="1" stop-color="#F4D266"/></linearGradient>
+          <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4D266"/><stop offset="1" stop-color="#EFC954"/></linearGradient>
+          <linearGradient id="g4" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#EFC954"/><stop offset="1" stop-color="#F4D266"/></linearGradient>
 
           <path id="p1" d="M 433.2 200.9 A 190 190 0 0 1 591.9 42.2"/>
           <path id="p2" d="M 650.1 42.2 A 190 190 0 0 1 808.8 200.9"/>
@@ -2261,10 +2261,10 @@ button {
         <use href="#p4" class="arc" stroke="url(#g4)"/>
 
         <!-- flow arrows -->
-        <polygon class="tri" points="561,38 573,44.2 561,50.4"/>
-        <polygon class="tri" points="800.8,171 806.8,183 812.8,171"/>
-        <polygon class="tri" points="679,409.8 667,415.8 679,421.8"/>
-        <polygon class="tri" points="429.2,289 435.2,277 441.2,289"/>
+        <polygon class="tri" points="563,35 577,42.2 563,49.4"/>
+        <polygon class="tri" points="801.6,173 808.8,187 816,173"/>
+        <polygon class="tri" points="677,410.6 663,417.8 677,425"/>
+        <polygon class="tri" points="426,287 433.2,273 440.4,287"/>
 
         <text class="step-txt"><textPath href="#p1" startOffset="50%" text-anchor="middle">Step 1</textPath></text>
         <text class="step-txt"><textPath href="#p2" startOffset="50%" text-anchor="middle">Step 2</textPath></text>
@@ -2272,14 +2272,14 @@ button {
         <text class="step-txt"><textPath href="#p4" startOffset="50%" text-anchor="middle">Step 4</textPath></text>
 
         <!-- connectors -->
-        <path class="conn conn-1"/>
-        <path class="conn conn-2"/>
-        <path class="conn conn-3"/>
-        <path class="conn conn-4"/>
-        <circle class="node" cx="451" cy="60" r="5.5"/>
-        <circle class="node" cx="791" cy="60" r="5.5"/>
-        <circle class="node" cx="451" cy="400" r="5.5"/>
-        <circle class="node" cx="791" cy="400" r="5.5"/>
+        <path class="conn conn-1" d="M 312 206 L 364 206 C 374 206, 382 200, 385.5 192 A 240 240 0 0 1 467 46"/>
+        <path class="conn conn-2" d="M 930 206 L 878 206 C 868 206, 860 200, 856.5 192 A 240 240 0 0 0 775 46"/>
+        <path class="conn conn-3" d="M 312 254 L 364 254 C 374 254, 382 260, 385.5 268 A 240 240 0 0 0 467 414"/>
+        <path class="conn conn-4" d="M 930 254 L 878 254 C 868 254, 860 260, 856.5 268 A 240 240 0 0 1 775 414"/>
+        <circle class="node" cx="467" cy="46" r="5.5"/>
+        <circle class="node" cx="775" cy="46" r="5.5"/>
+        <circle class="node" cx="467" cy="414" r="5.5"/>
+        <circle class="node" cx="775" cy="414" r="5.5"/>
       </svg>
 
       <div class="ring-core">

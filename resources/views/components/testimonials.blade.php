@@ -4,7 +4,9 @@
     <h2 class="h2 center">Real feedback from brands we've built with</h2>
 
     <div class="testi-wrap">
-
+      <button class="testi-arrow" id="tPrev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
 
       <div class="testi-viewport">
         <div class="testi-track" id="tTrack">
@@ -26,6 +28,10 @@
           @endforeach
         </div>
       </div>
+
+      <button class="testi-arrow" id="tNext" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
 
     <div class="dots" id="tDots">
