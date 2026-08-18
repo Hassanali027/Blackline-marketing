@@ -81,8 +81,7 @@
           <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
           <li><a href="{{ route('blogs') }}">Blogs</a></li>
           <li><a href="{{ route('faqs') }}">FAQ's</a></li>
-          <li><a href="#">Support</a></li>
-          <li><a href="#">Legal</a></li>
+          
         @endif
       </ul>
     </div>

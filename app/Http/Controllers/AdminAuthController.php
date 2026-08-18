@@ -50,6 +50,12 @@ class AdminAuthController extends Controller
     
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $stats = [
+            'services' => \App\Models\Service::count(),
+            'portfolio' => \App\Models\PortfolioItem::count(),
+            'blogs' => \App\Models\Blog::count(),
+            'appointments' => \App\Models\Appointment::count(),
+        ];
+        return view('admin.dashboard', compact('stats'));
     }
 }

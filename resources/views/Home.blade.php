@@ -851,6 +851,12 @@ button {
     pointer-events: none !important;
 }
 
+.work-action-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .work-arrow {
     width: 44px;
     height: 44px;
@@ -1835,7 +1841,7 @@ button {
     }
 
     .work-panel.is-open .play {
-        top: 30%;
+        top: 110px; /* Vertically center on the video which sits at the top */
         width: 64px;
         height: 64px
     }
@@ -1868,6 +1874,16 @@ button {
         height: 100%;
     }
 
+    .work-nav-arrows {
+        position: static;
+    }
+
+    .work-panel>img,
+    .work-panel>video {
+        object-fit: contain;
+        object-position: center top;
+    }
+
     .work-vtitle {
         display: none;
     }
@@ -1885,6 +1901,12 @@ button {
 
     .news-form {
         flex: 1 1 auto
+    }
+
+    .work-panel.is-playing-video .work-body,
+    .work-panel.is-playing-video .work-nav-arrows {
+        opacity: 1 !important;
+        pointer-events: auto !important;
     }
 }
 
@@ -2170,7 +2192,7 @@ button {
         <div class="work-strip" id="workStrip">
       @foreach($caseStudies as $index => $study)
       <article class="work-panel {{ $index === 0 ? 'is-open' : '' }}" data-title="{{ $study['title'] }}">
-        <video src="{{ asset($study['video'] ?? 'videos/work-first-video.mp4') }}" muted playsinline></video>
+        <video src="{{ asset($study['video'] ?? 'videos/work-first-video.mp4') }}#t=0.001" preload="metadata" muted playsinline></video>
         <span class="work-vtitle">{{ $study['title'] }}</span>
         <button class="play" aria-label="Play showreel">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
@@ -2179,14 +2201,16 @@ button {
           <h3>{{ $study['title'] }}</h3>
           <p class="work-metric">{{ $study['metric'] }}</p>
           <p class="work-desc">{{ $study['description'] }}</p>
-          <a href="{{ $study['btn_link'] ?? '#' }}" class="btn btn-gold btn-sm">{{ $study['btn_text'] ?? 'View Case Study' }}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-        
-        <div class="work-nav-arrows">
-          <button class="work-arrow work-prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-          <button class="work-arrow work-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          <div class="work-action-row">
+            <a href="{{ $study['btn_link'] ?? '#' }}" class="btn btn-gold btn-sm">{{ $study['btn_text'] ?? 'View Case Study' }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            
+            <div class="work-nav-arrows">
+              <button class="work-arrow work-prev" aria-label="Previous" {!! $index === 0 ? 'style="display:none;"' : '' !!}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="work-arrow work-next" aria-label="Next" {!! $index === count($caseStudies) - 1 ? 'style="display:none;"' : '' !!}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
+          </div>
         </div>
 
         <button class="work-plus" aria-label="Open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
@@ -2318,12 +2342,57 @@ button {
 
         function openPanel(i) {
             i = (i + totalPanels) % totalPanels;
-            panels.forEach(function (p, n) { p.classList.toggle('is-open', n === i); });
+            panels.forEach(function (p, n) { 
+                var isOpening = (n === i);
+                p.classList.toggle('is-open', isOpening); 
+                
+                // Stop video if the panel is closing
+                if (!isOpening && p.classList.contains('is-playing-video')) {
+                    p.classList.remove('is-playing-video');
+                    var vid = p.querySelector('video');
+                    if (vid) {
+                        vid.pause();
+                        vid.currentTime = 0;
+                    }
+                }
+
+                var prev = p.querySelector('.work-prev');
+                var next = p.querySelector('.work-next');
+                if (prev) prev.style.display = (n === 0) ? 'none' : 'flex';
+                if (next) next.style.display = (n === totalPanels - 1) ? 'none' : 'flex';
+            });
         }
 
         panels.forEach(function (panel, i) {
             panel.addEventListener('click', function (e) {
-                if (e.target.closest('.play')) return;
+                // If the panel is currently playing a video and it's clicked, pause it.
+                if (panel.classList.contains('is-playing-video')) {
+                    var video = panel.querySelector('video');
+                    if (video) {
+                        panel.classList.remove('is-playing-video');
+                        video.pause();
+                    }
+                    return;
+                }
+
+                var playBtn = e.target.closest('.play');
+                if (playBtn) {
+                    var video = panel.querySelector('video');
+                    if (video) {
+                        panel.classList.add('is-playing-video');
+                        video.muted = false;
+                        video.loop = false;
+                        video.currentTime = 0;
+                        video.play();
+                        
+                        video.onended = function() {
+                            panel.classList.remove('is-playing-video');
+                            video.currentTime = 0;
+                        };
+                    }
+                    return;
+                }
+
                 openPanel(i);
             });
             
@@ -2456,7 +2525,7 @@ button {
                 
                 const text1 = 'Work';
                 const text2 = ' That Speaks Louder Than Words';
-                const text3 = 'Three brands, three categories, one shared outcome: attention that turned into revenue.';
+                const text3 = 'Four brands, four categories, one shared outcome: attention that turned into revenue.';
                 
                 let i = 0;
                 let j = 0;
