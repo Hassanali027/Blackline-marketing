@@ -776,6 +776,7 @@ dia img {
 .work-panel.is-open .work-body {
     opacity: 1;
     transform: none;
+    margin-bottom: 10px;
     pointer-events: auto
 }
 
@@ -1795,7 +1796,8 @@ dia img {
 
     .work-body {
         padding: 0 26px 30px;
-        max-width: none
+        max-width: none;
+        bottom: 30px;
     }
 
     .news-grid {
