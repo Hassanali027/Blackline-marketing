@@ -28,7 +28,7 @@ class AdminBlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required',
             'author_id' => 'nullable|exists:authors,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|file',
         ]);
 
         $slug = Str::slug($request->title);
@@ -74,7 +74,7 @@ class AdminBlogController extends Controller
             'category' => 'required|string|max:255',
             'content' => 'required',
             'author_id' => 'nullable|exists:authors,id',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|file',
         ]);
 
         $slug = Str::slug($request->title);
