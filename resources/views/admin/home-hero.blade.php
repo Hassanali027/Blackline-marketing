@@ -37,7 +37,7 @@
         <div class="form-group">
             <label for="primary_word">Primary (Gold) Word</label>
             <input type="text" name="primary_word" id="primary_word" class="form-control" value="{{ old('primary_word', $settings['primary_word']) }}">
-            <small style="color: var(--muted); font-size: 13px; display: block; margin-top: 6px;">This word in the heading will automatically be colored gold.</small>
+            <small style="color: var(--muted); font-size: 13px; display: block; margin-top: 6px;">This word will be colored gold. If it's not already in your main heading, it will be added at the end automatically.</small>
             @error('primary_word') <span class="error" style="color: #F44336; font-size: 13px;">{{ $message }}</span> @enderror
         </div>
 

@@ -27,7 +27,7 @@
     --gold-line: #4B4430;
     --gold-line-hover: #C9A961;
 
-    --grad-gold: linear-gradient(90deg, #B0854A 0%, #E8C988 42%, #E4C982 58%, #BB9362 100%);
+    --grad-gold: linear-gradient(110deg, rgba(175, 132, 69, 1) 0%, rgba(232, 201, 136, 1) 33%, rgba(229, 202, 131, 1) 66%, rgba(175, 132, 69, 1) 100%);
     --grad-gold-text: linear-gradient(100deg, #BC9554 0%, #E9CE8B 45%, #E5CA83 60%, #C09A5C 100%);
 
     --container: 1242px;
@@ -1725,14 +1725,18 @@ button {
         padding: 40px 24px 40px; /* Reduced bottom padding */
         margin: 0;
         transform: translateY(-120%);
-        transition: transform .4s var(--ease);
+        transition: transform .4s var(--ease), visibility .4s var(--ease);
         z-index: 55;
         overflow-y: auto; /* Allow scrolling inside the menu if content exceeds screen */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        visibility: hidden;
+        pointer-events: none;
     }
 
     .nav.is-open {
-        transform: none
+        transform: none;
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .nav-list {
@@ -2000,7 +2004,11 @@ button {
         $heading = $heroSettings['heading'] ?? 'Where Brands<br>Become Icons';
         $primaryWord = $heroSettings['primary_word'] ?? 'Icons';
         if ($primaryWord) {
-            $heading = preg_replace('/(' . preg_quote($primaryWord, '/') . ')/i', '<span class="gold">$1</span>', $heading, 1);
+            if (stripos($heading, $primaryWord) !== false) {
+                $heading = preg_replace('/(' . preg_quote($primaryWord, '/') . ')/i', '<span class="gold">$1</span>', $heading, 1);
+            } else {
+                $heading .= ' <span class="gold">' . htmlspecialchars($primaryWord) . '</span>';
+            }
         }
     @endphp
     <h1 class="hero-title">{!! $heading !!}</h1>
@@ -2396,36 +2404,7 @@ button {
 
 @include('components.footer')
 
-<!-- Custom Cursor Element -->
-<div class="custom-cursor"></div>
 
-<style>
-    .custom-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 30px;
-        height: 30px;
-        border: 2px solid var(--gold); /* Primary gold color */
-        border-radius: 50%; /* Make it round */
-        pointer-events: none; /* Allows clicking through it */
-        transform: translate(-50%, -50%); /* Centers the gap exactly on the mouse point */
-        z-index: 99999; /* Ensure it's on top of everything */
-        transition: transform 0.15s ease-out, width 0.2s, height 0.2s, background-color 0.2s; /* Smooth delay effect */
-        box-shadow: 0 0 8px rgba(229, 202, 131, 0.3); /* Slight glow matching the gold color */
-    }
-    .custom-cursor.cursor-hover {
-        width: 60px;
-        height: 60px;
-        background-color: rgba(229, 202, 131, 0.15); /* Slight fill inside the circle */
-    }
-    .custom-cursor.cursor-black {
-        border-color: #000;
-    }
-    .custom-cursor.cursor-primary {
-        border-color: var(--gold) !important;
-    }
-</style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -2460,50 +2439,7 @@ button {
             setTimeout(updateSticky, 500);
         }
 
-        const cursor = document.querySelector('.custom-cursor');
-        
-        // Update circle position on mouse move
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
 
-        // Add visual feedback on click (shrinks the circle slightly)
-        document.addEventListener('mousedown', () => {
-            if (!cursor.classList.contains('cursor-hover')) {
-                cursor.style.transform = 'translate(-50%, -50%) scale(0.7)';
-            } else {
-                cursor.style.transform = 'translate(-50%, -50%) scale(0.9)'; // less shrink if already large
-            }
-        });
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        });
-
-        // Hover effect on buttons, links, and cards using event delegation
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest('a, button, .card, .btn')) {
-                cursor.classList.add('cursor-hover');
-            }
-            if (e.target.closest('.card')) {
-                cursor.classList.add('cursor-black');
-            }
-            if (e.target.closest('.pill-arrow')) {
-                cursor.classList.add('cursor-primary');
-            }
-        });
-
-        document.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget || !e.relatedTarget.closest('a, button, .card, .btn')) {
-                cursor.classList.remove('cursor-hover');
-            }
-            if (!e.relatedTarget || !e.relatedTarget.closest('.card')) {
-                cursor.classList.remove('cursor-black');
-            }
-            if (!e.relatedTarget || !e.relatedTarget.closest('.pill-arrow')) {
-                cursor.classList.remove('cursor-primary');
-            }
-        });
 
         // Typing and slide-up animation for work section
         const workSection = document.getElementById('work');

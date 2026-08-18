@@ -11,6 +11,18 @@
     </a>
 </div>
 
+<div style="margin-bottom: 30px; display: flex; gap: 15px;">
+    <a href="{{ route('admin.home-hero') }}" class="btn-ghost" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
+        <i data-feather="layout"></i> Hero Section
+    </a>
+    <a href="{{ route('admin.case-studies.index') }}" class="btn-gold" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
+        <i data-feather="video"></i> Case Study Videos
+    </a>
+    <a href="{{ route('admin.feedbacks.index') }}" class="btn-ghost" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;">
+        <i data-feather="message-square"></i> Feedbacks
+    </a>
+</div>
+
 @if (session('success'))
 <div class="alert" style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4CAF50; color: #4CAF50; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
     {{ session('success') }}
@@ -105,6 +117,16 @@
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
+}
+.btn-ghost {
+    border: 1.5px solid rgba(250, 249, 246, 0.25);
+    color: #fff;
+    background: transparent;
+    transition: all 0.25s ease;
+}
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(250, 249, 246, 0.6);
 }
 .action-btn i, .action-btn svg {
     width: 16px;

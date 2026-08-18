@@ -641,8 +641,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 @include('components.footer')
-
-<div class="custom-cursor"></div>
 <script src="{{ asset('js/home.js') }}"></script>
 </body>
 </html>

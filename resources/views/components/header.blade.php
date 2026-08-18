@@ -40,7 +40,7 @@
       </ul>
     </nav>
 
-    <a href="{{ route('book-now') }}" class="btn btn-gold header-cta">Book a Call</a>
+    <a href="{{ route('book-now') }}" class="btn btn-gold header-cta">Book a Discovery Call</a>
 
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
