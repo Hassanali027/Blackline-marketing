@@ -49,7 +49,7 @@ class AdminServiceProcessController extends Controller
         $iconPath = '';
         if ($request->hasFile('icon')) {
             $file = $request->file('icon');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/service'), $filename);
             $iconPath = 'images/service/' . $filename;
         }
@@ -107,7 +107,7 @@ class AdminServiceProcessController extends Controller
 
         if ($request->hasFile('icon')) {
             $file = $request->file('icon');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/service'), $filename);
             $items[$itemIndex]['icon'] = 'images/service/' . $filename;
         }

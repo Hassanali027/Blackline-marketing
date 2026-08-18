@@ -32,7 +32,7 @@ class AdminFeedbackController extends Controller
         $logoPath = '';
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images'), $filename);
             $logoPath = 'images/' . $filename;
         }
@@ -40,7 +40,7 @@ class AdminFeedbackController extends Controller
         $videoPath = '';
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }
@@ -78,7 +78,7 @@ class AdminFeedbackController extends Controller
         $logoPath = $feedback->logo;
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images'), $filename);
             $logoPath = 'images/' . $filename;
         }
@@ -86,7 +86,7 @@ class AdminFeedbackController extends Controller
         $videoPath = $feedback->video;
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }

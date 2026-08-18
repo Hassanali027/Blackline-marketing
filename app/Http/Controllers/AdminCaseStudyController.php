@@ -33,7 +33,7 @@ class AdminCaseStudyController extends Controller
         $videoPath = '';
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }
@@ -73,7 +73,7 @@ class AdminCaseStudyController extends Controller
         $videoPath = $study->video;
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $videoPath = 'videos/' . $filename;
         }

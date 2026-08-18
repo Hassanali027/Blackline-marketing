@@ -136,7 +136,7 @@ class AdminCaseStudyPageController extends Controller
 
         if ($request->hasFile('hero_image')) {
             $file = $request->file('hero_image');
-            $filename = time() . '_hero_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/case-study'), $filename);
             $hero['image'] = 'images/case-study/' . $filename;
         }
@@ -158,7 +158,7 @@ class AdminCaseStudyPageController extends Controller
 
         if ($request->hasFile('challenge_image')) {
             $file = $request->file('challenge_image');
-            $filename = time() . '_challenge_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/case-study'), $filename);
             $challenge['image'] = 'images/case-study/' . $filename;
         }
@@ -172,7 +172,7 @@ class AdminCaseStudyPageController extends Controller
 
         if ($request->hasFile('strategy_image')) {
             $file = $request->file('strategy_image');
-            $filename = time() . '_strategy_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/case-study'), $filename);
             $strategy['image'] = 'images/case-study/' . $filename;
         }
@@ -186,7 +186,7 @@ class AdminCaseStudyPageController extends Controller
             $inputName = 'work_motion_image_' . $i;
             if ($request->hasFile($inputName)) {
                 $file = $request->file($inputName);
-                $filename = time() . '_work_motion_' . $i . '_' . $file->getClientOriginalName();
+                $filename = $file->getClientOriginalName();
                 $file->move(public_path('images/case-study'), $filename);
                 $work_motion['image_' . $i] = 'images/case-study/' . $filename;
             }
@@ -197,14 +197,14 @@ class AdminCaseStudyPageController extends Controller
         $video = $page->video ?? [];
         if ($request->hasFile('video_thumbnail')) {
             $file = $request->file('video_thumbnail');
-            $filename = time() . '_video_thumb_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/case-study'), $filename);
             $video['thumbnail'] = 'images/case-study/' . $filename;
         }
 
         if ($request->hasFile('video_file')) {
             $file = $request->file('video_file');
-            $filename = time() . '_video_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $video['video_file'] = 'videos/' . $filename;
         }

@@ -33,7 +33,7 @@ class AdminPortfolioItemController extends Controller
         $imagePath = '';
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/portfolio'), $filename);
             $imagePath = 'images/portfolio/' . $filename;
         }
@@ -73,7 +73,7 @@ class AdminPortfolioItemController extends Controller
         $imagePath = $item->image;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('images/portfolio'), $filename);
             $imagePath = 'images/portfolio/' . $filename;
         }

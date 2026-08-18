@@ -44,7 +44,7 @@ class AdminHeroController extends Controller
 
         if ($request->hasFile('video')) {
             $file = $request->file('video');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = $file->getClientOriginalName();
             $file->move(public_path('videos'), $filename);
             $settings['video'] = 'videos/' . $filename;
         }
