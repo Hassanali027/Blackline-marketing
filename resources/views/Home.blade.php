@@ -843,7 +843,7 @@ button {
     transition: opacity .45s var(--ease) .15s;
 }
 
-.work-panel.is-open .work-nav-arrows {
+/* .work-panel.is-open .work-nav-arrows {
     opacity: 1;
     pointer-events: auto;
 }
@@ -851,7 +851,7 @@ button {
 .work-panel.is-playing-video .work-nav-arrows {
     opacity: 0 !important;
     pointer-events: none !important;
-}
+} */
 
 .work-arrow {
     width: 44px;
@@ -1876,7 +1876,8 @@ button {
 
     .work-body {
         padding: 0 26px 30px;
-        max-width: none
+        max-width: none;
+        bottom: 30px;
     }
 
     .news-grid {
